@@ -8,8 +8,14 @@ cd src
 # 	gm convert -border 1 -bordercolor black "$f" "../public/$f"
 # done
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	SED=( 'sed' '-i' '' )
+else
+	SED=( 'sed' '-i' )
+fi
+
 find . -iname "*.md" | while read f ; do
 	title=`basename "$f"`
 	grip --export --title "${title%.*}" "$f" "../public/${f%md}html"
-	sed -i "" 's/\/__\/grip\/static\//static\//g' "../public/${f%md}html"
+	"${SED[@]}" 's/\/__\/grip\/static\//static\//g' "../public/${f%md}html"
 done
