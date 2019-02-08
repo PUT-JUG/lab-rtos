@@ -2,7 +2,7 @@
 
 ## Systemy GNU/Linux
 
-Linux to tak naprawdę nazwa darmowego, otwartego jądra systemu uniksopodobnego. Potocznie nazywa się tak jednak całą rodzinę systemów opartych na tym jądrze. Samo jądro nie stanowi kompletnego, nadającego się do użytku systemu operacyjnego, stąd dołączono do niego narzędzia i biblioteki z projektu GNU, stąd właściwa nazwa rodziny systemów: GNU/Linux.
+Linux to tak naprawdę nazwa darmowego, otwartego jądra systemu uniksopodobnego. Potocznie nazywa się tak jednak całą rodzinę systemów opartych na tym jądrze. Samo jądro nie stanowi kompletnego, nadającego się do użytku systemu operacyjnego, dlatego dołączono do niego narzędzia i biblioteki z projektu GNU, stąd właściwa nazwa rodziny systemów: GNU/Linux.
 
 Systemy linuksowe dostarczane są w formie dystrybucji takich jak Ubuntu, Debian czy Fedora, z których każda składa się z jądra oraz zestawu pakietów oprogramowania dobranego przez twórców danej dystrybucji.
 
@@ -22,14 +22,14 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 ## Instalacja programu VirtualBox
 
-* Plik instalacyjny pobierz ze strony https://www.virtualbox.org/wiki/Downloads dla danego systemu operacyjnego **hosta** (w przypadku komputerów w Laboratorium - Windows).
+* Pobierz ze strony https://www.virtualbox.org/wiki/Downloads:
+    * z sekcji **VirtualBox platform packages** plik instalacyjny dla danego systemu operacyjnego **hosta** (w przypadku komputerów w Laboratorium - Windows)
+    * z sekcji **VirtualBox Oracle VM VirtualBox Extension Pack** pakiet dodatków (plik wspólny dla wszystkich platform)
 
 * Zainstaluj program zostawiając domyślne ustawienia.
     * System zapyta o zezwolenie na instalację sterowników interfejsów sieciowych, potwierdź zgodę.
 
-* Pobierz z sekcji **VirtualBox Oracle VM VirtualBox Extension Pack** pakiet dodatków.
-
-* Zainstaluj dodatki otwierając pobrany plik za pomocą aplikacji **VirtualBox Manager** i postępując zgodnie z poleceniami na ekranie.
+* Zainstaluj dodatki otwierając pobrany plik z rozszerzeniem *vbox-extpack* za pomocą aplikacji **VirtualBox Manager** i postępując zgodnie z poleceniami na ekranie.
 
 ## Tworzenie maszyny wirtualnej
 
@@ -62,7 +62,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 ![Wybór obrazu ISO](images/lab_01_choose_iso.png)
 
-| Obsługa maszyny wirtualnej |
+| Podpowiedź: obsługa maszyny wirtualnej |
 | ------------- |
 | Kiedy aktywne jest okno maszyny wirtualnej, wszystkie naciśnięcia klawiszy przekazywane są do systemu gościa. Kliknięcie w obszarze obrazu maszyny spowoduje także przechwycenie kursora. Uwolnienie kursora i wyłączenie przechwytywania klawiszy może wymagać naciśnięcia tzw. *host key*. Aktualnie ustawiony host key wyświetlany jest w prawym dolnym rogu okna maszyny, pod systemem Windows domyślnie jest to *prawy control*. |
 
@@ -76,7 +76,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
     * Typ instalacji (Installation type)
     
-        Podczas instalacji na maszynie wirtualnej możesz bez obaw wybrać usunięcie danych i użycie całego dysku - opcja *Erase disk and install Xubuntu*. Jedyne do czego ma dostęp maszyna wirtualna, to uprzednio stworzony obraz wirtualnego dysku. Podczas ewentualnej instalacji na fizycznym komputerze masz możliwość instalacji obok istniejącego systemu operacyjnego (np. Windows) wraz z bootloaderem pozwalającym na wybór systemu podczas uruchamiania. Wymaga to jednak podziału dysku na partycje oraz pewnej wiedzy i doświadczenia.
+        Podczas instalacji na maszynie wirtualnej możesz bez obaw wybrać usunięcie danych i użycie całego dysku - opcja *Erase disk and install Xubuntu*. Jedyne do czego ma dostęp maszyna wirtualna, to uprzednio stworzony obraz wirtualnego dysku. Podczas ewentualnej instalacji na fizycznym komputerze masz możliwość instalacji obok istniejącego systemu operacyjnego (np. Windows) wraz z *bootloaderem* pozwalającym na wybór systemu podczas uruchamiania. Wymaga to jednak podziału dysku na partycje oraz pewnej wiedzy i doświadczenia.
         
         **WAŻNE: Przed instalacją jakiegokolwiek systemu na fizycznym komputerze, na którym znajdują się dane WYKONAJ KOPIĘ ZAPASOWĄ**
 
@@ -87,6 +87,10 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 ![Dane użytkownika](images/lab_01_xubuntu_user.png)
 
 * Po zakończeniu zatwierdź prośbę o restart maszyny. Instalator poprosi o wyjęcie płyty z napędu (VirtualBox zrobi to automatycznie), co potwierdź naciskając *Enter*. Po ponownym uruchomieniu zostaniesz powitany graficznym interfejsem użytkownika. Zaloguj się podając hasło użyte podczas instalacji.
+
+| Ustawienia zarządzania energią pod Windows 10 |
+| ------------- |
+| Kiedy aktywne jest okno maszyny wirtualnej, wszystkie naciśnięcia klawiszy przekazywane są do systemu gościa. Kliknięcie w obszarze obrazu maszyny spowoduje także przechwycenie kursora. Uwolnienie kursora i wyłączenie przechwytywania klawiszy może wymagać naciśnięcia tzw. *host key*. Aktualnie ustawiony host key wyświetlany jest w prawym dolnym rogu okna maszyny, pod systemem Windows domyślnie jest to *prawy control*. |
 
 ## Instalacja kompilatora i dodatków systemu gościa
 

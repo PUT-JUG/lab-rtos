@@ -1,5 +1,15 @@
 # Konfiguracja sieci, partycje, SSH
 
+## Konfiguracja połączenia sieciowego host-guest
+
+Domyślna konfiguracja sieci pod VirtualBox sprawdza się, kiedy potrzebny jest dostęp z poziomu maszyny wirtualnej do Internetu lub do sieci, do której podłączony jest host.
+
+Do pełnej komunikacji sieciowej pomiędzy systemem goszczonym a hostem, tak jakby były to dwie fizyczne maszyny, konieczna będzie niewielka modyfikacja.
+
+
+## Połączenia sieciowe
+
+
 ## SSH
 
 SSH (*secure shell*) to popularny standard protokołu komunikacyjnego pozwalający m.in. na zdalne wykonywanie poleceń przez sieć TCP/IP za pośrednictwem terminala. Połączenie jest szyfrowane i uwierzytelnione np. hasłem lub certyfikatem.
