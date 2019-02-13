@@ -40,7 +40,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 * Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Podczas zajęć nazwę ustaw na *Xubuntu 18.04 - Test*.
 * Wybierz typ instalowanego systemu operacyjnego oraz architekturę - Linux / Ubuntu 64-bit - VirtualBox stara się rozpoznać typ systemu po nazwie maszyny.
 
-![Tworzenie maszyny wirtualnej](images/lab_01_create_vm.png)
+![Tworzenie maszyny wirtualnej](../images/lab_01_create_vm.png)
 
 * Ustaw ilość pamięci RAM, jaką otrzyma maszyna wirtualna. Pamiętaj, że system hosta i maszyny wirtualne współdzielą pamięć jednej maszyny. Podczas zajęć ustaw *1024 MB*.
 
@@ -52,7 +52,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 * Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
 
-![Utworzona maszyna wirtualna](images/lab_01_fresh_vm.png)
+![Utworzona maszyna wirtualna](../images/lab_01_fresh_vm.png)
 
 ## Instalacja systemu
 
@@ -60,7 +60,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 * Uruchom maszynę kilkając *Start*. Maszyna domyślnie ustawiona jest na boot z wirtualnego napędu CD. Przy pierwszym uruchomieniu maszyny VirtualBox poprosi o wskazanie obrazu ISO płyty:
 
-![Wybór obrazu ISO](images/lab_01_choose_iso.png)
+![Wybór obrazu ISO](../images/lab_01_choose_iso.png)
 
 | Podpowiedź: obsługa maszyny wirtualnej |
 | ------------- |
@@ -70,7 +70,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 * Wybierz układ klawiatury *Polish*/*Polish*, przejdź dalej przyciskiem *Continue*.
 
-![Wybór obrazu ISO](images/lab_01_xubuntu_keyboard.png)
+![Wybór obrazu ISO](../images/lab_01_xubuntu_keyboard.png)
 
 * Wszystkie pozostałe opcje mogą pozostać domyślne, przejdź przez kolejne etapy instalacji przyciskiem *Continue*.
 
@@ -84,7 +84,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
     Podczas zajęć posługujemy się loginem *student*, nazwą komputera *vbox-xubuntu-labrtos* i hasłem *Over9000*
 
-![Dane użytkownika](images/lab_01_xubuntu_user.png)
+![Dane użytkownika](../images/lab_01_xubuntu_user.png)
 
 * Po zakończeniu zatwierdź prośbę o restart maszyny. Instalator poprosi o wyjęcie płyty z napędu (VirtualBox zrobi to automatycznie), co potwierdź naciskając *Enter*. Po ponownym uruchomieniu zostaniesz powitany graficznym interfejsem użytkownika. Zaloguj się podając hasło użyte podczas instalacji.
 
@@ -110,7 +110,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 Uruchom aplikację *Terminal Emulator* korzystając z ikony menu Xubuntu w lewym górnym rogu. Jeśli nie wyświetla się na liście, możesz wpisać w wyszukiwarce \"terminal\". Powinno pojawić się następujące okno:
 
-![Terminal Emulator](images/lab_01_xubuntu_terminal.png)
+![Terminal Emulator](../images/lab_01_xubuntu_terminal.png)
 
 Linia poleceń zawiera m.in. Twoją nazwę użytkownika i nazwę komputera, a na końcu *znak zachęty* ($). Po znaku zachęty możesz wpisywać polecenia do wykonania, zatwierdzane enterem.
 
@@ -122,7 +122,7 @@ ping www.google.com
 
 W terminalu co sekundę powinna pokazywać się odpowiedź od serwera.
 
-![Terminal Emulator](images/lab_01_xubuntu_ping.png)
+![Terminal Emulator](../images/lab_01_xubuntu_ping.png)
 
 Działanie programów konsolowych możesz skrótem klawiszowym *control-c*. Pamiętaj, że prawy control jest skonfigurowany jako specjalny *klawisz hosta*, zatem do skrótów używaj lewego klawisza control. Przerwij działanie polecenia `ping`.
 
@@ -151,15 +151,15 @@ Wróć do okna terminala i uruchom polecenie `autorun.sh` z płyty. Ponieważ pr
 ```
 Instalator zapyta ponownie o hasło użytkownika, a następnie wyświetli dodatkowe okno terminala z komunikatami. Po zakończeniu instalacji powinno wyglądać następująco:
 
-![Additions installed](images/lab_01_xubuntu_additions.png)
+![Additions installed](../images/lab_01_xubuntu_additions.png)
 
 Możesz zamknąć teminale, a następnie usunąć płytę z dodatkami z wirtualnego napędu korzystając z ikony w prawym dolnym rogu. Konieczne może być wymuszenie wyjęcia płyty (*Force Unmount*):
 
-![Remove CD](images/lab_01_vbox_remove_cd.png)
+![Remove CD](../images/lab_01_vbox_remove_cd.png)
 
 Zrestartuj maszynę wirtualną korzystając z menu Xubuntu:
 
-![Additions installed](images/lab_01_xubuntu_shutdown.png)
+![Additions installed](../images/lab_01_xubuntu_shutdown.png)
 
 Po ponownym uruchomieniu włącz współdzielony schowek w menu VirtualBoxa: *Devices* &rarr; *Shared Clipboard* &rarr; *Bidirectional*, co znacznie ułatwi Ci przenoszenie informacji pomiędzy gościem a hostem. Od tej pory rozdzielczość systemu gościa będzie się także dopasowywała do rozmiaru okna VirtualBoxa. Możesz przełączyć się na pełny ekran naciskając *przycisk hosta*+*F*. 
 

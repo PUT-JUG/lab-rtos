@@ -4,7 +4,7 @@
 
 Podczas tego ćwiczenia poznamy podstawy pracy z systemem Linux przy wykorzystaniu najpopularniejszej, domyślnej powłoki *bash*. Aby uzyskać dostęp do powłoki, należy uruchomić aplikację *Terminal Emulator* z menu startowego interfejsu graficznego systemu.
 
-![Terminal Emulator](images/lab_02_term.png)
+![Terminal Emulator](../images/lab_02_term.png)
 
 Po uruchomieniu terminala wyświetlana jest linia poleceń wraz z nazwą użytkownika (*student*), nazwą maszyny (*vbox-xubuntu-labrtos*) oraz znak zachęty $. Oznacza to, że zalogowany użytkownik jest użytkownikiem zwykłym. Oprócz tego wyróżniamy, użytkownika uprzywilejowanego *root* posiadającego pełne prawa administracyjne do systemu. W takim wypadku, znak zachęty zmienia się na #, a nazwa użytkownika na *root*. Po znaku zachęty możemy wprowadzać kolejne polecenia zatwierdzanie klawiszem *Enter*.
 
@@ -82,7 +82,7 @@ Pomoc systemowa wyświetlana jest za pomocą przeglądarki more, którą obsług
 
 Katalog jest strukturą, która umożliwia porządkowanie i grupowanie danych, jakie są przechowywane na dysku komputera. Katalogi mają strukturę hierarchiczną - w każdym katalogu mogą być przechowywane zarówno pliki, jaki i katalogi niższych poziomów. W systemach UNIX wszystkie dostępne systemy plików postrzegane są przez użytkownika jako jedna struktura katalogów, której wierzchołkiem jest tzw. katalog główny, oznaczany symbolem '' */* ''. Jeśli w systemie dostępnych jest kilka systemów plików to jeden z nich jest jest systemem głównym, a pozostałe są do niego montowane. Regułą jest także, że każdy użytkownik posiada tzw. katalog domowy, zwykle jest to podkatalog katalogu *home*, w którym użytkownik może przechowywać własne pliki.
 
-![Struktura katalogow](images/lab_02_dirtree.png)
+![Struktura katalogow](../images/lab_02_dirtree.png)
 
 Postać systemu plików systemów UNIX jest w dużej części ustandaryzowana - oto najistotniejsze podkatalogi katalogu głównego:
 
@@ -126,7 +126,7 @@ Podstawowe operacje obsługi katalogów można realizować z wykorzystaniem nast
   * *ls -a* - wyświetla zawartość katalogu bieżącego uwzględniając wszystkie pliki - tzn. także te, których nazwa zaczyna się od znaku "." (umownie są to pliki ukryte);
   * *ls -l* - wyświetla wszystkie pliki z katalogu bieżącego z uwzględnieniem tzw. "długiego formatu", czyli podając typ każdego obiektu w katalogu (pierwszy znak linii: d - katalog, znak "-" - plik zwykły, l - dowiązanie), prawa dostępu, liczbę dowiązań, właściciela, nazwę grupy, rozmiar (w bajtach), data ostatniej modyfikacji oraz nazwę (patrz rysunek poniżej)
   
-    ![Polecenie ls -l](images/lab_02_lsl.png)
+    ![Polecenie ls -l](../images/lab_02_lsl.png)
   * *ls -al ~* - jak wyżej, przy czym wyświetlana jest zawartość katalogu domowego wraz z plikami ukrytymi;
   * *ls -al /etc* - jak wyżej, ale wyświetlana jest zawartość katalogu */etc*.
 * *mkdir [przełączniki] nazwa_katalogu* - tworzenie katalogów, np.:
