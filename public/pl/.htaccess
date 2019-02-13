@@ -4,6 +4,7 @@ Options +Indexes
 
   # INDEX OPTIONS
   IndexOptions +Charset=UTF-8 +FancyIndexing +IgnoreCase +FoldersFirst +XHTML +HTMLTable +SuppressRules +SuppressDescription -SuppressSize -SuppressLastModified +NameWidth=* +IconsAreLinks
+  IndexIgnore .* _*
 
   # META TAGS
   IndexHeadInsert "<meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1'><meta http-equiv='X-UA-Compatible' content='IE=edge'>"
