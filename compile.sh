@@ -4,10 +4,6 @@ set -e
 
 cd src
 
-# find . -iname "*.png" | while read f ; do
-# 	gm convert -border 1 -bordercolor black "$f" "../public/$f"
-# done
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	SED=( 'sed' '-i' '' )
 else
