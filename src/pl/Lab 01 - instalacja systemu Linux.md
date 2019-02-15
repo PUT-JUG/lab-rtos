@@ -124,7 +124,7 @@ W terminalu co sekundę powinna pokazywać się odpowiedź od serwera.
 
 ![Terminal Emulator](../images/lab_01_xubuntu_ping.png)
 
-Działanie programów konsolowych możesz skrótem klawiszowym *control-c*. Pamiętaj, że prawy control jest skonfigurowany jako specjalny *klawisz hosta*, zatem do skrótów używaj lewego klawisza control. Przerwij działanie polecenia `ping`.
+Działanie programów konsolowych możesz przerwać skrótem klawiszowym *control-c*. Pamiętaj, że prawy control jest skonfigurowany jako specjalny *klawisz hosta*, zatem do skrótów używaj lewego klawisza control. Przerwij działanie polecenia `ping`.
 
 Spróbuj zainstalować pakiet `build-essential`, który spowoduje zainstalowanie kompilatora i wszystkich niezbędnych narzędzi. Wykonaj polecenie:
 

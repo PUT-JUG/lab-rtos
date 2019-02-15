@@ -2,6 +2,10 @@
 
 set -e
 
+git ls-files --others "*html" | while read f ; do
+	rm "$f"
+done
+
 cd src
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
