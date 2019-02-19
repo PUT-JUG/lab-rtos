@@ -33,11 +33,11 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 ## Tworzenie maszyny wirtualnej
 
-* Uruchom program VirtualBox.
+Uruchom program VirtualBox.
 
-* Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogowego:
+Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogowego:
 
-* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Podczas zajęć nazwę ustaw na *Xubuntu 18.04 - Test*.
+* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Podczas zajęć nazwę ustaw na *Xubuntu 18.04 L-?*, gdzie *?* to numer Twojej grupy laboratoryjnej. Z tej maszyny wirtualnej będziesz korzystać podczas kolejnych zajęć.
 * Wybierz typ instalowanego systemu operacyjnego oraz architekturę - Linux / Ubuntu 64-bit - VirtualBox stara się rozpoznać typ systemu po nazwie maszyny.
 
 ![Tworzenie maszyny wirtualnej](../images/lab_01_create_vm.png)
@@ -50,7 +50,7 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
     * Rozmiar maksymalny 10 GB
     * Lokalizacja obrazu w wewnątrz folderu *\~/Virtualbox VMs/\<nazwa maszyny wirtualnej\>*
 
-* Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
+Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
 
 ![Utworzona maszyna wirtualna](../images/lab_01_fresh_vm.png)
 
@@ -161,10 +161,47 @@ Zrestartuj maszynę wirtualną korzystając z menu Xubuntu:
 
 ![Additions installed](../images/lab_01_xubuntu_shutdown.png)
 
-Po ponownym uruchomieniu włącz współdzielony schowek w menu VirtualBoxa: *Devices* &rarr; *Shared Clipboard* &rarr; *Bidirectional*, co znacznie ułatwi Ci przenoszenie informacji pomiędzy gościem a hostem. Od tej pory rozdzielczość systemu gościa będzie się także dopasowywała do rozmiaru okna VirtualBoxa. Możesz przełączyć się na pełny ekran naciskając *przycisk hosta*+*F*. 
+Po ponownym uruchomieniu włącz współdzielony schowek w menu VirtualBoxa: *Devices* &rarr; *Shared Clipboard* &rarr; *Bidirectional*, co znacznie ułatwi Ci przenoszenie informacji pomiędzy gościem a hostem. Od tej pory rozdzielczość systemu gościa będzie się także dopasowywała do rozmiaru okna VirtualBoxa. Możesz przełączyć się na pełny ekran naciskając *przycisk hosta*+*F*.
+
+## Mechanizm migawek w środowisku VirtualBox
+
+Wiele środowisk wirtualizacji, w tym program VirtualBox, pozwala na tworzenie tzw. migawek (ang. *snapshot*) maszyn wirtualnych, czyli zapamiętanych stanów maszyny - m.in. ustawień maszyny, zawartości dysku oraz pamięci operacyjnej. Pozwala to na przykład na bezpieczne testowanie rozwiązań z możliwością wrócenia do zapisanego stanu. Możliwe jest również zapamiętanie stanu uruchomionej maszyny, co pozwala np. wznowić jej działanie od wybranego momentu.
+
+### Przetestuj tworzenie migawek
+
+Wyłącz stworzoną w poprzednich punktach maszynę wirtualną. Stwórz migawkę "czystej" instalacji - świeżo zainstalowanego systemu wraz z dodatkami gościa:
+
+* Przełącz widok opcji na *Snapshots* podświetlając wybraną maszynę i klikając rozwijane menu:
+
+![Snapshots](../images/lab_01_snapshots.png)
+
+* Stwórz nową migawkę przyciskiem *Take*
+
+    * Nadaj jej nazwę *clean install*
+
+Stan migawek wyświetlany jest w formie drzewa - maszyna może mieć kilka migawek, migawki mogą być też zależne od innych:
+
+![Snapshots](../images/lab_01_snapshot_tree.png)
+
+Powyższy widok oznacza, że stan bieżący i wszystkie zmiany jakie w nim znajdą są będą zapisywane jako zmiany względem migawki *clean install*. Co istotne, w migawce przechowywane są jedynie faktyczne zmiany na dysku - posiadanie wielu migawek nie musi oznaczać, że zajmują one bardzo dużo przestrzeni dyskowej.
+
+Uruchom maszynę wirtualną i dokonaj drobnych zmian w systemie - np. zmień tapetę, utwórz na pulpicie dokument tekstowy, usuń folder *Videos* z katalogu domowego.
+
+Wyłącz system gościa, a następnie przywróć zapisany wcześniej system zaznaczając migawkę *clean install* i kilkając *Restore*. VirtualBox zapyta, czy chcesz zapisać zmiany, które wprowadziłeś od czasu utworzenia migawki *clean install* jako nową migawkę - zrezygnuj z tej opcji deaktywując pole wyboru *Create a snapshot of the current machine state*:
+
+![Snapshots](../images/lab_01_snapshot_restore.png)
+
+Sprawdź czy przywrócenie się powiodło - po uruchomieniu maszyny nie powinno być zmian, które wprowadziłeś od chwili zrobienia migawki.
+
+Poza przywracaniem masz możliwość:
+
+* *Delete*: usunięcia migawki 
+* *Clone*: utworzenia nowej maszyny na podstawie migawki
+* *Discard*: wymuszenia wyłączenia maszyny, której stan został zapisany podczas gdy była uruchomiona 
+
 
 ## Poznaj nowy system!
 
 Do poleceń terminala wrócimy na kolejnych laboratoriach, a na razie - poznaj nowy system od bardziej przyjaznej, graficznej strony!
 
-Uruchom przeglądarkę plików, sprawdź jakie aplikacje i opcje są dostępne w menu. Zajrzyj do ustawień, eksperymentuj. To tylko maszyna wirtualna, którą zawsze możesz w łatwy sposób skonfigurować od zera bez obaw o system, na którym pracujesz na co dzień.
+Uruchom przeglądarkę plików, sprawdź jakie aplikacje i opcje są dostępne w menu. Zajrzyj do ustawień, eksperymentuj. To tylko maszyna wirtualna, którą zawsze możesz w łatwy sposób przywrócić do sprawnej migawki lub skonfigurować od zera bez obaw o system, na którym pracujesz na co dzień.

@@ -2,8 +2,10 @@
 
 set -e
 
-git ls-files --others "*html" | while read f ; do
-	rm "$f"
+find . -name "*.html" | while read f ; do
+	if ! git ls-files --error-unmatch "$f"  > /dev/null 2>&1; then
+		rm "$f"
+	fi
 done
 
 cd src
