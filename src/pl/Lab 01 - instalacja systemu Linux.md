@@ -197,8 +197,9 @@ Poza przywracaniem masz możliwość:
 
 * *Delete*: usunięcia migawki 
 * *Clone*: utworzenia nowej maszyny na podstawie migawki
-* *Discard*: wymuszenia wyłączenia maszyny, której stan został zapisany podczas gdy była uruchomiona 
+* *Discard*: wymuszenia wyłączenia maszyny, której stan został zapisany podczas gdy była uruchomiona
 
+Pozostaw migawkę *clean install* na komputerze w laboratorium, tak aby zawsze móc wrócić do działającego systemu.
 
 ## Poznaj nowy system!
 
