@@ -66,7 +66,7 @@ powoduje wyświetlenie opisu działania wszystkich przełączników, odniesień 
 
 Bardziej rozbudowaną dokumentację poleceń można uzyskać poprzez wywołanie:
 ```bash
-man naza_polecenia
+man nazwa_polecenia
 ```
 Powoduje to uruchomenie interaktywnej przeglądarki plików pomocy dla podanego programu lub usługi.
 Pomoc systemowa wyświetlana jest za pomocą przeglądarki *more*, którą obsługuje się za pomocą następujących poleceń klawiszowych:
@@ -110,8 +110,8 @@ pwd
 Jak wspomniano symbol `/` oznacz katalog główny, używa się także innych symboli dla określenia wybranych katalogów:
 
 * `.` - oznacza katalog bieżący,
-* `..` - oznacz katalog bezpośrednio nadrzędny;
-* `~` - oznacz katalog domowy użytkownika.
+* `..` - oznacza katalog bezpośrednio nadrzędny;
+* `~` - oznacza katalog domowy użytkownika.
 
 ## Obsługa katalogów
 
@@ -169,7 +169,7 @@ Polecenia dotyczące plików (i katalogów) można także wydawać z wykorzystan
 
 `?` - zastępuje dokładnie jeden dowolny znak;
 
-`[<znaki>]` - zastępuje dokładnie jeden znak z podanego zakresu, np.: [xyz];
+`[<znaki>]` - zastępuje dokładnie jeden znak z podanego zakresu, np.: `[xyz]`;
 
 `[^<znaki>]` - znak ^ na początku oznacza dopełnienie zbioru, czyli dla  przykładu `[^xyz]`, oznacza dowolny znak nie będący literą `x, y` i `z`.
 
@@ -257,7 +257,7 @@ Zatem dla pliku `abc.txt` dostępne są następujące prawa (znak "-" oznacza br
 
 Prawami dostępu można także operować stosując notację numeryczną, w której każde prawo ma przypisaną pewną wartość liczbową, i tak: prawo odczytu - `4`; prawo zapisu - `2`, prawo wykonywania - `1`. Tak więc, prawa zapisane numerycznie dla pliku `abc.txt` z powyższego przykładu miałyby następującą postać:
 
-* `745` - 7 oznacza wszystkie prawa dla użytkownika (4 + 2 + 1), 4 oznacza prawo odczytu dla grupy, a 5 oznacza praw odczytu i wykonywania (4 + 1) dla pozostałych użytkowników.
+* `745` - 7 oznacza wszystkie prawa dla użytkownika (4 + 2 + 1), 4 oznacza prawo odczytu dla grupy, a 5 oznacza prawo odczytu i wykonywania (4 + 1) dla pozostałych użytkowników.
   
 Operowanie prawami dostępu i określaniem prawa własności jest możliwe dzięki następującym poleceniom systemowym:
 
@@ -268,7 +268,7 @@ Operowanie prawami dostępu i określaniem prawa własności jest możliwe dzię
 
 W specyfikacji należy zatem wskazać dla kogo mają być zmienione prawe (`u` - właściciel, `g` - użytkownicy z tej samej grupy, `o` - inni użytkownicy, `a` - wszyscy), (ii) rodzaj zmiany (`+` - dodanie praw, `-` - odjęcie praw, `=` - ustalenie praw) oraz (iii) prawa. Oto przykładowe zlecenia z wykorzystaniem polecenia chmod:
 
-  * `chmod u+w plik.txt` - dodaje prawo odczytu dla właściciela do pliku *plik.txt`;
+  * `chmod u+w plik.txt` - dodaje prawo zapisu dla właściciela do pliku `plik.txt`;
   * `chmod go-x plik.txt` - usuwa prawo wykonywania dla użytkowników z tej samej grupy i innych do pliku `plik.txt`; 
   * `chmod a=r plik.txt` - ustawia prawa dostępu na tylko do odczytu dla wszystkich użytkowników do pliku `plik.txt`;
   
@@ -281,7 +281,7 @@ Dodatkowo, możliwa jest zmiana własciciela lub grupy właścicieli pliku/katal
 
 * `chown [przełączniki] nazwa_nowego_właściciela nazwa_pliku_lub_katalogu` - zmiana właściciela pliku lub katalogu. Ze względu na nieodwracalność ewentualnych zmian, polecenie to jest często zarezerwowane dla administratora systemu.
   
-* ` chgrp [przełączniki] nazwa_nowej_grupy nazwa_pliku_lub_katalogu` - zmienia grupę, do której należy wskazany plik lub katalog. Podobnie jak polecenie chown, i to polecenie najczęściej jest zarezerwowane dla administratora.
+* `chgrp [przełączniki] nazwa_nowej_grupy nazwa_pliku_lub_katalogu` - zmienia grupę, do której należy wskazany plik lub katalog. Podobnie jak polecenie chown, i to polecenie najczęściej jest zarezerwowane dla administratora.
 
 
 ## Dowiązania

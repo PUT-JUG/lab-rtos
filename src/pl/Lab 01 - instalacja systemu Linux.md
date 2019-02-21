@@ -206,3 +206,6 @@ Pozostaw migawkę *clean install* na komputerze w laboratorium, tak aby zawsze m
 Do poleceń terminala wrócimy na kolejnych laboratoriach, a na razie - poznaj nowy system od bardziej przyjaznej, graficznej strony!
 
 Uruchom przeglądarkę plików, sprawdź jakie aplikacje i opcje są dostępne w menu. Zajrzyj do ustawień, eksperymentuj. To tylko maszyna wirtualna, którą zawsze możesz w łatwy sposób przywrócić do sprawnej migawki lub skonfigurować od zera bez obaw o system, na którym pracujesz na co dzień.
+
+***
+Autor: *Jakub Tomczyński*
