@@ -107,7 +107,7 @@ Informacja o katalogu bieżącym jest wyświetlana po wydaniu polecenia:
 pwd
 ```
 
-Jak wspomniano symbol `/` oznacz katalog główny, używa się także innych symboli dla określenia wybranych katalogów:
+Jak wspomniano symbol `/` oznacza katalog główny, używa się także innych symboli dla określenia wybranych katalogów:
 
 * `.` - oznacza katalog bieżący,
 * `..` - oznacza katalog bezpośrednio nadrzędny;

@@ -56,7 +56,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 ## Instalacja systemu
 
-* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 18.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (Mirror) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-18.04.1-desktop-amd64.iso*).
+* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 18.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (*mirror*) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-18.04.2-desktop-amd64.iso*).
 
 * Uruchom maszynę kilkając *Start*. Maszyna domyślnie ustawiona jest na boot z wirtualnego napędu CD. Przy pierwszym uruchomieniu maszyny VirtualBox poprosi o wskazanie obrazu ISO płyty:
 
@@ -90,7 +90,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 | Ustawienia zarządzania energią pod Windows 10 |
 | ------------- |
-| Kiedy aktywne jest okno maszyny wirtualnej, wszystkie naciśnięcia klawiszy przekazywane są do systemu gościa. Kliknięcie w obszarze obrazu maszyny spowoduje także przechwycenie kursora. Uwolnienie kursora i wyłączenie przechwytywania klawiszy może wymagać naciśnięcia tzw. *host key*. Aktualnie ustawiony host key wyświetlany jest w prawym dolnym rogu okna maszyny, pod systemem Windows domyślnie jest to *prawy control*. |
+| Podczas pracy na laptopie zasilanym z baterii, system Windows 10 może nadmiernie ograniczać wydajność maszyny wirtualnej w celu wydłużenia czasu pracy na baterii. Jeśli maszyna wirtualna zdaje się mieć niespodziewanie niską wydajność, spróbuj zmienić bieżący profil zasilania klikając na ikonę baterii na pasku zadań systemu Windows. |
 
 ## Instalacja kompilatora i dodatków systemu gościa
 
