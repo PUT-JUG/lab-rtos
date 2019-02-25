@@ -1,12 +1,12 @@
-# Xubuntu Linux installation and configuration within VirtualBox Environment
+# Xubuntu Linux installation and configuration in the VirtualBox Environment
 
 ## GNU / Linux Systems
 
-Linux is, in fact, a name for free, open, unix-like system kernel. However, it's a common name for the whole family of systems based on this kernel. The kernel itself isn't a full, usable operating system, therefore the Linux kernel combined with set of libraries and tools from the GNU project creates the correct name for the family of operating systems: GNU/Linux.
+Linux is, in fact, a name for a free, open, UNIX-like system kernel. However, it's a common name for the whole family of systems based on this kernel. The kernel itself isn't a full, usable operating system, therefore the Linux kernel combined with a set of libraries and tools from the GNU project creates the correct name for the family of operating systems: GNU/Linux.
 
-Linux-based operating systems are delivered as a distributions such a Ubuntu, Debian or Fedora. Every distribution consists of the linux kernel and set of software packages, selected and chosen by creator of the distribution.
+Linux-based operating systems are delivered as distributions such a Ubuntu, Debian or Fedora. Every distribution consists of the Linux kernel and set of software packages, selected and chosen by the creator of the distribution.
 
-During the classes, we will be using the **Xubuntu** distirbution, versio **18.04 LTS**, which is a side-version of the most popular desktop Linux distribution - Ubuntu. However, the *X* means that this system is equipped with lightweight XFCE graphical environment, which is especially suitable for the virtualization and a bit older and slower machines.
+During the classes, we will be using the **Xubuntu** distribution, version **18.04 LTS**, which is a side-version of the most popular desktop Linux distribution - Ubuntu. However, the *X* means that this system is equipped with a lightweight XFCE graphical environment, which is especially suitable for the virtualization and a bit older and slower machines.
 
 Most of the operations and commands used during the classes are very versatile and will work with any other Linux distro (exceptions will be marked).
 
@@ -14,9 +14,9 @@ Most of the operations and commands used during the classes are very versatile a
 
 To make the introduction to the Linux OS easier, we will install the distro on the virtual machine (VM).
 
-By creating the virtual machine, out computer will "simulate" all the resources creating the PC - maiboard chipset, hard drives, graphics card, network interfaces etc. Virtualization is not the same thing as emulation - in contrary to the emulation, the guest system will be proveded with almost direct access to the physical CPU.
+By creating the virtual machine, out computer will "simulate" all the resources creating the PC - mainboard chipset, hard drives, graphics card, network interfaces etc. Virtualization is not the same thing as emulation - in contrary to the emulation, the guest system will be provided with almost direct access to the physical CPU.
 
-Thanks to the virtualization, we will avoid the risk of damaging the main operating system on our PC, deleting files or removing the partitions. In addition, we will be able to run not only the main system (*host), but also one or many virtual systems (*guests*).
+Thanks to the virtualization, we will avoid the risk of damaging the main operating system on our PC, deleting files or removing the partitions. In addition, we will be able to run not only the main system (*host*), but also one or many virtual systems (*guests*).
 
 In order to manage and run virtual machines, we need the *hypervisor* software. During the classes, we will use the *VirtualBox* project, which supports a majority of most popular operating systems both as host or guests (Windows, macOS, numerous Linux distros etc.).
 
@@ -27,7 +27,7 @@ In order to manage and run virtual machines, we need the *hypervisor* software. 
     * from section **VirtualBox Oracle VM VirtualBox Extension Pack** - the add-on pack (one file for all platforms) 
 
 * Install the software with default settings.
-    * The Windows OS will ask for a permission to install network interface - agree.
+    * The Windows OS will ask for permission to install network interface - agree.
 
 * Install the add-on pack by opening the *vbox-extpack* extension file with the **VirtualBox Manager** application and follow the screen commands.
 
@@ -37,14 +37,14 @@ Start the VirtualBox.
 
 Click the *New* button. In the next steps of the creator:
 
-* Input the name of the Virtual Machine (any name will do, it's a good idea to name the machine according to its type). During the classes, type in the name *Xubuntu 18.04 ACR*. This is your virtual machine to be used during following classes.
+* Input the name of the Virtual Machine (any name will do, it's a good idea to name the machine according to its type). During the classes, type in the name *Xubuntu 18.04 ACR*. This is your virtual machine to be used during the following classes.
 * Choose the type of operating system and its architecture - Linux / Ubuntu 64-bit.
 
 ![Tworzenie maszyny wirtualnej](../images/lab_01_create_vm.png)
 
 * Set the size of memory available for the VM. Please keep in mind, that the host and the guest system share the same RAM. During the classes, set this parameter to *1024 MB*.
 
-* Create new disk image for the VM, leave the default settings:
+* Create a new disk image for the VM, leave the default settings:
     * VDI format
     * Dynamic space allocation
     * Maximum size of 10GB
@@ -56,7 +56,7 @@ The configuration with the default, system-targeted settings will be created:
 
 ## Installing the operation system
 
-* Download the *ISO* image from the website https://xubuntu.org/download/ - version 18.04.\*, *Desktop* for the 64-bit architecture - choose the server (*mirror*) located closely to you and then - the correct ISO file (*xubuntu-18.04.2-desktop-amd64.iso*).
+* Download the *ISO* image from the website https://xubuntu.org/download/ - version 18.04.\*, *Desktop* for the 64-bit architecture - choose the server (*mirror*) located close to you and then - the correct ISO file (*xubuntu-18.04.2-desktop-amd64.iso*).
 
 * Run your VM by clicking *Start*. The machine is set to boot from the virtual CD drive by default. During the first run, the VM will ask to select the location of ISO file:
 
@@ -64,7 +64,7 @@ The configuration with the default, system-targeted settings will be created:
 
 | Hint: working with the virtual machine |
 | ------------- |
-| When the virtual machine window is active, all the keys pressed are transfered to the guest OS. Mouse clicks within the VM area will cause capturing the coursor as well. To release the mouse coursor and disable the capturing, you have to press the *host key*. Currently set host key is displayed in the bottom-right corner of the VM's window. By default, it is a right *Ctrl* key.|
+| When the virtual machine window is active, all the keys pressed are transferred to the guest OS. Mouse clicks within the VM area will cause capturing the cursor as well. To release the mouse cursor and disable the capturing, you have to press the *host key*. Currently set host key is displayed in the bottom-right corner of the VM's window. By default, it is a right *Ctrl* key.|
 
 * The downloaded image is a *Live-CD*, which means, that the system can be run directly out of the CD, without the need of full installation. During the class, we are going to use the full system installation, therefore choose *Install Xubuntu* with the default English as a system language and keyboard layout. Next, click *Continue*.
 
@@ -207,5 +207,7 @@ Start the file browser, check which applications and options are available in th
 
 ***
 Author: *Jakub Tomczyński*
+
 English translation: *Adam Bondyra*
+
 Last rev.: 25-02-2019
