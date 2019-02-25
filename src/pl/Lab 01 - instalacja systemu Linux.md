@@ -142,7 +142,7 @@ Polecenie `sudo` zapyta o hasło - wpisz swoje hasło użytkownika podane podcza
 
 ### Instalacja dodatków
 
-Z menu w oknie z maszyną wirtualną wybierz *Devices* &rarr; *Insert Guest Additions* CD image. Xubuntu powinno automatycznie otworzyć okno przeglądarki plików. Zwróć uwagę na ścieżkę, pod jaką znajduje się zawartość płyty.
+Z menu w oknie z maszyną wirtualną wybierz *Devices* &rarr; *Insert Guest Additions CD image*. Xubuntu powinno automatycznie otworzyć okno przeglądarki plików. Zwróć uwagę na ścieżkę, pod jaką znajduje się zawartość płyty.
 
 Wróć do okna terminala i uruchom polecenie `autorun.sh` z płyty. Ponieważ program znajduje się na płycie, podaj pełną ścieżkę do polecenia, podmieniając ewentualnie numer wersji dodatków na aktualny:
 
