@@ -57,6 +57,16 @@ ls -la /etc
 ```
 Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem tej samej operacji. Przełączniki wieloznakowe podawane są z wykorzystaniem dwuznaku "--".
 
+| Garść porad i wskazówek|
+| ------------- |
+| Podczas pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
+  *  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` terminal podpowie (lub uzupełni) dalszą część polecenia 
+ * Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami
+ * Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie
+ * Polecenie `clear` powoduje wyczyszczenie ekranu terminala
+ * Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`. 
+ 
+
 ## Pomoc systemowa
 W systemie Linux dla każdego polecenia dostępna jest pomoc systemowa opisująca różne aspekty i zastosowania danego narzędzia oraz dostępne przełączniki. Jednym z mechnizmów pozwalających na wyświetlenie plików pomocy jest wywołanie polecenia z przełącznikiem `--help`, np:
 ```bash
@@ -179,6 +189,27 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 
 `rm ./[0-9]*` - usunięcie wszystkich plików z katalogu domowego, których nazwa rozpoczyna się od cyfry.
 
+## Zadania do samodzielnego wykonania - część I
+
+
+1. Zmień własne hasło. Następnie powróć do hasła domyślnego.
+2. Sprawdź własny identyfikator oraz grupy, do których należysz.
+3. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
+4. Zapoznaj się z opisem struktury katalogów - polecenie man 7 hier.
+5. Wyświetl zawartość katalogu domowego.
+6. Wyświetl zawartość podstawowych katalogów w systemie (np. /dev, /etc, /home, /usr).
+7. Utwórz katalog kat1 w katalogu domowym.
+8. W katalogu kat1 utwórz jednym poleceniem strukturę katalogów kat2/kat3/kat4.
+9.  Usuń jednym poleceniem cała strukturę katalogów kat3/kat4.
+10. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami .txt i .c.
+11. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .txt do katalogu kat1.
+12. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .c do katalogu kat2.
+13. Skopiuj całą strukturę katalogów kat1 tworząc analogiczną strukturę o nazwie kat1b.
+14. Usuń wszystkie plik z katalogu kat1/kat2.
+15. Usuń jednym poleceniem całą strukturę katalogów kat1b.
+16. Zmień nazwę dowolnego pliku w katalogu kat1.
+17. Przenieś katalog kat1/kat2 do katalogu domowego tworząc w ten sposób katalog kat2b.
+
 ## Wyszukiwanie plików
 
 Jak już wspomniano pliki w systemach UNIX są używane do przechowywania danych użytkowników oraz reprezentują m. in. niektóre urządzenia systemowe, istotne jest zatem sprawne wyszukiwanie i lokalizowanie plików w strukturze katalogów. Zadanie to można zrealizować na kilka sposobów, w zależności od charakteru poszukiwanego pliku i kryteriów wyszukiwania.
@@ -219,7 +250,13 @@ Oto przykłady użycia polecenia find:
 * `find ~ -iname "*.txt" -type f -size +100k` - wyszuka wszystkie pliki zwykłe w katalogu domowym użytkownika (i jego podkatalogach), które mają rozszerzenie `.txt` - wielkość liter bez znaczenia - oraz rozmiar większy niż 100kB;
 * `find /tmp -type f -atime +2 -exec rm {} \; -print` - wyszuka wszystkie pliki zwykłe w katalogu `/tmp` (oraz jego podkatalogach), na których nie były wykonywane żadne operacje w ciągu ostatnich 48 godzin oraz usunie wszystkie odnalezione pliki; dodatkowy przełącznik `-print` powoduje, że zostaną wyświetlone nazwy odnalezionych plików, pomimo wykonania na nich dodatkowej operacji (tutaj `rm`).
 
+## Zadania do samodzielnego wykonania - część II
 
+18.  Przy pomocy programu locate znajdź wszystkie pozycje, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
+19.  Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
+20.  Korzystając z programu find znajdź wszystkie katalogi o nazwie bin, które znajdują się w katalogu /usr.
+21.  Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu /usr/bin do katalogu kat1/kat2 (wykorzystaj polecenie find z parametrem -exec).
+    
 ## Prawa dostępu
 
 W systemach UNIX dostęp do plików i katalogów zabezpieczony jest tzw. prawami dostępu, które regulują zasady na jakich użytkownicy mogą korzystać z tych zasobów. Wyróżnia się trzy rodzaje praw: prawo odczytu - oznaczane `r` (ang. `read`), prawo zapisu - oznaczane `w` (ang. `write`) oraz prawo wykonania - oznaczane `x` (ang. `execute`). Takie prawa są określane niezależnie dla: użytkownika, który jest właścicielem pliku lub katalogu (domyślnie właścicielem jest użytkownik, który utworzył dany plik lub katalog); użytkowników, którzy należą do tej samej grupy, do której należy plik lub katalog oraz dla pozostałych użytkowników. 
@@ -301,36 +338,21 @@ Przykładowe wywołania zlecenia utworzenia dowiązań:
 * `ln ./abc/plik.txt plik1.txt` - tworzy dowiązanie (twarde) do pliku `plik.txt` w katalogu `./abc` pod nazwą `plik1.txt` w katalogu bieżącym;
 * `ln -s ./abc/plik.txt ~/plik1.txt` - tworzy dowiązanie symboliczne do pliku `plik.txt` w katalogu `./abc` pod nazwą `plik1.txt` w katalogu domowym użytkownika.
 
-## Zadania do samodzielnego wykonania
 
-1. Zaloguj się do systemu.
-2. Zmień własne hasło.
-3. Sprawdź własny identyfikator oraz grupy, do których należysz.
-4. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
-5. Zapoznaj się z opisem struktury katalogów - polecenie man 7 hier.
-6. Wyświetl zawartość katalogu domowego.
-7. Wyświetl zawartość podstawowych katalogów w systemie (np. /dev, /etc, /home, /usr).
-8. Utwórz katalog kat1 w katalogu domowym.
-9. W katalogu kat1 utwórz jednym poleceniem strukturę katalogów kat2/kat3/kat4.
-10. Usuń jednym poleceniem cała strukturę katalogów kat3/kat4.
-11. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami .txt i .c.
-12. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .txt do katalogu kat1.
-13. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .c do katalogu kat2.
-14. Skopiuj całą strukturę katalogów kat1 tworząc analogiczną strukturę o nazwie kat1b.
-15. Usuń wszystkie plik z katalogu kat1/kat2.
-16. Usuń jednym poleceniem całą strukturę katalogów kat1b.
-17. Zmień nazwę dowolnego pliku w katalogu kat1.
-18. Przenieś katalog kat1/kat2 do katalogu domowego tworząc w ten sposób katalog kat2b.
-19. Przy pomocy programu locate znajdź wszystkie pozycje, które posiadają w nazwie słowo mozilla.
-20. Przy pomocy programu locate znajdź wszystkie pozycje, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
-21. Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
-22. Korzystając z programu find znajdź wszystkie katalogi o nazwie bin, które znajdują się w katalogu /usr.
-23. Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu /usr/bin do katalogu kat1/kat2 (wykorzystaj polecenie find z parametrem -exec).
-24. W katalogu domowym utwórz plik o nazwie plik.txt - sprawdź jakie są prawa dostępu do niego.
-25. Dla pliku plik.txt dodaj prawo zapisu dla grupy.
-26. Dla pliku plik.txt odejmij prawo zapisu dla właściciela.
-27. Dla pliku plik.txt dodaj prawo wykonywania dla wszystkich użytkowników.
-28. Dla pliku plik.txt przywróć oryginalne prawa korzystając z notacji numerycznej.
-29. Utwórz dowiązanie do pliku plik.txt o nazwie plik2.txt w katalogu domowym.
-30. Utwórz dowiązanie symboliczne do katalogu kat1/kat2 o nazwie abc w katalogu domowym.
-31. Przejrzyj pomoc systemową dla wszystkich poleceń zaprezentowanych podczas zajęć.
+## Zadania do samodzielnego wykonania - część III 
+
+22.  W katalogu domowym utwórz plik o nazwie plik.txt - sprawdź jakie są prawa dostępu do niego.
+23.  Dla pliku plik.txt dodaj prawo zapisu dla grupy.
+24.  Dla pliku plik.txt odejmij prawo zapisu dla właściciela.
+25.  Dla pliku plik.txt dodaj prawo wykonywania dla wszystkich użytkowników.
+26.  Dla pliku plik.txt przywróć oryginalne prawa korzystając z notacji numerycznej.
+27.  Utwórz dowiązanie do pliku plik.txt o nazwie plik2.txt w katalogu domowym.
+28.  Utwórz dowiązanie symboliczne do katalogu kat1/kat2 o nazwie abc w katalogu domowym.
+29.  Przejrzyj pomoc systemową dla wszystkich poleceń zaprezentowanych podczas zajęć.
+
+***
+Autor: *Adam Bondyra*
+
+Data ostatniej modyfikacji:   *27-02-2019*
+
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
