@@ -243,7 +243,7 @@ Pierwszym argumentem wywołania polecenia `find` jest nazwa katalogu, od któreg
 * `atime <dni>` - pozycje, na których była wykonywana jakaś operacja podaną liczbę dni temu; przed ilością dni można podać znaki `+` lub `-`, oznaczają one wówczas odpowiednio: pozycje, na których była wykonywana jakaś operacja więcej/mniej dni temu;
 * `mtime <dni>` - pozycje, na które były modyfikowane podaną liczbę dni temu; przed ilością dni można podać znaki + lub -, oznaczają one wówczas odpowiednio: pozycje, na które były modyfikowane więcej/mniej dni temu;
 * `type <typ>` - określenie jakie pozycje mają zostać odnalezione: `f` - pliki zwykłe, `d` - katalogi, `l` - dowiązania symboliczne, `c` - urządzenia znakowe (niebuforowane), `b` - urządzenia blokowe (buforowane), `p` - kolejki FIFO;
-* `exec &lt;polecenie> [{}] &bsol;`; - wykonuje dowolne polecenie; polecenie może zostać wykonane na odszukanych pozycjach, wówczas należy zastosować jako argument polecenia znaki `{}`.
+* `exec <polecenie> [{}] \;`; - wykonuje dowolne polecenie; polecenie może zostać wykonane na odszukanych pozycjach, wówczas należy zastosować jako argument polecenia znaki `{}`.
   
 Oto przykłady użycia polecenia find:
 
