@@ -60,11 +60,12 @@ Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem te
 | Garść porad i wskazówek|
 | ------------- |
 | Podczas pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
-  *  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` terminal podpowie (lub uzupełni) dalszą część polecenia 
- * Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami
- * Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie
- * Polecenie `clear` powoduje wyczyszczenie ekranu terminala
- * Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`. 
+| +  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` |terminal podpowie (lub uzupełni) dalszą część polecenia 
+| + Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami |
+| + Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie |
+| + Polecenie `clear` powoduje wyczyszczenie ekranu terminala |
+| + Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`.  |
+| + Aby wydać kilka poleceń w jednej linii, możemy odseparować kolejne komendy znakami `&&` lub `;`. W pierwszym przypadku, kolejne polecenia będą wykonywać się tylko wtedy, gdy poprzednie nie zakończą się błędem. Oddzielenie  średnikiem powoduje sekwencyjne wykonanie komend bez zwracania uwagi na rezultat operacji. |
  
 
 ## Pomoc systemowa
@@ -201,11 +202,11 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 7. Utwórz katalog kat1 w katalogu domowym.
 8. W katalogu kat1 utwórz jednym poleceniem strukturę katalogów kat2/kat3/kat4.
 9.  Usuń jednym poleceniem cała strukturę katalogów kat3/kat4.
-10. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami .txt i .c.
+10. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami .txt i .c. (po 2-3 pliki z każdym z rozszerzeń)
 11. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .txt do katalogu kat1.
 12. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .c do katalogu kat2.
 13. Skopiuj całą strukturę katalogów kat1 tworząc analogiczną strukturę o nazwie kat1b.
-14. Usuń wszystkie plik z katalogu kat1/kat2.
+14. Usuń wszystkie pliki z katalogu kat1/kat2.
 15. Usuń jednym poleceniem całą strukturę katalogów kat1b.
 16. Zmień nazwę dowolnego pliku w katalogu kat1.
 17. Przenieś katalog kat1/kat2 do katalogu domowego tworząc w ten sposób katalog kat2b.
@@ -252,10 +253,10 @@ Oto przykłady użycia polecenia find:
 
 ## Zadania do samodzielnego wykonania - część II
 
-18.  Przy pomocy programu locate znajdź wszystkie pozycje, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
-19.  Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
-20.  Korzystając z programu find znajdź wszystkie katalogi o nazwie bin, które znajdują się w katalogu /usr.
-21.  Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu /usr/bin do katalogu kat1/kat2 (wykorzystaj polecenie find z parametrem -exec).
+
+18.   Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
+19.   Korzystając z programu find znajdź wszystkie katalogi o nazwie bin, które znajdują się w katalogu /usr.
+20.   Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu /usr/bin do katalogu kat1/kat2 (wykorzystaj polecenie find z parametrem -exec).
     
 ## Prawa dostępu
 
@@ -341,18 +342,19 @@ Przykładowe wywołania zlecenia utworzenia dowiązań:
 
 ## Zadania do samodzielnego wykonania - część III 
 
-22.  W katalogu domowym utwórz plik o nazwie plik.txt - sprawdź jakie są prawa dostępu do niego.
-23.  Dla pliku plik.txt dodaj prawo zapisu dla grupy.
-24.  Dla pliku plik.txt odejmij prawo zapisu dla właściciela.
-25.  Dla pliku plik.txt dodaj prawo wykonywania dla wszystkich użytkowników.
-26.  Dla pliku plik.txt przywróć oryginalne prawa korzystając z notacji numerycznej.
-27.  Utwórz dowiązanie do pliku plik.txt o nazwie plik2.txt w katalogu domowym.
-28.  Utwórz dowiązanie symboliczne do katalogu kat1/kat2 o nazwie abc w katalogu domowym.
-29.  Przejrzyj pomoc systemową dla wszystkich poleceń zaprezentowanych podczas zajęć.
+21.   W katalogu domowym utwórz plik o nazwie plik.txt - sprawdź jakie są prawa dostępu do niego.
+22.   Dla pliku plik.txt dodaj prawo zapisu dla pozostałych użytkowników.
+23.   Dla pliku plik.txt odejmij prawo zapisu dla właściciela.
+24.   Dla pliku plik.txt dodaj prawo wykonywania dla wszystkich użytkowników.
+25.   Dla pliku plik.txt i wszystkich użytkowników zezwól jedynie na odczyt pliku.
+26.   Dla pliku plik.txt przywróć oryginalne prawa korzystając z notacji numerycznej.
+27.   Utwórz dowiązanie do pliku plik.txt o nazwie plik2.txt w katalogu domowym.
+28.   Utwórz dowiązanie symboliczne do katalogu kat1/kat2 o nazwie abc w katalogu domowym.
+29.   Przejrzyj pomoc systemową dla wszystkich poleceń zaprezentowanych podczas zajęć.
 
 ***
 Autor: *Adam Bondyra*
 
-Data ostatniej modyfikacji:   *27-02-2019*
+Data ostatniej modyfikacji:   *28-02-2019*
 
 Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
