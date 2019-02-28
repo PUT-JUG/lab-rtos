@@ -57,16 +57,17 @@ ls -la /etc
 ```
 Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem tej samej operacji. Przełączniki wieloznakowe podawane są z wykorzystaniem dwuznaku "--".
 
-| Garść porad i wskazówek|
-| ------------- |
-| Podczas pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
-| +  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` |terminal podpowie (lub uzupełni) dalszą część polecenia 
-| + Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami |
-| + Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie |
-| + Polecenie `clear` powoduje wyczyszczenie ekranu terminala |
-| + Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`.  |
-| + Aby wydać kilka poleceń w jednej linii, możemy odseparować kolejne komendy znakami `&&` lub `;`. W pierwszym przypadku, kolejne polecenia będą wykonywać się tylko wtedy, gdy poprzednie nie zakończą się błędem. Oddzielenie  średnikiem powoduje sekwencyjne wykonanie komend bez zwracania uwagi na rezultat operacji. |
- 
+***
+##  Garść porad i wskazówek:
+
+Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
+*  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` |terminal podpowie (lub uzupełni) dalszą część polecenia 
+* Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami |
+*  Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie |
+*  Polecenie `clear` powoduje wyczyszczenie ekranu terminala |
+* Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`.  |
+*  Aby wydać kilka poleceń w jednej linii, możemy odseparować kolejne komendy znakami `&&` lub `;`. W pierwszym przypadku, kolejne polecenia będą wykonywać się tylko wtedy, gdy poprzednie nie zakończą się błędem. Oddzielenie  średnikiem powoduje sekwencyjne wykonanie komend bez zwracania uwagi na rezultat operacji. |
+ ***
 
 ## Pomoc systemowa
 W systemie Linux dla każdego polecenia dostępna jest pomoc systemowa opisująca różne aspekty i zastosowania danego narzędzia oraz dostępne przełączniki. Jednym z mechnizmów pozwalających na wyświetlenie plików pomocy jest wywołanie polecenia z przełącznikiem `--help`, np:
