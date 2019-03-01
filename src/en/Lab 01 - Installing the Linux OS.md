@@ -127,7 +127,7 @@ You can interrupt console programs with the *control-c* hotkey. Remember that th
 
 Try installing the `build-essential` package, which will install the compiler and all the necessary tools. Follow the command:
 
-``bash
+```bash
 apt install build-essential
 ```
 
