@@ -197,20 +197,20 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 1. Zmień własne hasło. Następnie powróć do hasła domyślnego.
 2. Sprawdź własny identyfikator oraz grupy, do których należysz.
 3. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
-4. Zapoznaj się z opisem struktury katalogów - polecenie man 7 hier.
+4. Zapoznaj się z opisem struktury katalogów - polecenie `man 7 hier`.
 5. Wyświetl zawartość katalogu domowego.
-6. Wyświetl zawartość podstawowych katalogów w systemie (np. /dev, /etc, /home, /usr).
-7. Utwórz katalog kat1 w katalogu domowym.
-8. W katalogu kat1 utwórz jednym poleceniem strukturę katalogów kat2/kat3/kat4.
-9.  Usuń jednym poleceniem cała strukturę katalogów kat3/kat4.
-10. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami .txt i .c. (po 2-3 pliki z każdym z rozszerzeń)
-11. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .txt do katalogu kat1.
-12. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem .c do katalogu kat2.
-13. Skopiuj całą strukturę katalogów kat1 tworząc analogiczną strukturę o nazwie kat1b.
-14. Usuń wszystkie pliki z katalogu kat1/kat2.
-15. Usuń jednym poleceniem całą strukturę katalogów kat1b.
-16. Zmień nazwę dowolnego pliku w katalogu kat1.
-17. Przenieś katalog kat1/kat2 do katalogu domowego tworząc w ten sposób katalog kat2b.
+6. Wyświetl zawartość podstawowych katalogów w systemie (np. `/dev`, `/etc`, `/home`, `/usr`).
+7. Utwórz katalog `kat1` w katalogu domowym.
+8. W katalogu `kat1` utwórz jednym poleceniem strukturę katalogów `kat2/kat3/kat4`.
+9.  Usuń jednym poleceniem cała strukturę katalogów `kat3/kat4`.
+10. Utwórz w katalogu domowym pliki o dowolnych nazwach z rozszerzeniami `.txt` i `.c`. (po 2-3 pliki z każdym z rozszerzeń)
+11. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem `.txt` do katalogu `kat1`.
+12. Skopiuj jednym poleceniem wszystkie pliki z katalogu domowego z rozszerzeniem `.c` do katalogu `kat2`.
+13. Skopiuj całą strukturę katalogów `kat1` tworząc analogiczną strukturę o nazwie `kat1b`.
+14. Usuń wszystkie pliki z katalogu `kat1/kat2`.
+15. Usuń jednym poleceniem całą strukturę katalogów `kat1b`.
+16. Zmień nazwę dowolnego pliku w katalogu `kat1`.
+17. Przenieś katalog `kat1/kat2` do katalogu domowego tworząc w ten sposób katalog `kat2b`.
 
 ## Wyszukiwanie plików
 
@@ -248,16 +248,16 @@ Pierwszym argumentem wywołania polecenia `find` jest nazwa katalogu, od któreg
 Oto przykłady użycia polecenia find:
 
 * `find ~ -name abc.txt` - wyszuka wszystkie pozycje o nazwie `abc.txt`, które znajdują sie w katalogu domowym użytkownika (oraz podkatalogach);
-* `find ~/temp -name "*.txt"` - wyszuka wszystkie pozycje o nazwie z rozszerzeniem *.txt*, które znajdują sie w katalogu `temp` (oraz jego ewentualnych podkatalogach) w katalogu domowym użytkownika ;
+* `find ~/temp -name "*.txt"` - wyszuka wszystkie pozycje o nazwie z rozszerzeniem `*.txt*`, które znajdują sie w katalogu `temp` (oraz jego ewentualnych podkatalogach) w katalogu domowym użytkownika ;
 * `find ~ -iname "*.txt" -type f -size +100k` - wyszuka wszystkie pliki zwykłe w katalogu domowym użytkownika (i jego podkatalogach), które mają rozszerzenie `.txt` - wielkość liter bez znaczenia - oraz rozmiar większy niż 100kB;
 * `find /tmp -type f -atime +2 -exec rm {} \; -print` - wyszuka wszystkie pliki zwykłe w katalogu `/tmp` (oraz jego podkatalogach), na których nie były wykonywane żadne operacje w ciągu ostatnich 48 godzin oraz usunie wszystkie odnalezione pliki; dodatkowy przełącznik `-print` powoduje, że zostaną wyświetlone nazwy odnalezionych plików, pomimo wykonania na nich dodatkowej operacji (tutaj `rm`).
 
 ## Zadania do samodzielnego wykonania - część II
 
 
-18.   Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo mozilla i znajdują się w podkatalogach katalogu /usr.
-19.   Korzystając z programu find znajdź wszystkie katalogi o nazwie bin, które znajdują się w katalogu /usr.
-20.   Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu /usr/bin do katalogu kat1/kat2 (wykorzystaj polecenie find z parametrem -exec).
+18.   Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo `mozilla` i znajdują się w podkatalogach katalogu `/usr`.
+19.   Korzystając z programu `find` znajdź wszystkie katalogi o nazwie `bin`, które znajdują się w katalogu `/usr`.
+20.   Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu `/usr/bin` do katalogu `kat1/kat2` (wykorzystaj polecenie `find` z parametrem `-exec`).
     
 ## Prawa dostępu
 
@@ -277,7 +277,7 @@ Interpretacja praw dostępu jest następująca:
 | Wykonanie pliku (np. programu lub skryptu) |       --x      |        --x        |
 		
 
-Jak już wspomniano informacje o prawach dostępu można uzyskać dzięki poleceniu ls z przełącznikiem -l - oto przykład oraz jego interpretacja:
+Jak już wspomniano informacje o prawach dostępu można uzyskać dzięki poleceniu `ls` z przełącznikiem `-l` - oto przykład oraz jego interpretacja:
 
 ```bash
 ls -l

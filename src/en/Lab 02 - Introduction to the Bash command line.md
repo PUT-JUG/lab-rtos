@@ -173,7 +173,7 @@ A useful switch for the `rm` command is the `-r` switch, which is used to remove
   * `mv abc.txt xyz.txt` - renaming the `abc.txt` file to `xyz.txt` in the current directory;
   * `mv /tmp/abc.txt ~` - moving the `abc.txt` file from the `tmp` directory to the user's home directory.
   
-* `touch [switches] file_name` - modifies the information about the modification time and read time of the file, but also allows you to create a file, e.g.:
+* `touch [switches] file_name` - changes the information about the modification time and read time of the file, but also allows you to create a file, e.g.:
   * `touch abc.txt` - Create a (blank) `abc.txt` file in the current directory.
   
 File (and directory) commands can also be given using so-called generic patterns, which are created using the following operators:
@@ -184,7 +184,7 @@ File (and directory) commands can also be given using so-called generic patterns
 
 `[<characters>]` - replaces exactly one character from the specified range, e.g. `[xyz]`;
 
-`[^<signs>]` - the ^ character at the beginning indicates the completion of the set, that is, for example, `[^xyz]`, means any character that is not a letter `x`, `y` and `z`.
+`[^<characters>]` - the ^ character at the beginning indicates the completion of the set, that is, for example, `[^xyz]`, means any character that is not a letter `x`, `y` and `z`.
 
 Here are some examples of commands using generalising patterns:
 
@@ -192,7 +192,7 @@ Here are some examples of commands using generalising patterns:
 
 `rm ./[0-9]*` - Delete all files in the home directory whose name starts with a digit.
 
-## Excersises - part I
+## Excercises - part I
 
 
 1. Change your password. Then return to the default password.
@@ -215,7 +215,7 @@ Here are some examples of commands using generalising patterns:
 
 ## File search
 
-As already mentioned, files in UNIX systems are used to store user data and represent, among other things, some system devices. Therefore, it is important to efficiently search and locate files in the directory structure. This task can be carried out in several ways, depending on the nature of the file being searched and the search criteria.
+As already mentioned, files in UNIX systems are used to store user data and represent, among other things, some system devices. Therefore, it is important to efficiently search and locate files in the directory structure. This task can be done in several ways, depending on the nature of the file being searched and the search criteria.
 
 The location of executable files - programs - can be found with the use of a command:
 
@@ -244,41 +244,41 @@ The first argument of the `find` command is the name of the directory to search 
 * `atime <days>` - files on which some operation was performed the number of days ago; before the number of days, the characters `+` or `-` may be entered, in this case they denote respectively more/less days ago;
 * `mtime <days>` - files modified number of days ago; before the number of days, the + or - characters may be entered - in this case they denote respectively more or less days ago;
 * `type <type>` - specify which items are to be found: `f` - ordinary files, `d` - directories, `l` - symbolic links, `c` - character devices (non-buffered), `b` - block devices (cached), `p` - FIFO queues;
-* `exec <command> [{}] \`; - executes any command; the command can be executed at found positions -  use the characters `{}` as an argument to the command.
+* `exec <command> {} \`; - executes any command; the command can be executed at found positions -  use the characters `{}` as an argument to the command.
   
 Here are some examples of how to use the find command:
 
 * `find ~ -name abc.txt` - searches for all items named `abc.txt` that are in the user's home directory (and subdirectories);
-* `find ~/temp -name "*.txt"` - searches for all items named with the extension `*.txt*` that are located in the `temp` directory (and its possible subdirectories) in the home directory of the user ;
+* `find ~/temp -name "*.txt"` - searches for all items  with the extension `*.txt*` that are located in the `temp` directory (and its possible subdirectories) in the home directory of the user ;
 * `find ~ -iname "*.txt"  -type f -size +100k` - searches for all regular files in the user's home directory (and its subdirectories) that have the extension `.txt` -(case sensitive) and size greater than 100kB;
 * `find /tmp -type f -atime +2 -exec rm {} \; -print` - searches for all regular files in the `/tmp` directory (and its subdirectories) where no operations have been performed in the last 48 hours and delete all found files; an additional `print` switch will display the names of the found files despite additional operation (here `rm`).
 
 ## Excersises - part II
 
 
-18. Use `find` to find all files that have the word mozilla in their name and are located in the `/usr` and its subdirectories.
-19. Using the `find` program, find all directories named `bin`, which are located in the `/usr` directory.
-20. Copy all regular files with a size between 10 and 100 bytes from the `/usr/bin` directory into the `dir1/dir2` directory (use the `find` command with the `-exec` parameter).
+1.  Use `find` to find all files that have the word mozilla in their name and are located in the `/usr` and its subdirectories.
+2.  Using the `find` program, find all directories named `bin`, which are located in the `/usr` directory.
+3.  Copy all regular files with a size between 10 and 100 bytes from the `/usr/bin` directory into the `dir1/dir2` directory (use the `find` command with the `-exec` parameter).
     
-## Access rights
+## Access permissions
 
-In UNIX systems, access to files and directories is protected by so-called access rights, which control the rules on which users can use these resources. There are three types of rights: read (`r`), write (`write`) and execution (`x`). These rights are determined independently for: the user who owns the file or directory (the default owner is the user who created the file or directory); users who belong to the same group to which the file or directory belongs; and for other users. 
+In UNIX systems, access to files and directories is protected by so-called *permissions* (or *modes*), which control the rules on which users can use these resources. There are three types of permissions: read (`r`), write (`write`) and execution (`x`). These rules are determined independently for: the user who owns the file or directory (the default owner is the user who created the file or directory); users who belong to the same group to which the file or directory belongs; and for other users. 
 
 The interpretation of access rights is as follows:
 
 
-| The action to execute | Rights to file | Rights to directory |
+| The action to execute | Permissions for the file | Permissions for the directory |
 |:------------------------------------------:|:--------------:|:-----------------:|
 | Browse the contents of the directory | --- | r-- |
-| The file is created in the directory | --- | -wx |
+| Create the file in the directory | --- | -wx |
 | Rename the file in the directory | --- | -wx |
-The file is removed from the directory | --- | -wx |
-| The following table shows the contents of the file | r-- | --x |
-| In this case, the following information is to be entered in the file | -w-| --x |
-In this case, the user is asked to execute a file (e.g. program or script) | --x | --x | --x |
+| Remove the file from the directory | --- | -wx |
+| Read the file's contents | r-- | --x |
+| Saving file contents | -w-| --x |
+| Execute file (e.g. program or script) | --x | --x 
 		
 
-As already mentioned, information about access rights can be obtained with the `ls` command with the `-l` switch - here is an example and its interpretation:
+As already mentioned, information about access perimissions can be obtained with the `ls` command with the `-l` switch - here is an example and its interpretation:
 
 ```bash
 ls -l
@@ -289,33 +289,34 @@ drwxr-xr-x 54 adam students 4096 lip 6 11:20 ../
 
 Information about rights is displayed according to the following scheme:
 
-| The information about rights is displayed according to the following scheme: User | Group | Other users |
+ The information about rights is displayed according to the following scheme: 
+ | User | Group | Other users |
+|:-----------------:|:-------------:|:-------------------------:|
+| r &vert; w &vert; x | r &vert; w &vert; x | r &vert; w &vert; x |
 
-| In the first half of the year of the survey, the following data were provided
+Therefore, for the `abc.txt` file, the following permissions are available (the character "-" indicates no given right): all permissions are available to the owner, only the right to read is available to the members of the student group, and the right to read and execute is available to the other users.
 
-Therefore, for the `abc.txt` file, the following rights are available (the character "-" indicates no given right): all rights are available to the owner, only the right to read is available to the members of the student group, and the right to read and execute is available to the other users.
-
-Access rights can also be manipulated using numerical notation, in which each right has a numeric value assigned: read right - `4`; write right - `2`; execute right - `1`. Thus, the rights written numerically to the `abc.txt` file in the above example would be:
+Access rights can also be manipulated using numerical notation, in which each permission has a numeric value assigned: read right - `4`; write right - `2`; execute right - `1`. Thus, permissions written numerically to the `abc.txt` file in the above example would be:
 
 * `745` - 7 means all rights for the user (4 + 2 + 1), 4 means the read right for the group, and 5 means the read and execute right (4 + 1) for the other users.
   
-The following system commands make it possible to manipulate access rights and define ownership rights:
+The following system commands make it possible to manipulate permissions and define ownership rights:
 
-* `chmod [switches] permissions name_file_or directory` - changing the access rights indicated by the first argument for the file or directory indicated by the second argument; the possibilities of invoking this command are presented below:
+* `chmod [switches] permissions name_file_or directory` - change permissions indicated by the first argument for the file or directory indicated by the second argument; the possibilities of invoking this command are presented below:
 
 | chmod | u<br>g<br>o<br>a | +<br>-<br>= | r<br>w<br>x | file_list |
 |:-----:|:-------:|:-----:|-------|--------------|
 
-The specification should therefore indicate for whom the right is to be changed (`u` - owner, `g` - users from the same group, `o` - other users, `a` - all), the type of change (`+` - add rights, `-` - remove rights, `=` - set rights) and (iii) the access right itself. Here are some examples of commands using the `chmod`:
+The specification should indicate for whom the permissions are to be changed (`u` - owner, `g` - users from the same group, `o` - other users, `a` - all), the type of change (`+` - add permission, `-` - remove permission, `=` - set permission) and (iii) the permission itself. Here are some examples of commands using the `chmod`:
 
-  * `chmod u+w file.txt` - adds the write right for the owner to the file `plik.txt`;
-  * `chmod go-x file.txt` - removes the right of execution for users from the same group and others to the file `file.txt`; 
-  * `chmod a=r file.txt` - sets the read-only access rights for all users to the `file.txt` file;
+  * `chmod u+w file.txt` - adds the write permission for the owner to the file `plik.txt`;
+  * `chmod go-x file.txt` - removes the premission to execute for users from the same group and others to the file `file.txt`; 
+  * `chmod a=r file.txt` - sets the read-only access for all users to the `file.txt` file;
   
-The `chmod` command also allows you to specify access rights in numeric form, e.g.:
+The `chmod` command also allows you to specify permissions in numeric form, e.g.:
 
-  * `chmod 777 file.txt` - sets all rights to the file `file.txt;` for all users.
-  * `chmod 742` - sets the rights to read, write and execute to the owner, the access right to read to users from the same group and the access right to write to the file `file.txt` to other users;
+  * `chmod 777 file.txt` - sets all possible permissions to the file `file.txt;` for all users.
+  * `chmod 742` - sets permissions to read, write and execute to the owner, the permission to read to users from the same group and the permission to write to the file `file.txt` to other users;
 
 Additionally, it is possible to change the owner or group of owners of the file/directory:
 
@@ -343,18 +344,18 @@ Example calls to create links:
 
 ## Excersises - Part III 
 
-21.  Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
-22. For the `file.txt` add write permissions for other users.
-23. For `file.txt` remove the write permissions for the owner.
-24. For `file.txt` add the right of execution for all users.
-25. For `file.txt`  allow all users only to read the file.
-26. For `file.txt` restore the original permissions using numeric notation.
-27. Create a link to the `file.txt` file named `file2.txt` in the home directory.
-28. Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
+1.   Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
+2.  For the `file.txt` add write permissions for other users.
+3.  For `file.txt` remove the write permissions for the owner.
+4.  For `file.txt` add the right of execution for all users.
+5.  For `file.txt`  allow all users only to read the file.
+6.  For `file.txt` restore the original permissions using numeric notation.
+7.  Create a link to the `file.txt` file named `file2.txt` in the home directory.
+8.  Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
 
 ***
 Author: *Adam Bondyra*
 
-Last revision:   *28-02-2019*
+Last revision:   *01-03-2019*
 
 Based on the Open IT Studies project (*http://wazniak.mimuw.edu.pl/*).
