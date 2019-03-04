@@ -61,12 +61,12 @@ Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem te
 ##  Garść porad i wskazówek:
 
 Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
-*  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `TAB` |terminal podpowie (lub uzupełni) dalszą część polecenia 
-* Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami |
-*  Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie |
-*  Polecenie `clear` powoduje wyczyszczenie ekranu terminala |
-* Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`.  |
-*  Aby wydać kilka poleceń w jednej linii, możemy odseparować kolejne komendy znakami `&&` lub `;`. W pierwszym przypadku, kolejne polecenia będą wykonywać się tylko wtedy, gdy poprzednie nie zakończą się błędem. Oddzielenie  średnikiem powoduje sekwencyjne wykonanie komend bez zwracania uwagi na rezultat operacji. |
+*  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `Tab` terminal podpowie (lub uzupełni) dalszą część polecenia, jeśli jest tylko jedno możliwe dopełnienie. Jeśli możliwości jest kilka, dwukrotne naciśnięcie `Tab` wyświetli możliwe dopełnienia.
+* Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami.
+*  Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie
+*  Polecenie `clear` powoduje wyczyszczenie ekranu terminala.
+* Wpisanie `!!` automatycznie zastępuje ostatnio wydane polecenie. Przykładowo, jeżeli zapomnimy wykonać skomplikowanej komendy z uprawnieniami użytkownika *root*, wystarczy, że w kolejnym kroku wpiszemy `sudo !!`.
+*  Aby wydać kilka poleceń w jednej linii, możemy odseparować kolejne komendy znakami `&&` lub `;`. W pierwszym przypadku, kolejne polecenia będą wykonywać się tylko wtedy, gdy poprzednie nie zakończą się błędem. Oddzielenie średnikiem powoduje sekwencyjne wykonanie komend bez zwracania uwagi na rezultat operacji.
  ***
 
 ## Pomoc systemowa
