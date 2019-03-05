@@ -83,7 +83,7 @@ killall find
 ```
 powoduje zatrzymanie wszystkich programów `find`.
 
-Szczegółową listę sygnałów wraz z ich wartościami numerycznymi zawiera strona pomocy systemowej `signal(7)`.
+Szczegółową listę sygnałów wraz z ich wartościami numerycznymi zawiera strona pomocy systemowej *signal(7)* (komenda `man 7 signal`). Skróconą listę dostępnych sygnałów można uzyskać poprzez wywołanie `kill -l`. 
 
 ## Priorytety procesów
 Każdy proces wykonywany w systemie posiada przypisany mu priorytet, który można odczytać w wyniku wywołania polecenia `ps` z przełącznikiem `-l`.
@@ -157,7 +157,7 @@ Taką sekwencję można również wprowadzić w tło:
 3. Znajdź proces macierzysty dla procesu `ps`. Odszukaj przodka wszystkich procesów (`PID=1`). Wyświetl hierarchię procesów poleceniem `pstree`. 
 4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci.
 5. Sprawdź identyfikator procesu `init`. 
-6. Zapoznaj się z listą sygnałów na stronie pomocy systemowej `man 7 signal`. 7. Uruchom sesję edytora `nano` i wysyłaj komendą `kill` kolejne sygnały do tego procesu. Użyj sygnałów: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
-Zbadaj działanie poleceń `killall` i `pkill`.
-7. Uruchom proces `sleep` w tle. Przełącz go do pracy w trybie pierwszoplanowym. Wstrzymaj sesję edytora `nano` kombinacja Ctrl-Z, uruchom nową sesję i wstrzymaj ją również. Wyświetl aktywne sesje komendą `jobs`. Wznów pracę do trybu pierwszoplanowego komendą `fg`, następnie znów przełącz go do pracy w tle komenda `bg`.
+6. Zapoznaj się z listą sygnałów na stronie pomocy systemowej `man 7 signal`. 
+7. Uruchamiaj sesję edytora `nano`,a nastepnie z poziomu drugiego terminala wysyłaj komendą `kill` kolejne sygnały do tego procesu. Użyj sygnałów: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
+7. Uruchom kilka procesów `sleep` w tle. Przełącz jeden z nich do pracy w trybie pierwszoplanowym. Uruchom i wstrzymaj sesję edytora `vi` kombinacja Ctrl-Z, uruchom nową sesję i wstrzymaj ją również. Wyświetl aktywne sesje komendą `jobs`. Wznów pracę jednego z procesów `sleep` do trybu pierwszoplanowego komendą `fg`, następnie znów przełącz go do pracy w tle komenda `bg`.
 
