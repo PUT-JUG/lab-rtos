@@ -22,7 +22,7 @@ uid=1000(student) gid=1000(student) groups=1000(student),4(adm),24(cdrom)...
 ```
 gdzie *uid* (ang. *user identifier*) oznacza identyfikator użytkownika, w nawiasie znajduje się jego nazwa, *gid* (ang. *group identifier*) oznacza identyfikator grupy - każdy użytkownik należy do pewnej grupy, tzw. grupy podstawowej (dla powyższego przykładu jest to grupa o identyfikatorze 1000 i nazwie student), dodatkowo każdy użytkownik może należeć do innych grup, są one wymienione po słowie *groups*.
 
-Wielodostępność oznacza także, że każdy użytkownik może zalogować się do systemu wielokrotnie, korzystając np. z terminali wirtualnych dostępnych za pomocą klawiszy  Ctrl-Alt-F1, Ctrl-Alt-F2 itd. Domyślnie, środowisko graficzne dostępne jest pod terminalem *tty7* (Ctrl-Alt-F7) Możliwe jest także pozyskanie informacji o wszystkich zalogowanych aktualnie w systemie użytkownikach - aby tego dokonać należy wydać polecenie:
+Wielodostępność oznacza także, że każdy użytkownik może zalogować się do systemu wielokrotnie, korzystając np. z terminali wirtualnych dostępnych za pomocą klawiszy `Ctrl-Alt-F1`, `Ctrl-Alt-F2` itd. Domyślnie, środowisko graficzne dostępne jest pod terminalem *tty7* (`Ctrl-Alt-F7`) Możliwe jest także pozyskanie informacji o wszystkich zalogowanych aktualnie w systemie użytkownikach - aby tego dokonać należy wydać polecenie:
 ```bash
 who
 ```
@@ -30,7 +30,7 @@ Aby wylogować się z systemu, należy wydać polecenie:
 ```bash
 exit
 ```
-W przypadku graficznej aplikacji *Terminal Emulator* spowoduje to zakończenie jej działania. W przypadku pracy w trybie tekstowym, bezpośrednio w powłoce *bash* polecenie *exit* powoduje wylogowanie użytkownika z danej sesji terminala.
+W przypadku graficznej aplikacji *Terminal Emulator* spowoduje to zakończenie jej działania. W przypadku pracy w trybie tekstowym, bezpośrednio w powłoce *bash* polecenie `exit` powoduje wylogowanie użytkownika z danej sesji terminala.
 
 ## Wydawanie poleceń
 
@@ -55,13 +55,13 @@ ls -al /etc
 ```bash
 ls -la /etc
 ```
-Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem tej samej operacji. Przełączniki wieloznakowe podawane są z wykorzystaniem dwuznaku "--".
+Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem tej samej operacji. Przełączniki wieloznakowe podawane są z wykorzystaniem dwuznaku `--`.
 
 ***
 ##  Garść porad i wskazówek:
 
 Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
-*  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `Tab` terminal podpowie (lub uzupełni) dalszą część polecenia, jeśli jest tylko jedno możliwe dopełnienie. Jeśli możliwości jest kilka, dwukrotne naciśnięcie `Tab` wyświetli możliwe dopełnienia.
+*  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `Tab` terminal uzupełni dalszą część polecenia, jeśli jest tylko jedno możliwe dopełnienie. Jeśli możliwości jest kilka, dwukrotne naciśnięcie `Tab` wyświetli możliwe dopełnienia.
 * Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami.
 *  Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie
 *  Polecenie `clear` powoduje wyczyszczenie ekranu terminala.
@@ -83,12 +83,12 @@ man nazwa_polecenia
 Powoduje to uruchomenie interaktywnej przeglądarki plików pomocy dla podanego programu lub usługi.
 Pomoc systemowa wyświetlana jest za pomocą przeglądarki *more*, którą obsługuje się za pomocą następujących poleceń klawiszowych:
 
-* spacja - przejście do następnej strony;
-* Ctrl+B - przejście do poprzedniej strony;
-* q - zamknięcie i opuszczenie przeglądarki;
-* / - wyszukiwanie tekstu w przód, po znaku / należy wpisać tekst do wyszukania;
-* ? - wyszukiwanie w tył;
-* n, N - przejście do następnego (n)/poprzedniego (N) wystąpienia poszukiwanego wyrażenia.
+* `Spacja` - przejście do następnej strony;
+* `Ctrl+B` - przejście do poprzedniej strony;
+* `q` - zamknięcie i opuszczenie przeglądarki;
+* `/` - wyszukiwanie tekstu w przód, po znaku / należy wpisać tekst do wyszukania;
+* `?` - wyszukiwanie w tył;
+* `n`, `N` - przejście do następnego (n)/poprzedniego (N) wystąpienia poszukiwanego wyrażenia.
 
 ## Struktura katalogów
 
@@ -192,7 +192,6 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 `rm ./[0-9]*` - usunięcie wszystkich plików z katalogu domowego, których nazwa rozpoczyna się od cyfry.
 
 ## Zadania do samodzielnego wykonania - część I
-
 
 1. Zmień własne hasło. Następnie powróć do hasła domyślnego.
 2. Sprawdź własny identyfikator oraz grupy, do których należysz.
