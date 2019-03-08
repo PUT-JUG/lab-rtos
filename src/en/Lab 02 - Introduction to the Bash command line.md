@@ -116,13 +116,13 @@ man 7 hier
 Information about the current directory is displayed after the command is issued:
 
 ```bash
-widow
+pwd
 ```
 
 As mentioned, the `/` symbol indicates the root directory, other symbols are also used to identify selected directories:
 
 * `.` - indicates the current directory,
-* `...` - indicates the direct parent directory;
+* `..` - indicates the direct parent directory;
 * `~` - stands for the user's home directory.
 
 
