@@ -10,7 +10,7 @@ Standardowe strumienie procesów charakteryzują się następującymi cechami:
 * Dane odczytywane są poprzez standardowe wejście.
 * Dane wypisywane są na standardowym wyjściu lub standardowym wejściu diagnostycznym.
 * Raz przeczytanych danych nie można ponownie przeczytać.
-* 
+  
 Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z klawiatury na ekran. Polecenie to można zakończyć za pomocą kombinacji *Ctrl-D*.
 
 ## Przekierowanie wejścia/wyjścia procesów
@@ -19,7 +19,7 @@ Istnieje możliwość przeadresowania strumieni wyjściowych i wejściowych. Zmi
 Operator `>` powoduje przeadresowanie standardowego wyjścia, czyli utworzenie pliku i zapisanie w nim tego, co proces wypisałby na standardowym wyjściu. Jeśli wskazany plik już istnieje, zostanie on usunięty i utworzony na nowo.
 
 ```bash
-%cat > plik.txt
+cat > plik.txt
 To jest plik.
 Ala ma kota.
 ^D
@@ -27,7 +27,7 @@ Ala ma kota.
 Operator `<` powoduje przeadresowanie standardowego wejścia procesu, czyli pobranie danych wejściowych ze wskazanego pliku:
 
 ```bash
-%cat < plik.txt
+cat < plik.txt
 To jest plik.
 Ala ma kota.
 ```
@@ -35,13 +35,13 @@ Ala ma kota.
 Operatory `>` i `<` można używać jednocześnie, przeadresowując zarówno wyjście jak i wejście, co spowoduje, że zawartość pliku `plik.txt` zostaje skopiowana do pliku `plik_nowy.txt`:
 
 ```bash
-%cat < plik.txt > plik_nowy.txt
+cat < plik.txt > plik_nowy.txt
 ```
 
 Operator `>>` przeadresowuje standardowe wyjście, dopisując wyniki działania programu na końcu istniejącego pliku:
 
 ```bash
-%cat >> plik.txt
+cat >> plik.txt
 Kot ma Ale.
 ^D
 ```
@@ -49,7 +49,7 @@ Kot ma Ale.
 Operator `<<` powoduje, że do procesu zostaną przekazane dane ze standardowego wejścia aż do napotkania wskazanego napisu:
 
 ```bash
-%cat <<  przerwa
+cat <<  przerwa
 > Ala ma kota
 > Kot ma Ale
 > przerwa
@@ -60,7 +60,7 @@ Kot ma Ale.
 Niektóre polecenia równolegle z wyświetlanymi na standardowym wyjściu informacjami wysyłają dodatkowe informacje informujące o błędach przetwarzania na standardowe wyjście diagnostyczne. Istnieje możliwość niezależnego przekierowania strumienia diagnostycznego, poprzez operator `>` poprzedzony numerem wyjścia diagnostycznego, czyli 2:
 
 ```bash
-%cat plik1.txt plik2.txt 2> plik3.err
+cat plik1.txt plik2.txt 2> plik3.err
 ```
 
 Polecenie to spowoduje wyświetlenie zawartości plików `plik1.txt` i `plik2.txt` oraz zapisanie informacji o błędach do pliku `plik3.err`.
@@ -68,7 +68,7 @@ Polecenie to spowoduje wyświetlenie zawartości plików `plik1.txt` i `plik2.tx
 W celu pominięcia komunikatów o błędach, wyjście diagnostyczne można przeadresować do pliku `/dev/null`. Wszystko co zostaje wysłane do pliku `null`, znajdującego się w katalogu `/dev` zostanie utracone:
 
 ```bash
-%cat plik1.txt plik2.txt> plik3.txt 2> /dev/null
+cat plik1.txt plik2.txt> plik3.txt 2> /dev/null
 ```
 
 Polecenie to spowoduje zapisanie zawartości plików `plik1.txt` i `plik2.txt` do pliku `plik3.txt` oraz jednocześnie zignoruje komunikaty o błędach.
@@ -76,7 +76,7 @@ Polecenie to spowoduje zapisanie zawartości plików `plik1.txt` i `plik2.txt` d
 W przypadku gdy strumień diagnostyczny ma trafiać tam, gdzie strumień wyjściowy, należy użyć zapisu `2>&1`:
 
 ```bash
-%cat plik1.txt plik2.txt> plik3.txt 2>&1
+cat plik1.txt plik2.txt> plik3.txt 2>&1
 ```
 
 ## Przetwarzanie potokowe
