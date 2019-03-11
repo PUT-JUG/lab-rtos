@@ -152,11 +152,18 @@ Taką sekwencję można również wprowadzić w tło:
 ```
 
 ## Zadania do samodzielnego wykonania 
-1. Wyświetl listę własnych procesów komenda `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`. Zbadaj działanie przełączników ­`l` i ­`u`. 
-2. Zaloguj sie do systemu kilkukrotnie poprzez wirtualne konsole lub otwierając nowe okno w środowisku graficznym. Każdorazowo sprawdź poleceniem `tty` nazwę terminala, na którym pracujesz.
-3. Znajdź proces macierzysty dla procesu `ps`. Odszukaj przodka wszystkich procesów (`PID=1`). Wyświetl hierarchię procesów poleceniem `pstree`. 
+1. Wyświetl listę własnych procesów komendą `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`. Zbadaj działanie przełączników ­`-l` i ­`-u`. 
+2. Zaloguj się do systemu kilkukrotnie poprzez wirtualne konsole lub otwierając nowe okno w środowisku graficznym. Każdorazowo sprawdź poleceniem `tty` nazwę terminala, na którym pracujesz.
+3. Wyświetl hierarchię procesów poleceniem `pstree`. 
 4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci.
-5. Sprawdź identyfikator procesu `init`. 
-6. Zapoznaj się z listą sygnałów na stronie pomocy systemowej `man 7 signal`. 
-7. Uruchom sesję edytora `vi`, a nastepnie z poziomu drugiego terminala wysyłaj komendą `kill` kolejne sygnały do tego procesu. Użyj sygnałów: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
-8. Uruchom kilka procesów `sleep` w tle. Przełącz jeden z nich do pracy w trybie pierwszoplanowym. Uruchom sesję edytora `vi` i wstrzymają ją kombinacją **Ctrl-Z**, uruchom nową sesję i wstrzymaj ją również. Wyświetl aktywne sesje komendą `jobs`. Wznów pracę jednego z procesów `sleep` do trybu pierwszoplanowego komendą `fg`, następnie znów przełącz go do pracy w tle komenda `bg`.
+5. Sprawdź identyfikator procesu `init`.
+6. Wykonaj kolejno następujące kroki:
+* Zmień priorytet powłoki `bash`, w której aktualnie się znajdujesz na 10.
+* Uruchom polecenie `sleep` na 30 sekund. Od razu wstrzymaj je kombinacją **Ctrl-Z**.
+* Uruchom *w tle* kolejne polecenie `sleep`, tym razem na 3600 sekund.
+* Wyświetl aktywne zadania w bieżącej sesji komendą `jobs`.
+* Sprawdź odpowiednim poleceniem `ps` priorytet i status (uruchomiony/wstrzymany) uruchomionych w bieżącej sesji programów.
+* Przywróć w tle działanie wstrzymanego sleep.
+* Sprawdzaj aktywne zadania poleceniem `jobs` aż do zakończenia `sleep 30`
+* Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
+7. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
