@@ -167,11 +167,11 @@ Zasady konstrukcji podstawowych wyrażeń regularnych opisujących szukany wzorz
 Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znaków tych należą: `. * {} () ^ [ ] \ < > $`. W celu wykorzystania tych znaków jako zwykłych znaków, należy je poprzedzić znakiem `\`. Oprócz podstawowych wyrażeń regularnych istnieją wyrażenia rozszerzone, pozwalające w krótszy sposób opisać poszukiwane wyrażenie i oferujące bogatsze możliwości opisu wyrażeń. W celu użycia rozszerzonych wyrażeń regularnych, należy polecenie grep użyć z przełącznikiem `-E`, lub wykorzystać polecenie `egrep`.
 
 ## Zadania do samodzielnego wykonania
-1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu.
+1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. W oknie terminala wyświetlaj w danej chwili tylko jedną stronę tekstu.
 2. Korzystając z polecenia `cat` utwórz plik *tekst3*, który będzie składał się z zawartości pliku *tekst1*, ciągu znaków podanego ze standardowego wejścia (klawiatury) i pliku *tekst2*.
 3. Wyświetl po 5 pierwszych linii wszystkich plików w swoim katalogu domowym w taki sposób, aby nie były wyświetlane ich nazwy.
 4. Wyświetl linie o numerach 3, 4 i 5 z pliku */etc/passwd*
-5. Wyświetl linie o numerach 7, 6 i 5 od końca pliku */etc/passwd*
+5. Wyświetl linie o numerach 5, 6 i 7 od końca pliku */etc/passwd*
 6. Wyświetl zawartość */etc/passwd* w jednej linii
 7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa w osobnej linii.
 8. Zlicz wszystkie pliki znajdujące się w katalogu */etc* i jego podkatalogach
