@@ -11,7 +11,7 @@ Standardowe strumienie procesów charakteryzują się następującymi cechami:
 * Dane wypisywane są na standardowym wyjściu lub standardowym wejściu diagnostycznym.
 * Raz przeczytanych danych nie można ponownie przeczytać.
   
-Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z klawiatury na ekran. Polecenie to można zakończyć za pomocą kombinacji *Ctrl-D*.
+Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z klawiatury na ekran. Polecenie to można zakończyć za pomocą kombinacji *Ctrl-D* (reprezentowane w listingach jako `^D`).
 
 ## Przekierowanie wejścia/wyjścia procesów
 Istnieje możliwość przeadresowania strumieni wyjściowych i wejściowych. Zmianę standardowego wejścia, wyjścia i wyjścia diagnostycznego można dokonać za pomocą operatorów: `>`, `<`, `>>`, `<<`.
@@ -49,7 +49,7 @@ Kot ma Ale.
 Operator `<<` powoduje, że do procesu zostaną przekazane dane ze standardowego wejścia aż do napotkania wskazanego napisu:
 
 ```bash
-cat <<  przerwa
+cat << przerwa
 > Ala ma kota
 > Kot ma Ale
 > przerwa
@@ -71,7 +71,7 @@ W celu pominięcia komunikatów o błędach, wyjście diagnostyczne można przea
 cat plik1.txt plik2.txt> plik3.txt 2> /dev/null
 ```
 
-Polecenie to spowoduje zapisanie zawartości plików `plik1.txt` i `plik2.txt` do pliku `plik3.txt` oraz jednocześnie zignoruje komunikaty o błędach.
+Polecenie to spowoduje zapisanie kolejno zawartości plików `plik1.txt` i `plik2.txt` do pliku `plik3.txt` oraz jednocześnie zignoruje komunikaty o błędach.
 
 W przypadku gdy strumień diagnostyczny ma trafiać tam, gdzie strumień wyjściowy, należy użyć zapisu `2>&1`:
 
@@ -79,16 +79,18 @@ W przypadku gdy strumień diagnostyczny ma trafiać tam, gdzie strumień wyjści
 cat plik1.txt plik2.txt> plik3.txt 2>&1
 ```
 
+Wiele programów konsolowych działających na strumieniach może przyjąć również nazwę pliku jako wejście: polecenie `cat < plik.txt` wygeneruje taki sam efekt jak `cat plik.txt`. Dodatkowo, wiele programów akceptuje przekazanie `-` jako nazwy pliku, co oznacza wejście lub wyjście standardowe.
+
 ## Przetwarzanie potokowe
 Standardowe wyjście jednego procesu możne być połączone ze standardowym wejściowym innego procesu, tworząc tzw. potok pomiędzy tymi procesami.
 
-![Standardowe wejscie-wyjscie procesu](../images/lab_04_stream.png)
+![Standardowe wejscie-wyjście procesu](../images/lab_04_stream.png)
 
 Przetwarzanie potokowe polega na buforowaniu przez system danych produkowanych przez pierwszy proces i następnie odczytywaniu tych danych przez drugi proces. Innymi słowy proces w potoku czyta dane z wejścia, które zostało przeadresowane na wyjście procesu poprzedniego. W potoku może brać udział jednocześnie kilka procesów. Poniżej podano przykłady potoków:
 
 Proces `ls` podaje wynik procesowi `more`, który w efekcie wyświetla listing strona po stronie:
 ```bash
-ls - al|more
+ls -al|more
 ```
 Proces `who` podaje wynik procesowi `sort`, podając posortowaną listę pracowników pracujących w systemie:
 ```bash
@@ -105,7 +107,7 @@ ls -l /usr/bin|sort -bnr +4 -5|head
 ## Filtry
 Istnieją programy, których zadaniem jest odczyt danych ze standardowego wejścia, przetworzenie tych danych i ich zapis na standardowe wyjście. Programy takie nazywane są filtrami i są szeroko wykorzystywane w przetwarzaniu potokowym. Poniżej przedstawiono najczęściej wykorzystywane filtry:
 
-* `cat` - najprostszy filtr, nie wprowadzający zmian do przetwarzanych danych.     Użyteczne przełączniki:
+* `cat` - najprostszy filtr, nie wprowadzający zmian do przetwarzanych danych. Użyteczne przełączniki:
   * `-s` z paru pustych linii robi jedna
   * `-n` numeruje wszystkie linie
   * `-b` numeruje niepuste linie
@@ -136,7 +138,7 @@ Istnieją programy, których zadaniem jest odczyt danych ze standardowego wejśc
 * `tr` - pozwala zamienić łańcuchy tekstowe, które podawane są jako argumenty wejściowe. Znaki z pierwszego łańcuch zamieniane są na znaki z drugiego łańcucha. Dodatkowo, dzięki przełącznikom możliwe jest następujące przetwarzanie:
   * `-d` usuwa podane po przełączniku znaki
   * `-s` usuwa powtarzające się sąsiednie znaki
-* `cut` - pozwala wyświetlić fragmenty wierszy danych wejściowych. Zwykle jest to wycinanie odpowiednich kolumn.- pozwala wyświetlić fragmenty wierszy danych wejściowych. Zwykle jest to wycinanie odpowiednich kolumn.
+* `cut` - pozwala wyświetlić fragmenty wierszy danych wejściowych. Zwykle jest to wycinanie odpowiednich kolumn
   * `-c` pozwala określić pozycję znakowe wycinanych fragmentów wierszy, np. `-c 1-72` wyświetla pierwsze 72 znaki każdego wiersza
   * `-f` pozwala określić numery wycinanych kolumn, np. `-f1,3-5,10` wyświetla pierwszą kolumnę, kolumny od 3 do 5 oraz kolumnę 10.
   * `-d` pozwala zmienić domyślny separator kolumn, którym jest znak tabulacji
@@ -189,4 +191,3 @@ Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znak�
 20. Wyświetl nazwy tych użytkowników, którzy domyślnie używają innego interpretera niż *bash*
 21. Wyświetl nazwy wszystkich plików nagłówkowych posortowane wykorzystywanych w plikach bieżącego katalogu
 22. Wyświetl statystykę używanych komend (bez argumentów) w postaci posortowanej listy: ilość komenda ( wskazówka: należy użyć polecenia *history*)
-23. W podanym katalogu utwórz podkatalogi wszystkim użytkownikom ze swojego roku i dodatkowo zapisz w pliku o nazwie users.txt posortowaną listę tych użytkowników.

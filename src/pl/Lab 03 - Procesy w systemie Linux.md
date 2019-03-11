@@ -41,7 +41,7 @@ nazwa         numer      numer         czas         terminal    czas        nazw
 właściciela   procesu    procesu       uruchomienia
                          nadrzędnego
 ```
-Pełne informacje o wszystkich procesach uzyskamy łącząc opcję -`f` z `-e` (ang. *every process*). Poniżej podano inne przydatne przełączniki polecenia `ps`:
+Pełne informacje o wszystkich procesach uzyskamy łącząc opcję `-f` z `-e` (ang. *every process*). Poniżej podano inne przydatne przełączniki polecenia `ps`:
 *  `-a` (ang. *all)* wyświetla listę wszystkich procesów (także tych należących do innych użytkowników) 
 *  `-l` (ang. *long*) pozwala wyświetlić dodatkowe informacje o każdym procesie 
 *  `-x` (ang. *long*) dołącza do listy informacje o procesach nie dołączonych do terminali (procesy demony) 
@@ -64,7 +64,7 @@ Dowolny proces może zostać usunięty z systemu przez jego właściciela. Słu�
 ```bash
 kill [ -nazwa_lub_numer_sygnału ] identyfikator_procesu
 ```
-Domyślnie, jeśli nie podano numeru sygnału, wysłany zostanie sygnał `TERM`, powodujący zatrzymanie procesu. Aktualnie uruchomiony proces można również przerwać naciskając kombinację Ctrl-C, co również powoduje wysłanie sygnału `TERM`. Gdy wysłanie sygnału `TERM` jest niewystarczające do zatrzymania procesu, należy wtedy wysłać sygnał `KILL`, który powoduje bezwarunkowe przerwanie procesu:
+Domyślnie, jeśli nie podano numeru sygnału, wysłany zostanie sygnał `TERM`, powodujący zatrzymanie procesu. Aktualnie uruchomiony proces można również przerwać naciskając kombinację **Ctrl-C**, co również powoduje wysłanie sygnału `TERM`. Gdy wysłanie sygnału `TERM` jest niewystarczające do zatrzymania procesu, należy wtedy wysłać sygnał `KILL`, który powoduje bezwarunkowe przerwanie procesu:
 
 ```bash
 kill -KILL identyfikator_procesu
@@ -119,9 +119,9 @@ Polecenie jest uruchomione w tle, jeśli po ostatnim parametrze natępuje znak &
 polecenie &
 ```
 
-Aktualnie uruchomiony proces można także zatrzymać wciskając kombinację Ctrl - Z. Spowoduje to wstrzymanie tego procesu. Wstrzymany proces istnieje w systemie, ale nie jest dla niego przydzielany procesor. Zastopowany proces można wprowadzić do wykonania (kontynuacji) w tle poleceniem `bg` (ang. *background*), a nawet przywrócić po dowolnym czasie z powrotem na pierwszy plan poleceniem `fg` (ang. *foreground*), pod warunkiem jednak, że pomiędzy tymi poleceniami nie uruchomimy w tle innego procesu. Listę aktualnie kontrolowanych zadań można wyświetlić poleceniem `jobs`.
+Aktualnie uruchomiony proces można także zatrzymać wciskając kombinację **Ctrl-Z**. Spowoduje to wstrzymanie tego procesu. Wstrzymany proces istnieje w systemie, ale nie jest dla niego przydzielany procesor. Zastopowany proces można wprowadzić do wykonania (kontynuacji) w tle poleceniem `bg` (ang. *background*), a nawet przywrócić po dowolnym czasie z powrotem na pierwszy plan poleceniem `fg` (ang. *foreground*), pod warunkiem jednak, że pomiędzy tymi poleceniami nie uruchomimy w tle innego procesu. Listę aktualnie kontrolowanych zadań można wyświetlić poleceniem `jobs`.
 
-Jeśli wstrzymano więcej niż jedno zadanie, niezbędna będzie ich identyfikacja. Interpreter poleceń wewnętrznie przydziela swoje identyfikatory i za pomocą polecenia `jobs` można wyświetlić ich wartości. Do konkretnego procesu można odwołać się korzystając z identyfikatora poprzedzonego znakiem ``.
+Jeśli wstrzymano więcej niż jedno zadanie, niezbędna będzie ich identyfikacja. Interpreter poleceń wewnętrznie przydziela swoje identyfikatory i za pomocą polecenia `jobs` można wyświetlić ich wartości. Do konkretnego procesu można odwołać się korzystając z jego identyfikatora.
 ```bash
 jobs
 [1]- 	Stopped 	vim praca.html
@@ -152,12 +152,11 @@ Taką sekwencję można również wprowadzić w tło:
 ```
 
 ## Zadania do samodzielnego wykonania 
-1. Wyświetl listę własnych procesów komenda `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`. Zbadaj działanie przełączników ­`l` i i ­`u`. 
+1. Wyświetl listę własnych procesów komenda `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`. Zbadaj działanie przełączników ­`l` i ­`u`. 
 2. Zaloguj sie do systemu kilkukrotnie poprzez wirtualne konsole lub otwierając nowe okno w środowisku graficznym. Każdorazowo sprawdź poleceniem `tty` nazwę terminala, na którym pracujesz.
 3. Znajdź proces macierzysty dla procesu `ps`. Odszukaj przodka wszystkich procesów (`PID=1`). Wyświetl hierarchię procesów poleceniem `pstree`. 
 4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci.
 5. Sprawdź identyfikator procesu `init`. 
 6. Zapoznaj się z listą sygnałów na stronie pomocy systemowej `man 7 signal`. 
-7. Uruchamiaj sesję edytora `nano`,a nastepnie z poziomu drugiego terminala wysyłaj komendą `kill` kolejne sygnały do tego procesu. Użyj sygnałów: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
-7. Uruchom kilka procesów `sleep` w tle. Przełącz jeden z nich do pracy w trybie pierwszoplanowym. Uruchom i wstrzymaj sesję edytora `vi` kombinacja Ctrl-Z, uruchom nową sesję i wstrzymaj ją również. Wyświetl aktywne sesje komendą `jobs`. Wznów pracę jednego z procesów `sleep` do trybu pierwszoplanowego komendą `fg`, następnie znów przełącz go do pracy w tle komenda `bg`.
-
+7. Uruchom sesję edytora `vi`, a nastepnie z poziomu drugiego terminala wysyłaj komendą `kill` kolejne sygnały do tego procesu. Użyj sygnałów: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
+8. Uruchom kilka procesów `sleep` w tle. Przełącz jeden z nich do pracy w trybie pierwszoplanowym. Uruchom sesję edytora `vi` i wstrzymają ją kombinacją **Ctrl-Z**, uruchom nową sesję i wstrzymaj ją również. Wyświetl aktywne sesje komendą `jobs`. Wznów pracę jednego z procesów `sleep` do trybu pierwszoplanowego komendą `fg`, następnie znów przełącz go do pracy w tle komenda `bg`.
