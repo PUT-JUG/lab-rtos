@@ -288,9 +288,8 @@ drwxr-xr-x 54 adam students 4096 lip 6 11:20 ../
 ```
 
 Information about rights is displayed according to the following scheme:
-
- The information about rights is displayed according to the following scheme: 
- | User | Group | Other users |
+ 
+| User | Group | Other users |
 |:-----------------:|:-------------:|:-------------------------:|
 | r &vert; w &vert; x | r &vert; w &vert; x | r &vert; w &vert; x |
 
@@ -344,14 +343,14 @@ Example calls to create links:
 
 ## Excersises - Part III 
 
-22.   Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
-23.  For the `file.txt` add write permissions for other users.
-24.  For `file.txt` remove the write permissions for the owner.
-25.  For `file.txt` add the right of execution for all users.
-26.  For `file.txt`  allow all users only to read the file.
-27.  For `file.txt` restore the original permissions using numeric notation.
-28.  Create a link to the `file.txt` file named `file2.txt` in the home directory.
-29.  Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
+1.    Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
+2.   For the `file.txt` add write permissions for other users.
+3.   For `file.txt` remove the write permissions for the owner.
+4.   For `file.txt` add the right of execution for all users.
+5.   For `file.txt`  allow all users only to read the file.
+6.   For `file.txt` restore the original permissions using numeric notation.
+7.   Create a link to the `file.txt` file named `file2.txt` in the home directory.
+8.   Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
 
 ***
 Author: *Adam Bondyra*
