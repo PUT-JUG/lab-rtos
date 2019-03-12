@@ -167,3 +167,10 @@ Taką sekwencję można również wprowadzić w tło:
 * Sprawdzaj aktywne zadania poleceniem `jobs` aż do zakończenia `sleep 30`
 * Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
 7. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
+
+***
+Autorzy: *Adam Bondyra, Jakub Tomczyński*
+
+Data ostatniej modyfikacji:   *12-03-2019*
+
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).

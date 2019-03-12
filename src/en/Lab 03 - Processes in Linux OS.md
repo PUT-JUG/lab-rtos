@@ -154,7 +154,13 @@ This sequence can also be pushed to the background:
 3. Find the home process for the `ps` process. Find the ancestor of all processes (`PID=1`). Display the process hierarchy with the `pstree` command. 
 4. View the list of processes with the `top` command, sorting them by CPU usage and memory usage.
 5. Check the identifier of the `init` process. 
-6. Read the list of signals on the system manual page `man 7 signal`. 
-7. Start a session of the `vi` editor and then, from the second terminal, send a series of signals to the process with the `kill` command. Use signals: `HUP`, `INT`, `TERM`, `QUIT`, `KILL`, `STOP`, `CONT`.
-8. Run several `sleep` processes in the background. Switch one of them to foreground mode. Start and pause a session of the `vi` editor with Ctrl-Z, start a new session and pause it too. Display active sessions with the `jobs` command. Resume one of the `sleep` processes to the foreground mode with the `fg` command, then switch it back to the background with the `bg` command.
-
+6. Execute following steps:
+* Change priority of the current `bash` shell to 10.
+* Run command `sleep` for 30 seconds. Stop it immidiately with **Ctrl-Z**.
+* Run another `sleep` process in the background, this time make it run for 3600 seconds..
+* Display active tasks with the `jobs` command.
+* Check (with the proper `ps` command) priority and status (running/stopped) of programs started within current terminal session.
+* Restore stopped `sleep` program in the background.
+* Check active tasks with the `jobs` commands until `sleep 30` is finished.
+* Terminate `sleep 3600` by bringing it to the foreground and terminating with **Ctrl-C**. 
+2. Run the sequence  `sleep 1000 ; touch sleep_finished` in the background. Check whether the *sleep_finished* file exists. End the *sleep* process with *TERM* signal. Check again if *sleep_finished* exists.
