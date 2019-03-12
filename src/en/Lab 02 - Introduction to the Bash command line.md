@@ -256,9 +256,9 @@ Here are some examples of how to use the find command:
 ## Excersises - part II
 
 
-1.  Use `find` to find all files that have the word mozilla in their name and are located in the `/usr` and its subdirectories.
-2.  Using the `find` program, find all directories named `bin`, which are located in the `/usr` directory.
-3.  Copy all regular files with a size between 10 and 100 bytes from the `/usr/bin` directory into the `dir1/dir2` directory (use the `find` command with the `-exec` parameter).
+19.  Use `find` to find all files that have the word *mozilla* in their name and are located in the `/usr` and its subdirectories.
+20.  Using the `find` program, find all directories named `bin`, which are located in the `/usr` directory.
+21.  Copy all regular files with a size between 10 and 100 bytes from the `/usr/bin` directory into the `dir1/dir2` directory (use the `find` command with the `-exec` parameter).
     
 ## Access permissions
 
@@ -344,18 +344,18 @@ Example calls to create links:
 
 ## Excersises - Part III 
 
-1.   Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
-2.  For the `file.txt` add write permissions for other users.
-3.  For `file.txt` remove the write permissions for the owner.
-4.  For `file.txt` add the right of execution for all users.
-5.  For `file.txt`  allow all users only to read the file.
-6.  For `file.txt` restore the original permissions using numeric notation.
-7.  Create a link to the `file.txt` file named `file2.txt` in the home directory.
-8.  Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
+22.   Create a file `file.txt` in your home directory - check what access rights has been assigned to the file.
+23.  For the `file.txt` add write permissions for other users.
+24.  For `file.txt` remove the write permissions for the owner.
+25.  For `file.txt` add the right of execution for all users.
+26.  For `file.txt`  allow all users only to read the file.
+27.  For `file.txt` restore the original permissions using numeric notation.
+28.  Create a link to the `file.txt` file named `file2.txt` in the home directory.
+29.  Create a symbolic link to the `dir1/dir2` directory named `abc` in the home directory.
 
 ***
 Author: *Adam Bondyra*
 
-Last revision:   *01-03-2019*
+Last revision:   *12-03-2019*
 
 Based on the Open IT Studies project (*http://wazniak.mimuw.edu.pl/*).

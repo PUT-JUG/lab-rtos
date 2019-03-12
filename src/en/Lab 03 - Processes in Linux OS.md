@@ -163,4 +163,13 @@ This sequence can also be pushed to the background:
 * Restore stopped `sleep` program in the background.
 * Check active tasks with the `jobs` commands until `sleep 30` is finished.
 * Terminate `sleep 3600` by bringing it to the foreground and terminating with **Ctrl-C**. 
-2. Run the sequence  `sleep 1000 ; touch sleep_finished` in the background. Check whether the *sleep_finished* file exists. End the *sleep* process with *TERM* signal. Check again if *sleep_finished* exists.
+7. Run the sequence  `sleep 1000 ; touch sleep_finished` in the background. Check whether the *sleep_finished* file exists. End the *sleep* process with *TERM* signal. Check again if *sleep_finished* exists.
+8. Run a GUI application, i.e. *Mousepad* text editor. Check its PID. Send *STOP* signal to the 
+*Mousepad* process, check if it is responding. Then continue its operation by sending *CONT* signal.
+
+***
+Author: *Adam Bondyra*
+
+Last revision:   *12-03-2019*
+
+Based on the Open IT Studies project (*http://wazniak.mimuw.edu.pl/*).
