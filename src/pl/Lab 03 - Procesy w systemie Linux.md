@@ -167,7 +167,6 @@ Taką sekwencję można również wprowadzić w tło:
 * Sprawdzaj aktywne zadania poleceniem `jobs` aż do zakończenia `sleep 30`
 * Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
 7. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
-* Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**.
 8. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
 
 ***
