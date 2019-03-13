@@ -143,22 +143,17 @@ There are programs whose task is to read data from the standard input, process t
 * `tr` - allows you to replace text strings that are given as input arguments. Characters from the first string are replaced by characters from the second string. Additionally, the following processing is possible thanks to the switches:
   * `-d` removes the characters specified after the switch
   * `-s` removes repetitive adjacent characters
-
-
-TU KONIEC
-
-
-* `cut` - displays line segments of the input data. Usually this is cutting out the appropriate columns
-  * `c` allows you to specify the character position of the cut-outs of lines, e.g. `c 1-72` displays the first 72 characters of each line.
+* `cut` - cuts and displays line segments of the input data. Usually cutting is done according to the specifed columns.
+  * `c` allows you to specify the character position of the cut-outs of lines, e.g. `c 1-72` cuts and displays the first 72 characters of each line.
   * `-f` allows you to specify the numbers of columns to be cut, e.g. `-f1,3-5,10` displays the first column, columns from 3 to 5 and column 10.
   * The `-d` allows you to change the default column separator, which is the tab character
 * `grep [options] expression [file_list]` - searches the data from the standard input or files listed in the file list, printing only the lines containing the search term. The search term is written using a regular expression. The most important switches:
   * `-v` searches for lines that do not contain the pattern you are looking for
-  * `c` gives the number of words found
-  * `-i` ignores letter size when searching for
+  * `-c` gives the number of words found
+  * `-i` ignores letter sizes during search
   * `-n` displays the line numbers of lines containing the pattern
-  * `-h`when displaying lines containing the searched pattern ignores file names
-  * `-r` allows recursive searches, e.g. grep pattern -r directory
+  * `-h` when displaying lines containing the searched pattern, ignores file names
+  * `-r` allows recursive searches, e.g. `grep pattern -r directory`
   * `-l` shows the names of files containing a specified pattern
   * `-L` shows the names of files that do not contain a specific pattern
 
@@ -166,19 +161,18 @@ The principles of construction of basic regular expressions describing the patte
 * `.` - represents any character
 * `[abc]` - means one of the characters a, b or c
 * `[a-z]` - means one of the characters from the specified set
-* `[^0-9]` - means completion of the specified harvest
+* `[^0-9]` - means completion of the specified set
 * `.*` - stands for any character string
-* `*` - represents the repetition of any number of times an expression on the left-hand side, e.g. `A[a]*` specifies A, Aa, Aaaaaaa, Aaaaaaaaa, etc.
-* ^^` - represents the beginning of the line
+* `*` - represents the repetition of any number of times an expression on the left side, e.g. `A[a]*` specifies A, Aa, Aaaaaaa, Aaaaaaaaa, etc.
+* `^` - represents the beginning of the line
 * `$` - represents the end of the line
-* `Association `Association} - indicates a n-fold occurrence of a character appearing directly on the left side of the parentheses.
-* `Association{n, {Name}} - indicates at least one occurrence of a character directly to the left side of the parentheses.
-* `Association `, Mixture}` - means that the sign on the left side of the parentheses should not appear more than once.
-* `Association{n,mœucces}` - means at least n times and at most m times the character on the left side of the parentheses.
+* `a\{n\}` - indicates a n-fold occurrence of a character appearing directly on the left side of the parentheses.
+* `a\{n, \}` - indicates at least one occurrence of a character directly to the left side of the parentheses.
+* `a\{, m\}` - means that the character on the left side of the parentheses should not appear more than m times.
+* `a\{n,m\}` - means at least n times and at most m times occurence of the character to the left of the parentheses.
 
-In addition, there is a special group of characters with special meaning. These characters include: `. * {} () ^ [ ] \ < > $`. In order to use these characters as normal characters, they must be preceded by the ``Realignment` character. In addition to the basic regular expressions, there are extended expressions that allow you to describe the phrase you are looking for in a shorter way and offer richer ways to describe expressions. To use extended regular expressions, use the grep command with the `-E` switch, or use the `egrep` command.
+In addition, there is a special group of characters with special meaning. These characters include: `. * {} () ^ [ ] \ < > $`. In order to use these characters as normal characters, they must be preceded by the `\` character. In addition to the basic regular expressions, there are extended expressions that allow you to describe the phrase you are looking for in a shorter way and offer richer ways to describe expressions. To use extended regular expressions, use the grep command with the `-E` switch, or use the `egrep` command.
 
-Translated with www.DeepL.com/Translator
 
 ## Zadania do samodzielnego wykonania
 1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. W oknie terminala wyświetlaj w danej chwili tylko jedną stronę tekstu.
