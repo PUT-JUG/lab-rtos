@@ -183,11 +183,14 @@ Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znak�
 12. Wyświetl listę plików w aktualnym katalogu, posortowaną według rozmiaru pliku
 13. Wyświetl zawartość pliku */etc/passwd* posortowaną wg numerów *UID* w kolejności od największego do najmniejszego
 14. Wyświetl zawartość pliku */etc/passwd* posortowaną najpierw wg numerów *GID* w kolejności od największego do najmniejszego, a następnie *UID*
-15. Podaj liczbę plików każdego użytkownika
-16. Sporządź statystykę praw dostępu (dla każdego z praw dostępu podaj ile razy zostało ono przydzielone)
-17. Podaj nazwy trzech najmniejszych plików w katalogu posortowane wg nazwy
-18. Podaj pięciu użytkowników o największej liczbie uruchomionych procesów
-19. Wyświetl zawartość 3 największych podkatalogów katalogu bieżącego
-20. Wyświetl nazwy tych użytkowników, którzy domyślnie używają innego interpretera niż *bash*
-21. Wyświetl nazwy wszystkich plików nagłówkowych posortowane wykorzystywanych w plikach bieżącego katalogu
-22. Wyświetl statystykę używanych komend (bez argumentów) w postaci posortowanej listy: ilość komenda ( wskazówka: należy użyć polecenia *history*)
+15. Podaj nazwy trzech najmniejszych plików w katalogu posortowane wg nazwy
+16. W pliku `/etc/services` przechowywana jest lista popularnych usług sieciowych, wraz z numerami portów i protokołem. Wylistuj (tylko) nazwy usług, które korzystają z protokołu `UDP`.
+17. Wyświetl, ile wirtualnych terminali (`dev/tty`) o numerach z zakresu *50-69* znajduje się w systemie.
+18. Znajdź PID procesu **cupsd**.
+
+***
+Autorzy: *Adam Bondyra, Jakub Tomczyński*
+
+Data ostatniej modyfikacji:   *18-03-2019*
+
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
