@@ -21,7 +21,7 @@ The operator `>` readdresses the standard output, i.e., creates a file and saves
 ```bash
 cat > file.txt
 This is a file.
-Ala has a cat.
+This is a second line of file.
 ^D
 ```
 
@@ -30,7 +30,7 @@ The operator `<` causes the standard process input to be re-addressed, i.e. the 
 ```bash
 cat < file.txt
 This is a file.
-Ala has a cat.
+This is a second line of file.
 ```
 
 The `>` and `<` operators can be used simultaneously by re-addressing both the output and input, causing the contents of the `file.txt` file to be copied to the `file_new.txt` file:
@@ -43,19 +43,19 @@ The operator `>>` readdresses the standard output, adding the results of the pro
 
 ```bash
 cat >> file.txt
-The cat has Ala.
+This is an appended file line.
 ^D
 ```
 
-The operator `<<<` causes the process to transfer data from the standard input until the indicated text string is encountered:
+The operator `<<` causes the process to transfer data from the standard input until the indicated text string is encountered:
 
 ```bash
 cat << break
-> Ala has a cat
-> The cat has Ala.
+> This is first line.
+> And this is second.
 > break
-Ala has a cat
-The cat has Ale.
+This is first line.
+And this is second.
 ```
 
 Some commands, in parallel with the information displayed on the standard output, send additional information about processing errors to the standard diagnostic output. The diagnostic stream can be independently redirected through the operator `>` preceded by the number of the diagnostic output, i.e. 2:
@@ -174,26 +174,29 @@ The principles of construction of basic regular expressions describing the patte
 In addition, there is a special group of characters with special meaning. These characters include: `. * {} () ^ [ ] \ < > $`. In order to use these characters as normal characters, they must be preceded by the `\` character. In addition to the basic regular expressions, there are extended expressions that allow you to describe the phrase you are looking for in a shorter way and offer richer ways to describe expressions. To use extended regular expressions, use the grep command with the `-E` switch, or use the `egrep` command.
 
 
-## Zadania do samodzielnego wykonania
-1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. W oknie terminala wyświetlaj w danej chwili tylko jedną stronę tekstu.
-2. Korzystając z polecenia `cat` utwórz plik *tekst3*, który będzie składał się z zawartości pliku *tekst1*, ciągu znaków podanego ze standardowego wejścia (klawiatury) i pliku *tekst2*.
-3. Wyświetl po 5 pierwszych linii wszystkich plików w swoim katalogu domowym w taki sposób, aby nie były wyświetlane ich nazwy.
-4. Wyświetl linie o numerach 3, 4 i 5 z pliku */etc/passwd*
-5. Wyświetl linie o numerach 5, 6 i 7 od końca pliku */etc/passwd*
-6. Wyświetl zawartość */etc/passwd* w jednej linii
-7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa w osobnej linii.
-8. Zlicz wszystkie pliki znajdujące się w katalogu */etc* i jego podkatalogach
-9. Napisać polecenie zliczające sumę znaków z pierwszych trzech linii pliku */etc/passwd*
-10. Wyświetl listę plików z aktualnego katalogu, zamieniając wszystkie małe litery na duże.
-11. Wyświetl listę praw dostępu do plików w aktualnym katalogu, ich rozmiar i nazwę
-12. Wyświetl listę plików w aktualnym katalogu, posortowaną według rozmiaru pliku
-13. Wyświetl zawartość pliku */etc/passwd* posortowaną wg numerów *UID* w kolejności od największego do najmniejszego
-14. Wyświetl zawartość pliku */etc/passwd* posortowaną najpierw wg numerów *GID* w kolejności od największego do najmniejszego, a następnie *UID*
-15. Podaj liczbę plików każdego użytkownika
-16. Sporządź statystykę praw dostępu (dla każdego z praw dostępu podaj ile razy zostało ono przydzielone)
-17. Podaj nazwy trzech najmniejszych plików w katalogu posortowane wg nazwy
-18. Podaj pięciu użytkowników o największej liczbie uruchomionych procesów
-19. Wyświetl zawartość 3 największych podkatalogów katalogu bieżącego
-20. Wyświetl nazwy tych użytkowników, którzy domyślnie używają innego interpretera niż *bash*
-21. Wyświetl nazwy wszystkich plików nagłówkowych posortowane wykorzystywanych w plikach bieżącego katalogu
-22. Wyświetl statystykę używanych komend (bez argumentów) w postaci posortowanej listy: ilość komenda ( wskazówka: należy użyć polecenia *history*)
+## Exercises
+1. Display the */etc/passwd* file divided into pages, assuming that the page has 5 lines of text. In the terminal window, display only one page of text at a time.
+2. Use the `cat` command to create a *text3* file that will consist of the contents of the *text1* file, then the text typed into the standard input (keyboard) and then the *text2* file.
+3. Display the first 5 lines of all files in your home directory without displaying their file names.
+4. Display lines 3, 4, and 5 from */etc/passwd*.
+5. Display lines numbered 5, 6 and 7 from the end of the file */etc/passwd*.
+6. Display the content of */etc/passwd* in a single line.
+7. Use the `tr` filter to modify examplary file by placing each word on a separate line.
+8. Count all files in the */etc* directory and its subdirectories.
+9. Write a command that counts the sum of the characters from the first three lines of the file */etc/passwd*.
+10. Print a list of files in the current directory, replacing all lowercase letters with uppercase letters.
+11. Print a list containing file access rights, sizes and names of all files in the current directory.
+12. Print a list of files in the current directory, sorted by file size.
+13. Print the contents of the */etc/passwd* file sorted by *UID* numbers in order from the largest to the smallest.
+14. Display the contents of the */etc/passwd* file sorted first by *GID* numbers in order from the largest to the smallest, then *UID*.
+15. Print the names of the three smallest files in the directory, sorted by name.
+16. The `/etc/services` file stores a list of popular network services, including port numbers and protocol. List (only) the names of services that use the `UDP` protocol.
+17. Print the count of virtual terminals (`dev/tty`) with numbers in the range *50-69* available in the system.
+18. Find the PID of the process **cupsd**.
+
+***
+Author: *Adam Bondyra*
+
+Last revision:   *12-03-2019*
+
+Based on the Open IT Studies project (*http://wazniak.mimuw.edu.pl/*).
