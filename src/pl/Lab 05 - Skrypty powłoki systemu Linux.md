@@ -242,3 +242,10 @@ bash -x skrypt.sh
 4. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania posortuje jego zawartość.
 5. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania wyświetli w kolejnych liniach 3 najczęściej powtarzające się w nim słowa.
 6. Napisz skrypt, który będzie kopiował plik podany jako pierwszy argument do wszystkich katalogów podanych jako kolejne argumenty wywołania.
+
+***
+Autor: *Adam Bondyra*
+
+Data ostatniej modyfikacji:   *21-03-2019*
+
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
