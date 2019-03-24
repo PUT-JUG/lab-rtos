@@ -1,13 +1,10 @@
 # Tworzenie skryptów powłoki systemu operacyjnego
 
 ## Interpreter poleceń oraz zmienne środowiskowe
-Interpreter poleceń nazywany inaczej także powłoką systemową pośredniczy pomiędzy użytkownikiem a funkcjami systemu operacyjnego. Powłoka systemowa pobiera dane i polecenia od użytkownika i przekazuje je do wykonania do jądra systemu operacyjnego. Dostępnych jest wiele różnych powłok, z których najpopularniejsze wydają się następujące:
 
- * interpreter Korna - uruchamiany poleceniem ksh
- * interpreter tcsh oraz
- * najpopularniejszy i najpowszechniej obecnie stosowany `bash` (ang. *Bourne Again Shell*).
-  
-Wszystkie dalsze przykłady będą prezentowane właśnie dla powłoki `bash`.
+Powłoka systemowa (ang. *shell*) to program komputerowy pełniący rolę pośrednika pomiędzy systemem operacyjnym lub aplikacjami a użytkownikiem, przyjmując jego polecenia i wyświetlając wyniki działania programów. W systemach linuksowych (w tym Ubuntu) najpopularniejsza obecnie powłoka to `bash` (ang. *Bourne Again Shell*) - dalsze przykłady będą prezentowane właśnie dla powłoki `bash`.
+
+Podczas poprzednich zajęć, za każdym razem kiedy otwieraliśmy emulator terminala, uruchamiana została nowa instancja powłoki naszego użytkownika - program `bash`. Część poleceń to tzw. polecenia wbudowane (bezpośrednio w powłokę) - np. `cd`, `pwd`, inne to zupełnie oddzielne programy, które `bash` wywoływał - np. `ls`, `chmod` itd.
 
 *Zmienne środowiskowe* to bardzo wygodny i uniwersalny sposób konfigurowania i parametryzowania powłok systemowych i - za ich pomocą - także innych programów. Dostępne zmienne środowiskowe tworzą tzw. *środowisko wykonania procesu* - środowisko to jest kopiowane do wszystkich nowych procesów, a więc modyfikacje zmiennych wykonane w powłoce są widoczne we wszystkich programach uruchomionych przy użyciu tej powłoki. Każdy użytkownik może definiować dowolną ilość własnych zmiennych oraz przypisywać im dowolne wartości. Aby zdefiniować zmienną środowiskową należy zastosować operator przypisania (znak "=") w następujący sposób:
 
@@ -20,6 +17,9 @@ W tym wypadku ciąg znaków `ZMIENNA` to nazwa zmiennej, a `wartosc` to jej wart
 ```bash
 SYSTEM=Unix
 echo $SYSTEM
+```
+Wyjście:
+```
 Unix
 ```
 
@@ -50,24 +50,33 @@ SYSTEM=Unix
 export SYSTEM
 ```
 
-Powyższe zlecenia można także zrealizować jednym poleceniem:
+Powyższe polecenia można także zrealizować jednym poleceniem:
 
 ```bash
 export SYSTEM=Unix
 ```
 
-Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w systemie jest zdefiniowanych wiele zmiennych środowiskowych, oto znaczenie podstawowych z nich:
+Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w systemie domyślnie jest zdefiniowanych wiele zmiennych środowiskowych, oto znaczenie podstawowych z nich:
 
  * `HOME` - ścieżka i nazwa katalogu domowego użytkownika;
  * `USER` - nazwa zalogowanego użytkownika;
  * `PATH` - ścieżki poszukiwań programów;
  * `PS1` - postać znaku zachęty użytkownika;
  * `SHELL` - pełna ścieżka do domyślnego interpretatora poleceń użytkownika.
+ 
+ Zmienne systemowe nie mają typu - wszystkie przechowywane są jako napis (ciąg znaków), niezależnie od zawartości.
+ 
+ ## Zadania do samodzielnego wykonania
+ 1. Zdefiniuj zmienną `IMIE` i przypisz jej swoje imię. Wyświetl zawartość tej zmiennej. Wyeksportuj tą zmienną i sprawdź, czy jest dostępna w nowym (potomnym) interpreterze.
+ 2. Wyświetl listę zmiennych eksportowanych.
+ 3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
   
 ## Skrypty i ich argumenty
-Skrypty powłoki to pliki tekstowe, które zawierają ciągi poleceń dla powłoki systemowej. Współczesne powłoki pozwalają także aby skryty zawierały konstrukcje programistyczne, takie jak instrukcje warunkowe czy pętle, polecenia pozwalające na interaktywną prace skryptu, czy też przekazywanie argumentów ich wywołania. Skryty są bardzo pomocnym rozwiązaniem kiedy istnieje konieczność wykonywania złożonych poleceń i poleceń, które są powtarzane okresowo.
+Współczesne powłoki pozwalają także na tworzenie konstrukcji programistycznych takich jak instrukcje warunkowe czy pętle. Ponieważ kolejne ciągi poleceń możemy umieścić w pliku tekstowym, a następnie taki plik uruchomić w powłoce - uzyskujemy możliwość pisania programów (skryptów) w języku `bash`.
 
-Skrypty mogą być parametryzowane argumentami ich wywołania - oznacza to, że podczas uruchamiania skryptu można przekazać do niego dowolną ilość dowolnych danych. Do argumentów wywołania można się odwoływać w skryptach za pomocą tzw. zmiennych pozycyjnych, oznaczanych: 1,2,3...9. Każda zmienna pozycyjna przechowuje tekst przekazany za pośrednictwem odpowiadającemu jej argumentu wywołania - pierwszy argument dostępny jest w zmiennej pozycyjnej 1 itd. Oto przykład pierwszego skryptu, który wyświetla wartości pierwszych trzech argumentów jego wywołania:
+Skrypty są bardzo pomocnym rozwiązaniem kiedy istnieje konieczność wykonywania złożonych poleceń i poleceń, które są powtarzane okresowo.
+
+Skrypty mogą być parametryzowane argumentami ich wywołania - oznacza to, że podczas uruchamiania skryptu można przekazać do niego dane lub parametry. Do argumentów wywołania można się odwoływać w skryptach za pomocą tzw. zmiennych pozycyjnych, oznaczanych: *1*, *2*, *3*, ..., *9*. Każda zmienna pozycyjna przechowuje tekst przekazany za pośrednictwem odpowiadającemu jej argumentu wywołania - pierwszy argument dostępny jest w zmiennej pozycyjnej *1* itd. Oto przykład pierwszego skryptu, który wyświetla wartości pierwszych trzech argumentów jego wywołania:
 
 ```bash
 #!/bin/bash
@@ -77,10 +86,13 @@ echo "argument nr 2: $2"
 echo "argument nr 3: $3"
 ```
 
-Takie polecenia należy zapisać do dowolnego pliku (zaleca się, aby pliki skryptów miały rozszerzenie `.sh`). Pierwsza linia pozwala wskazać jaki interpreter poleceń ma zostać wykorzystany do jego wykonania - w tym przypadku jest to powłoka `bash`. Druga linia prezentuje sposób umieszczania komentarzy; każda linia rozpoczynająca się od znaku `#`, jest traktowana jako komentarz. Kolejne trzy linie wyświetlają wartości pierwszych trzech argumentów wywołania skryptu z wykorzystaniem polecenia `echo`. Aby uruchomić skrypt należy dla pliku, w którym jest on zapisany nadać prawo wykonywania. Poniżej przedstawiono przykładowe wywołanie przedstawionego powyżej skryptu oraz jego wynik (przyjęto, że plik skryptu nazywa się `skrypt1.sh`):
+Takie polecenia należy zapisać do dowolnego pliku (zaleca się, aby pliki skryptów miały rozszerzenie `.sh`). Pierwsza linia, zaczynająca się od ciągu `#!` pozwala wskazać jaki interpreter poleceń ma zostać wykorzystany do jego wykonania - w tym przypadku jest to powłoka `bash`. Druga linia prezentuje sposób umieszczania komentarzy: każda linia rozpoczynająca się od znaku `#`, jest traktowana jako komentarz. Kolejne trzy linie wyświetlają wartości pierwszych trzech argumentów wywołania skryptu z wykorzystaniem polecenia `echo`. **Aby uruchomić skrypt należy dla pliku, w którym jest on zapisany nadać prawo wykonywania.** Poniżej przedstawiono przykładowe wywołanie przedstawionego powyżej skryptu oraz jego wynik (przyjęto, że plik skryptu nazywa się `skrypt1.sh`):
 
 ```bash
 ./skrypt1.sh abc xyz 12345
+```
+Wyjście:
+```
 argument nr 1: abc
 argument nr 2: xyz
 argument nr 3: 12345
@@ -92,26 +104,35 @@ Obecnie powłoki systemowe pozwalają na to, aby skrypty zawierały konstrukcje 
 ```bash
 if warunek
 then
-   instrukcje wykonywane jeśli warunek zostanie spełniony
+    instrukcje wykonywane jeśli warunek zostanie spełniony
 else
-   instrukcje wykonywane jeśli warunek nie zostanie spełniony
+    instrukcje wykonywane jeśli warunek nie zostanie spełniony
 fi
 ```
 
-Należy zaznaczyć, że słowa kluczowe instrukcji warunkowej muszą być zapisane w osobnych liniach, dokładnie tak jak w powyższym przykładzie.
+Warunek może być dowolnym poleceniem - warunek jest spełniony, jeśli program nim będący nie zwrócił błędu (miał kod wyjścia równy 0). Przykładowe wykorzystanie programu `ping` do sprawdzenia łączności z serwerem:
 
-Warunek może być dowolnym poleceniem, jednak sprawdzanie warunków najczęściej odbywa się przy użyciu programu `test`. Polecenie to jest powszechnie wykorzystywane w skryptach z zastosowaniem notacji używającej znaków `"[" i "]"` do realizacji testów warunków, co prezentuje kolejny przykład:
+```bash
+if ping -c 1 google.com
+then
+    echo "connected"
+else
+    echo "error"
+fi
+```
+
+Najczęściej warunki konstruowane są z wykorzystaniem wbudowanego programu `test` i notacji używającej znaków `[` i `]` do realizacji testów warunków, co prezentuje kolejny przykład:
 
 ```bash
 if [ $1 = xyz ]
 then
-   echo "arg nr 1 = xyz"
+    echo "arg nr 1 = xyz"
 else
-   echo "arg nr 1 <> xyz"
+    echo "arg nr 1 <> xyz"
 fi
 ```
 
-Po znaku `"["` i przed znakiem `"]"` konieczne jest wprowadzenie znaku spacji. Możliwe do wykonania testy z zastosowaniem programu `test` prezentuje tabela:
+Po znaku `[` i przed znakiem `]` konieczne jest wprowadzenie znaku spacji. Możliwe do sprawdzenia warunki z zastosowaniem programu `test` prezentuje tabela:
 
 
 |                  Warunek                   |      Opis      |
@@ -119,19 +140,19 @@ Po znaku `"["` i przed znakiem `"]"` konieczne jest wprowadzenie znaku spacji. M
 |     `znaki1 = znaki2`      |      Weryfikacja równości dwóch łańcuchów znaków     |
 | `znaki1 != znaki2` | Weryfikacja nierówności dwóch łańcuchów znaków |
 | `-z znaki`     |     	Weryfikacja, czy łańcuch znaków ma zerową długość     |
-| `-n znaki `    |     	Weryfikacja, czy łańcuch znaków ma niezerową długość     |
-| `liczba1 -eq liczba2 `    |     	Weryfikacja równości dwóch liczb     |
+| `-n znaki`    |     	Weryfikacja, czy łańcuch znaków ma niezerową długość     |
+| `liczba1 -eq liczba2`    |     	Weryfikacja równości dwóch liczb     |
 | `liczba1 -ne liczba2`     |     	Weryfikacja nierówności dwóch liczb     |
-| `liczba1 -qt liczba2  `   |     	Weryfikacja, czy `liczba1` jest większa od `liczba2`     |
-| `liczba1 -lt liczba2 `    |     	Weryfikacja, czy `liczba1` jest mniejsza od `liczba2`     |
-| `-e nazwa `    |     	Weryfikacja, czy podany plik istnieje     |
-| `-f nazwa `    |     	Weryfikacja, czy podany plik jest plikiem zwykłym     |
-| `-d nazwa  `   |     	Weryfikacja, czy podany plik jest katalogiem     |
-| `-r nazwa `    |     	Weryfikacja, czy użytkownik ma prawo odczytu dla pliku o podanej nazwie     |
-| `-w nazwa `    |     	Weryfikacja, czy użytkownik ma prawo zapisu dla pliku o podanej nazwie     |
-| `-x nazwa `    |     	Weryfikacja, czy użytkownik ma prawo wykonywania dla pliku o podanej nazwie     |
+| `liczba1 -qt liczba2`   |     	Weryfikacja, czy `liczba1` jest większa od `liczba2`     |
+| `liczba1 -lt liczba2`    |     	Weryfikacja, czy `liczba1` jest mniejsza od `liczba2`     |
+| `-e nazwa`    |     	Weryfikacja, czy podany plik istnieje     |
+| `-f nazwa`    |     	Weryfikacja, czy podany plik jest plikiem zwykłym     |
+| `-d nazwa`   |     	Weryfikacja, czy podany plik jest katalogiem     |
+| `-r nazwa`    |     	Weryfikacja, czy użytkownik ma prawo odczytu dla pliku o podanej nazwie     |
+| `-w nazwa`    |     	Weryfikacja, czy użytkownik ma prawo zapisu dla pliku o podanej nazwie     |
+| `-x nazwa`    |     	Weryfikacja, czy użytkownik ma prawo wykonywania dla pliku o podanej nazwie     |
 | `warunek1 -a warunek2`     |     	Iloczyn logiczny warunków     |
-| `warunek1 -o warunek2 `    |     	Suma logiczna warunków     |
+| `warunek1 -o warunek2`    |     	Suma logiczna warunków     |
 | `! warunek1`     |     	Negacja warunku     |
 
 ## Pętle
@@ -140,27 +161,29 @@ Skrypty powłoki mogą także zawierać pętle - podstawowe dwie z nich to pętl
 ```bash
 for zmienna in lista
 do
-   instrukcje do wykonania
+    instrukcje do wykonania
 done
 ```
 
-Wykonanie pętli powoduje przypisywanie zmiennej zmienna kolejnych wartości wymienionych na liście lista; ilość iteracji, jest zatem zależna od długości podanej listy. Jako listę można pętli for można podawać wzorce uogólniające powłoki. Poniższy przykład skryptu prezentuje zastosowanie pętli for do usunięcia wszystkich plików z rozszerzeniem `.tmp` z katalogu bieżącego:
+Wykonanie pętli powoduje przypisywanie zmiennej zmienna kolejnych wartości wymienionych na liście lista; ilość iteracji, jest zatem zależna od długości podanej listy. Jako listę można w pętli for można podawać wzorce uogólniające powłoki. Poniższy przykład skryptu prezentuje zastosowanie pętli for do usunięcia wszystkich plików z rozszerzeniem `.tmp` z katalogu bieżącego:
 
 ```bash
 #!/bin/bash
 for FILE in *.tmp
 do
-   rm -v $FILE
+    rm -v $FILE
 done
 ```
 
 Ilość iteracji powyższej pętli bezie zatem determinowana ilością plików z rozszerzeniem `*.tmp`, które utworzą listę wartości dla zmiennej `FILE`.
 
-Realizacja pętli numerycznej z zastosowaniem pętli `for` jest możliwa z użyciem programu `seq`, który wypisuje kolejne liczby, np.:
+Realizacja pętli numerycznej z zastosowaniem pętli `for` jest możliwa z użyciem programu zakresów definiowanych operatorem nawiasów klamrowych `{start..stop}`, np.:
 
 ```bash
-for N in `seq 1 10`
-...
+for N in {1..10}
+do
+    echo $N
+done
 ```
 spowoduje dziesięciokrotne wykonanie pętli.
 
@@ -205,7 +228,9 @@ done
 
 Jak widać pętla zostanie przerwana, jeśli pobrana nazwa z rozszerzeniem `*.tmp` nie będzie wskazywała na plik zwykły.
 
-## Pobieranie wartości do skryptów oraz ich debugowanie
+Wykonywanie całego skryptu można przerwać poleceniem `exit`.
+
+## Pobieranie wartości do skryptów
 Jeśli skrypt wymaga iteracji z użytkownikiem, to niezbędne staje się pobieranie wartości przekazywanych przez użytkownika. Służy do tego polecenie:
 
 ```bash
@@ -216,36 +241,125 @@ Argumentami są nazwy zmiennych środowiskowych, które przyjmą wartość odczy
 
 ```bash
 read X Y
-uzytkownik adam
 echo $X
-uzytkownik
 echo $Y
+```
+Wejście:
+```
+uzytkownik adam
+```
+Wyjście:
+```
+uzytkownik
 adam
 ```
 
-Skrypty mogą być także wykonywanie w trybie debugowania, np. w celu testowania poprawności działania, warunków, pętli itp. Aby zrealizować wykonanie skryptu z wyświetlaniem informacji kontrolnych należy zastosować przełącznik `-x` wywołania interpretatora poleceń. Można to zrealizować na dwa sposoby: po pierwsze można dopisać tenże przełącznik w pierwszej linii skryptu:
+Polecenie `read` może również współpracować z pętlą `while` i potokiem, co pozwala na przetwarzanie wejściowego strumienia tekstu linia po linii:
 
 ```bash
-#!/bin/bash -x
+cat file.txt | while read line
+do
+    echo Linia tekstu: $line
+done
 ```
 
-po drugi można uruchomić skrypt wywołując go poprzez wskazanie interpretatora z przełącznikiem i nazwą skryptu jako argumentem; przyjmując, że skrypt posiada nazwę `skrypt.sh` uruchomienie miałoby następującą postać:
+Ponieważ znak spacji jest w powłoce separatorem argumentów, problematyczne mogą stać się zawartości zmiennych bądź nazwy plików zawierające spacje. Umieszczenie tekstu w podwójnym cudzysłowie (`"`) spowoduje, że cała jego zawartość, wraz ze spacjami zostanie potraktowana jako jeden argument.
+
+Przykładowo, przypisanie do zmiennej napisu zawierającego spacje:
+```bash
+LISTA="abc 123 456"
+```
+
+Umieszczenie napisu w pojedynczym cudzysłowie (`'`) spowoduje, że jego zawartość nie będzie interpretowana w żaden sposób (np. znaki `$` nie będą oznaczały odwołań do zmiennych).
+
+Poniższe trzy pętle generują zatem różne rezultaty:
 
 ```bash
-bash -x skrypt.sh
+for ZMIENNA in $LISTA ; do
+    echo $ZMIENNA
+done
 ```
+
+```bash
+for ZMIENNA in "$LISTA" ; do
+    echo $ZMIENNA
+done
+```
+
+```bash
+for ZMIENNA in '$LISTA' ; do
+    echo $ZMIENNA
+done
+```
+
+Jeśli chcemy natychmiast po zawartości zmiennej dokleić dodatkowy tekst, można ująć nazwę zmiennej w klamry, np:
+
+```bash
+echo ${A}hello
+```
+
+Umieszczenie tekstu w *grawisie* (`` ` ``) powoduje **uruchomienie** zawartego w nim tekstu, a następnie podstawienie w dane miejsce wyjścia uruchomionego programu. Przykładowo, zapisanie bieżącego katalogu roboczego do zmiennej:
+
+```bash
+CURRENT_DIR=`pwd`
+```
+
+Bash oferuje również prostą arytmetykę na liczbach całkowitych. Kontekst arytmetyczny wywołujemy umieszczając formułę pomiędzy `$((` a `))`:
+
+```bash
+a=3
+b=$((a+5))
+```
+
+## Debugowanie skryptów
+
+Skrypty mogą być także wykonywane w trybie debugowania, np. w celu testowania poprawności działania, warunków, pętli itp. Aby zrealizować wykonanie skryptu z wyświetlaniem informacji kontrolnych należy zastosować przełącznik `-x` wywołania interpretatora poleceń. Można to zrealizować na trzy sposoby:
+
+* dopisać przełącznik w pierwszej linii skryptu:  `#!/bin/bash -x`
+* uruchomić skrypt wywołując jawnie interpreter z parametrem `-x` oraz argumentem z nazwą skryptu, np .
+```bash
+bash -x nazwa_skryptu.sh
+```
+* wywołując wewnątrz skryptu polecenie `set -x`
+
+Często ma miejsce sytuacja, kiedy niepowodzenie jakiegokolwiek z poleceń (np. utworzenie katalogu roboczego) powoduje, że dalsze operacje nie mają sensu. Przydatną opcją powłoki jest wtedy przełącznik `-e`, który powoduje, że powłoka (np. wykonująca skrypt) zostanie przerwana, w momencie kiedy którykolwiek z użytych w niej programów (poza warunkami w instrukcjach warunkowych/pętlach) zwróci błąd. Ustawienie przełącznika `-e` może odbyć się na sposoby analogiczne do opisanych powyżej. 
 
 ## Zadania do samodzielnego wykonania
-1. Zdefiniuj zmienną `IMIE` i przypisz jej swoje imię. Wyświetl zawartość tej zmiennej. Wyeksportuj tą zmienną i sprawdź, czy jest dostępna w nowym (potomnym) interpreterze.
-2. Wyświetl listę zmiennych eksportowanych.
-3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
-4. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania posortuje jego zawartość.
-5. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania wyświetli w kolejnych liniach 3 najczęściej powtarzające się w nim słowa.
+4. Napisz skrypt, który dla każdego elementu (pliku, folderu) w bieżącym katalogu wyświetli jego nazwę wraz z informacją czy jest to plik czy katalog.
+5. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania wyświetli nazwę pliku, a następnie jego zawartość posortowaną alfabetycznie.
 6. Napisz skrypt, który będzie kopiował plik podany jako pierwszy argument do wszystkich katalogów podanych jako kolejne argumenty wywołania.
+7. Napisz skrypt, który wykona kopię zapasową plików podanych jako argumenty, do katalogu `backup` i dopisze do ich nazwy bieżącą datę:
+
+Przykładowo:
+```bash
+./super_backup.sh notatki.txt zdjecia.tar.gz 
+```
+Skopiuje:
+
+`notatki.txt` do `backup/notatki.txt_2019-02-29`
+
+`zdjecia.tar.gz` do `backup/zdjecia.tar.gz_2019-02-29`
+
+Jeśli folder `backup` nie istnieje, program powinien go utworzyć.
+Jeśli plik docelowy już istnieje, program powinien wyświetlić stosowny komunikat i przerwać pracę.
+
+Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
+
+8. Zmodyfikuj skrypt z zadania 7 tak, aby argumentem skryptu była nazwa pliku zawierającego (po jednym na linię) nazwy plików do zarchiwizowania.
+
+9. Napisz skrypt, który zmieni priorytet wszystkich procesów o nazwie przekazanej jako argument, o podaną wartość.
+
+Przykładowo:
+
+```bash
+./my_renice.sh firefox +5
+```
+
+spowoduje zwiększenie wartości *nice* wszystkich procesów o nazwie *firefox* o 5.
 
 ***
-Autor: *Adam Bondyra*
+Autor: *Adam Bondyra*, *Jakub Tomczyński*
 
-Data ostatniej modyfikacji:   *21-03-2019*
+Data ostatniej modyfikacji:   *24-03-2019*
 
 Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
