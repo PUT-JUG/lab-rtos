@@ -23,15 +23,8 @@ Wyjście:
 Unix
 ```
 
-Polecenie systemowe
-```bash
-set
-```
-pozwala wyświetlić wartości wszystkich zmiennych środowiskowych, a polecenie
-```bash
-unset
-```
-usuwa zmienną środowiskową, oto przykład:
+Polecenie systemowe `set` pozwala wyświetlić wartości wszystkich zmiennych środowiskowych, a polecenie
+`unset` usuwa zmienną środowiskową, oto przykład:
 
 ```bash
 unset SYSTEM
@@ -56,6 +49,8 @@ Powyższe polecenia można także zrealizować jednym poleceniem:
 export SYSTEM=Unix
 ```
 
+Wyświetlenie eksportowanych zmiennych środowiskowych możliwe jest poleceniem `env`.
+
 Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w systemie domyślnie jest zdefiniowanych wiele zmiennych środowiskowych, oto znaczenie podstawowych z nich:
 
  * `HOME` - ścieżka i nazwa katalogu domowego użytkownika;
@@ -72,7 +67,7 @@ Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w syst
  3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
   
 ## Skrypty i ich argumenty
-Współczesne powłoki pozwalają także na tworzenie konstrukcji programistycznych takich jak instrukcje warunkowe czy pętle. Ponieważ kolejne ciągi poleceń możemy umieścić w pliku tekstowym, a następnie taki plik uruchomić w powłoce - uzyskujemy możliwość pisania programów (skryptów) w języku `bash`.
+Współczesne powłoki pozwalają także na tworzenie konstrukcji programistycznych takich jak instrukcje warunkowe czy pętle. Ponieważ kolejne ciągi poleceń możemy umieścić w pliku tekstowym, a następnie taki plik uruchomić w powłoce - w połączeniu ze zmiennymi środowiskowymi uzyskujemy możliwość pisania programów (skryptów) w języku `bash`.
 
 Skrypty są bardzo pomocnym rozwiązaniem kiedy istnieje konieczność wykonywania złożonych poleceń i poleceń, które są powtarzane okresowo.
 
@@ -347,15 +342,7 @@ Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
 
 8. Zmodyfikuj skrypt z zadania 7 tak, aby argumentem skryptu była nazwa pliku zawierającego (po jednym na linię) nazwy plików do zarchiwizowania.
 
-9. Napisz skrypt, który zmieni priorytet wszystkich procesów o nazwie przekazanej jako argument, o podaną wartość.
-
-Przykładowo:
-
-```bash
-./my_renice.sh firefox +5
-```
-
-spowoduje zwiększenie wartości *nice* wszystkich procesów o nazwie *firefox* o 5.
+9. Napisz skrypt, który będzie oczekiwał na pojawienie się pliku o nazwie wskazanej w argumencie. Skrypt powinien cyklicznie (co 5 sekund) sprawdzać istnienie pliku. Jeśli plik istnieje, skrypt powinien wyświetlić jego zawartość i zakończyć się. Uruchom skrypt, a z poziomu drugiego terminala utwórz monitorowany plik.
 
 ***
 Autor: *Adam Bondyra*, *Jakub Tomczyński*
