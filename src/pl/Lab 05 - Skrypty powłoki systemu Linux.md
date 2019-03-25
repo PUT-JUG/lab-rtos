@@ -138,7 +138,7 @@ Po znaku `[` i przed znakiem `]` konieczne jest wprowadzenie znaku spacji. Możl
 | `-n znaki`    |     	Weryfikacja, czy łańcuch znaków ma niezerową długość     |
 | `liczba1 -eq liczba2`    |     	Weryfikacja równości dwóch liczb     |
 | `liczba1 -ne liczba2`     |     	Weryfikacja nierówności dwóch liczb     |
-| `liczba1 -qt liczba2`   |     	Weryfikacja, czy `liczba1` jest większa od `liczba2`     |
+| `liczba1 -gt liczba2`   |     	Weryfikacja, czy `liczba1` jest większa od `liczba2`     |
 | `liczba1 -lt liczba2`    |     	Weryfikacja, czy `liczba1` jest mniejsza od `liczba2`     |
 | `-e nazwa`    |     	Weryfikacja, czy podany plik istnieje     |
 | `-f nazwa`    |     	Weryfikacja, czy podany plik jest plikiem zwykłym     |
