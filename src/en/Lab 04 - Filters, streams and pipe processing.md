@@ -185,14 +185,11 @@ In addition, there is a special group of characters with special meaning. These 
 8. Count all files in the */etc* directory and its subdirectories.
 9. Write a command that counts the sum of the characters from the first three lines of the file */etc/passwd*.
 10. Print a list of files in the current directory, replacing all lowercase letters with uppercase letters.
-11. Print a list containing file access rights, sizes and names of all files in the current directory.
-12. Print a list of files in the current directory, sorted by file size.
-13. Print the contents of the */etc/passwd* file sorted by *UID* numbers in order from the largest to the smallest.
-14. Display the contents of the */etc/passwd* file sorted first by *GID* numbers in order from the largest to the smallest, then *UID*.
-15. Print the names of the three smallest files in the directory, sorted by name.
-16. The `/etc/services` file stores a list of popular network services, including port numbers and protocol. List (only) the names of services that use the `UDP` protocol.
-17. Print the count of virtual terminals (`dev/tty`) with numbers in the range *50-69* available in the system.
-18. Find the PID of the process **cupsd**.
+11. Print a list of files in the current directory, sorted by file size.
+12. Print the contents of the */etc/passwd* file sorted by *UID* numbers in order from the largest to the smallest.
+13. The `/etc/services` file stores a list of popular network services, including port numbers and protocol. List (only) the names of services that use the `UDP` protocol.
+14. Print the count of virtual terminals (`dev/tty`) with numbers in the range *50-69* available in the system.
+15. Find the PID of the process **cupsd**.
 
 ***
 Author: *Adam Bondyra*
