@@ -134,7 +134,7 @@ scp dane.txt student@192.168.56.3:/home/student
 
 Kopiowanie pliku ze zdalnego komputera
 ```bash
-scp student@192.168.56.3:/etc/
+scp student@192.168.56.3:/etc/resolv.conf resolv.conf
 ```
 
 ---
@@ -145,7 +145,7 @@ Korzystając z połączenia SSH (*serwer* oznacza w tym przypadku maszynę goszc
 
 1. Wyświetl interfejsy sieciowe serwera.
 2. Wyświetl procesy o największym użyciu procesora.
-3. Utwórz na hoście plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli.
+3. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli.
 4. Skopiuj z serwera wszystkie pliki z rozszerzeniem `.conf` znajdujące się w katalogu `/etc`.
 
 ---
@@ -160,10 +160,10 @@ Uruchomienie programu `screen` bez argumentów spowoduje utworzenie nowej sesji 
 
 Przydatne przełączniki:
 
-`-S name` - tworzy sesję o nazwie `name`
-`-ls` - wypisuje listę bieżących sesji
-`-r` - podłącza się do sesji o nazwie `name`
-`-R` - podłącza się do ostatnio odłączonej sesji
+* `-S name` - tworzy sesję o nazwie `name`
+* `-ls` - wypisuje listę bieżących sesji
+* `-r` - podłącza się do sesji o nazwie `name`
+* `-R` - podłącza się do ostatnio odłączonej sesji
 
 ---
 
@@ -198,10 +198,10 @@ nano plik.txt
 ```
 
 Najważniejsze skróty:
-**Ctrl-o** - zapisz
-**Ctrl-x** - wyjdź
-**Ctrl-k** - wytnij tekst (domyślnie bieżąca linia)
-**Ctrl-u** - wklej tekst
+* **Ctrl-o** - zapisz
+* **Ctrl-x** - wyjdź
+* **Ctrl-k** - wytnij tekst (domyślnie bieżąca linia)
+* **Ctrl-u** - wklej tekst
 
 W przypadku konieczności edycji pliku pod systemem, gdzie program *Nano* jest niedostępny (i nie chcemy lub nie możemy go zainstalować), istnieje bardzo duża szansa, że zainstalowany jest program *Vim*.
 
@@ -218,10 +218,10 @@ Najważniejsze skróty klawiszowe:
 
 Komendy (zatwierdzane enterem):
 
-`:w` - zapisz
-`:q` - wyjdź
-`:q!` - wyjdź bez zapisywania
-`:x` - zapisz i wyjdź
+* `:w` - zapisz
+* `:q` - wyjdź
+* `:q!` - wyjdź bez zapisywania
+* `:x` - zapisz i wyjdź
 
 ---
 
@@ -229,9 +229,6 @@ Komendy (zatwierdzane enterem):
 
 16. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
 17. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
-
----
-
 
 ***
 Autor: *Jakub Tomczyński*
