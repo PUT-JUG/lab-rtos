@@ -162,7 +162,7 @@ Przydatne przełączniki:
 
 * `-S name` - tworzy sesję o nazwie `name`
 * `-ls` - wypisuje listę bieżących sesji
-* `-r` - podłącza się do sesji o nazwie `name`
+* `-r name` - podłącza się do sesji o nazwie `name`
 * `-R` - podłącza się do ostatnio odłączonej sesji
 
 ---
@@ -213,8 +213,8 @@ vim plik.txt
 
 Najważniejsze skróty klawiszowe:
 
-`i` - przechodzi w tryb edycji, pozwala na wprowadzenie tekstu
-`Esc` - wychodzi z trybu edycji lub przerywa wpisywanie komendy
+* `i` - przechodzi w tryb edycji, pozwala na wprowadzenie tekstu
+* `Esc` - wychodzi z trybu edycji lub przerywa wpisywanie komendy
 
 Komendy (zatwierdzane enterem):
 
