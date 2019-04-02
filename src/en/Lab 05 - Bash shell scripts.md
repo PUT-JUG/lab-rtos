@@ -153,50 +153,50 @@ After the `[` and before the `]` character it is necessary to enter a space char
 
 
 
-## Pętle
-Skrypty powłoki mogą także zawierać pętle - podstawowe dwie z nich to pętla `for` oraz `while`. Pętla `for` wykonywana jest z góry określoną ilość razy, a jej ogólna składnia jest następująca:
+## Loops
+Shell scripts can also contain loops - two of them are the `for` and `while` loops. The `for` loop is executed a predetermined number of times, and its syntax is as follows:
 
 ```bash
-for zmienna in lista
+for variable in list
 do
-    instrukcje do wykonania
+    instructions
 done
 ```
 
-Wykonanie pętli powoduje przypisywanie zmiennej zmienna kolejnych wartości wymienionych na liście lista; ilość iteracji, jest zatem zależna od długości podanej listy. Jako listę można w pętli for można podawać wzorce uogólniające powłoki. Poniższy przykład skryptu prezentuje zastosowanie pętli for do usunięcia wszystkich plików z rozszerzeniem `.tmp` z katalogu bieżącego:
+Execution of a loop causes the variable **variable** to be assigned with the successive values listed in the list; the number of iterations depends on the length of the given list. Shell generalizing patterns can be given as a list. The following script shows how to use the `for` loop to remove all files with the `.tmp` extension from the current directory:
 
 ```bash
 #!/bin/bash
 for FILE in *.tmp
-do
+while
     rm -v $FILE
 done
 ```
 
-Ilość iteracji powyższej pętli bezie zatem determinowana ilością plików z rozszerzeniem `*.tmp`, które utworzą listę wartości dla zmiennej `FILE`.
+The number of iterations of the above loop is therefore determined by the number of files with the extension `*.tmp`, which will create a list of values for the variable `FILE`.
 
-Realizacja pętli numerycznej z zastosowaniem pętli `for` jest możliwa z użyciem programu zakresów definiowanych operatorem nawiasów klamrowych `{start..stop}`, np.:
+The execution of a numerical loop using the `for` loop is possible using ranges defined by the `{start..stop}` bracket operator, e.g.:
 
 ```bash
-for N in {1..10}
-do
+for N in {1...10}
+while
     echo $N
 done
 ```
-spowoduje dziesięciokrotne wykonanie pętli.
+will cause the loop to be executed ten times.
 
-Pętla `while` pozawala na realizację pętli, dla których ilość iteracji nie jest znana z góry, jej składnia dla skryptów powłoki jest następująca:
+The `while` loop allows loop execution for which the number of iterations is not known in advance, its syntax for shell scripts is as follows:
 
 ```bash
-while warunek
+while condition
 do
-   instrukcje do wykonania
+   instructions
 done
 ```
 
-Warunek może być dowolnym poleceniem i najczęściej jest konstruowany - tak jak w przypadku instrukcji warunkowej - z zastosowaniem programu `test`.
+A condition can be any command and is usually constructed (as in the case of a conditional instruction) with the `test` program.
 
-Przykładem zastosowania pętli `while` może być skrypt wypisujący na ekranie wartości wszystkich argumentów wywołania skryptu (niezależnie od ich liczby). Pętla taka będzie wykorzystywała polecenie `shift`, które powoduje przesunięcie argumentów - oto skrypt:
+An example of using the `while` loop is a script that prints on the screen the values of all the script's call arguments (regardless of their number). Such a loop will use the `shift` command, which causes the arguments to shift - here's the script:
 
 ```bash
 #!/bin/bash
@@ -207,9 +207,9 @@ do
 done
 ```
 
-Warunkiem wykonania pętli jest sprawdzenie, czy pierwszy argument wywołania skryptu ma niezerową długość - jeśli skrypt został uruchomiony bez żadnych argumentów, to pętla nie zostanie wykonana. Jeśli natomiast skrypt został wykonany z argumentami, to w pierwszym wykonaniu pętli zostanie wyświetlona wartość pierwszego argumentu, a następnie nastąpi przesunięcie argumentów w lewo poleceniem `shift` (drugi argument stanie się pierwszym, trzeci drugim itd.). Pętla zakończy się jeśli zostaną wyświetlone i przesunięte wszystkie argumenty (zmienna pozycyjna `$1` będzie miała wówczas zerową długość).
+The condition for executing the loop is to check if the first argument of calling the script is non-zero length - if the script has been run without any arguments, the loop will not be executed. If the script is executed with arguments, the first execution of the loop displays the value of the first argument, and then the arguments are shifted left with the `shift` command (the second argument becomes the first, third argument becomes the second etc.). The loop will end if all arguments are displayed and shifted (the position variable `$1` will then be zero length).
 
-Obie zaprezentowane pętle mogą zostać przerwane poleceniem `break` - oto przykład zastosowania przerywania pętli:
+Both presented loops can be interrupted by the `break` command - here is an example of loop interruption:
 
 ```bash
 #!/bin/bash
@@ -217,139 +217,142 @@ for FILE in *.tmp
 do
    if [ ! -f $FILE ]
    then
-      echo "$FILE nie jest plikiem!"
+      echo "$FILE is not a file!
       break
    fi
    rm -v $FILE
 done
 ```
 
-Jak widać pętla zostanie przerwana, jeśli pobrana nazwa z rozszerzeniem `*.tmp` nie będzie wskazywała na plik zwykły.
+As you can see, the loop will be aborted if the name with the `*.tmp extension does not point to an ordinary file.
 
-Wykonywanie całego skryptu można przerwać poleceniem `exit`.
+You can interrupt the execution of the entire script with the `exit` command.
 
-## Pobieranie wartości do skryptów
-Jeśli skrypt wymaga iteracji z użytkownikiem, to niezbędne staje się pobieranie wartości przekazywanych przez użytkownika. Służy do tego polecenie:
+
+## Passing values to the script
+If the script requires interaction with the user, it becomes necessary to retrieve the values given by the user. Here's a command to do this:
 
 ```bash
-read [argumenty]
+read [arguments]
 ```
 
-Argumentami są nazwy zmiennych środowiskowych, które przyjmą wartość odczytana ze standardowego wejścia (do napotkania znaku nowej linii). Jeśli jako argumenty podano kilka zmiennych, to są one inicjowane w ten sposób, że pierwsze słowo trafia do pierwszej zmiennej, drugie do drugiej itd. Polecenie to można przetestować wykonując następujące polecenia:
+The arguments are the names of environmental variables that will take the value read from the standard input (until a new line character is encountered). If several variables are given as arguments, they are initialized in such a way that the first word goes to the first variable, the second to the second, and so on. This command can be tested by executing the following commands:
 
 ```bash
 read X Y
 echo $X
 echo $Y
 ```
-Wejście:
+
+Input:
 ```
-uzytkownik adam
-```
-Wyjście:
-```
-uzytkownik
-adam
+user adam
 ```
 
-Polecenie `read` może również współpracować z pętlą `while` i potokiem, co pozwala na przetwarzanie wejściowego strumienia tekstu linia po linii:
+Output:
+```
+user
+Adam
+```
+
+The `read` command can also work with the `while` loop and stream, allowing the input stream of text to be processed line by line:
 
 ```bash
 cat file.txt | while read line
 do
-    echo Linia tekstu: $line
+    echo Text line: $line
 done
 ```
 
-Ponieważ znak spacji jest w powłoce separatorem argumentów, problematyczne mogą stać się zawartości zmiennych bądź nazwy plików zawierające spacje. Umieszczenie tekstu w podwójnym cudzysłowie (`"`) spowoduje, że cała jego zawartość, wraz ze spacjami zostanie potraktowana jako jeden argument.
+Because the space character is an argument separator in the shell, the content of variables or file names containing spaces may become problematic. Placing text in double quotation marks (`"`) will result in the entire text, including spaces, being treated as a single argument.
 
-Przykładowo, przypisanie do zmiennej napisu zawierającego spacje:
+For example, assigning a variable with a string containing spaces:
 ```bash
-LISTA="abc 123 456"
+LIST="abc 123 456".
 ```
 
-Umieszczenie napisu w pojedynczym cudzysłowie (`'`) spowoduje, że jego zawartość nie będzie interpretowana w żaden sposób (np. znaki `$` nie będą oznaczały odwołań do zmiennych).
+Placing a string in a single quotation mark (`'`) will cause its contents not to be interpreted in any way (e.g. the `$` characters will not refer to variables).
 
-Poniższe trzy pętle generują zatem różne rezultaty:
-
-```bash
-for ZMIENNA in $LISTA ; do
-    echo $ZMIENNA
-done
-```
+The following three loops generate different results:
 
 ```bash
-for ZMIENNA in "$LISTA" ; do
-    echo $ZMIENNA
+for VARIABLE in $LIST ; do
+    echo $VARIABLE
 done
 ```
 
 ```bash
-for ZMIENNA in '$LISTA' ; do
-    echo $ZMIENNA
+for VARIABLE in "$LIST" ; do
+    echo $Change
 done
 ```
 
-Jeśli chcemy natychmiast po zawartości zmiennej dokleić dodatkowy tekst, można ująć nazwę zmiennej w klamry, np:
+```bash
+for VARIABLE in '$LIST' ; do
+    echo $Change
+done
+```
+
+If you want to add additional text immediately after the variable content, you can include the name of the variable in brackets, e.g.:
 
 ```bash
 echo ${A}hello
 ```
 
-Umieszczenie tekstu w *grawisie* (`` ` ``) powoduje **uruchomienie** zawartego w nim tekstu, a następnie podstawienie w dane miejsce wyjścia uruchomionego programu. Przykładowo, zapisanie bieżącego katalogu roboczego do zmiennej:
+Placing text in *backquotes* (`` ` ``) causes the text contained in it to be launched and then substituted to the given exit point of the running program. For example, saving the current working directory to a variable:
 
 ```bash
-CURRENT_DIR=`pwd`
+CURRENT_DIR=`pwd`.
 ```
 
-Bash oferuje również prostą arytmetykę na liczbach całkowitych. Kontekst arytmetyczny wywołujemy umieszczając formułę pomiędzy `$((` a `))`:
+Bash also offers simple arithmetic on integers. The arithmetic context is invoked by placing the formula between `$((` and `))`:
 
 ```bash
 a=3
 b=$((a+5))
 ```
 
-## Debugowanie skryptów
+## Debugging scripts
 
-Skrypty mogą być także wykonywane w trybie debugowania, np. w celu testowania poprawności działania, warunków, pętli itp. Aby zrealizować wykonanie skryptu z wyświetlaniem informacji kontrolnych należy zastosować przełącznik `-x` wywołania interpretatora poleceń. Można to zrealizować na trzy sposoby:
+Scripts can also be executed in debug mode, e.g. to test the correctness of operation, conditions, loops, etc. To execute a script with control information display, use the `-x` switch. This can be done in three ways:
 
-* dopisać przełącznik w pierwszej linii skryptu:  `#!/bin/bash -x`
-* uruchomić skrypt wywołując jawnie interpreter z parametrem `-x` oraz argumentem z nazwą skryptu, np .
+* Add a switch in the first line of the script:  `#!/bin/bash -x`
+* Run the script by explicitly calling the interpreter with the parameter `-x` and the argument with the script name, e.g. .
 ```bash
-bash -x nazwa_skryptu.sh
+bash -x script.sh
 ```
-* wywołując wewnątrz skryptu polecenie `set -x`
+* Invoke the `set -x` command inside the script
 
-Często ma miejsce sytuacja, kiedy niepowodzenie jakiegokolwiek z poleceń (np. utworzenie katalogu roboczego) powoduje, że dalsze operacje nie mają sensu. Przydatną opcją powłoki jest wtedy przełącznik `-e`, który powoduje, że powłoka (np. wykonująca skrypt) zostanie przerwana, w momencie kiedy którykolwiek z użytych w niej programów (poza warunkami w instrukcjach warunkowych/pętlach) zwróci błąd. Ustawienie przełącznika `-e` może odbyć się na sposoby analogiczne do opisanych powyżej. 
+Quite often in case of the failure of a command (e.g. creating a working directory) makes no sense to continue operations. A useful shell option is then a `-e` switch that causes the shell (e.g., an executing script) to be aborted when any of the programs used in it (except for conditions in conditional instructions/loops) returns an error. The `-e` switch can be set in the same way as described above. 
 
-## Zadania do samodzielnego wykonania
-1. Napisz skrypt, który dla każdego elementu (pliku, folderu) w bieżącym katalogu wyświetli jego nazwę wraz z informacją czy jest to plik czy katalog.
-2. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania wyświetli nazwę pliku, a następnie jego zawartość posortowaną alfabetycznie.
-3. Napisz skrypt, który będzie kopiował plik podany jako pierwszy argument do wszystkich katalogów podanych jako kolejne argumenty wywołania.
-4. Napisz skrypt, który wykona kopię zapasową plików podanych jako argumenty, do katalogu `backup` i dopisze do ich nazwy bieżącą datę:
+## Exercises
 
-Przykładowo:
+4. Write a script that for each element (file, directory) in the current directory will display its name along with information whether it is a file or a directory.
+5. Write a script that for each file given as a call argument will display the file name and then its contents sorted alphabetically.
+6. Write a script that will copy the file given as the first argument to all directories given as next call arguments.
+7. Write a script that backs up the files given as arguments to the `backup` directory and adds the current date to their names.
+
+For example:
 ```bash
-./super_backup.sh notatki.txt zdjecia.tar.gz 
+./super_backup.sh notes.txt photos.tar.gz 
 ```
-Skopiuje:
+Copies:
 
-`notatki.txt` do `backup/notatki.txt_2019-02-29`
+`notes.txt` to `backup/notes.txt_2019-02-29`
 
-`zdjecia.tar.gz` do `backup/zdjecia.tar.gz_2019-02-29`
+`photos.tar.gz` to  `backup/photos.tar.gz_2019-02-29`.
 
-Jeśli folder `backup` nie istnieje, program powinien go utworzyć.
-Jeśli plik docelowy już istnieje, program powinien wyświetlić stosowny komunikat i przerwać pracę.
+If the `backup` folder does not exist, the program should create it.
+If the target file already exists, the program should display an appropriate message and stop working.
 
-Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
+Hint: you can get the current date with the `date '+%Y-%m-%d'` command.
 
-8. Zmodyfikuj skrypt z zadania 7 tak, aby argumentem skryptu była nazwa pliku zawierającego (po jednym na linię) nazwy plików do zarchiwizowania.
+8. Write a script that waits for the file name indicated in the argument to appear. The script should check periodically (every 5 seconds) the existence of the file. If the file exists, the script should display its contents and finish. Run the script and create a monitored file from  the second terminal.
 
-9. Napisz skrypt, który będzie oczekiwał na pojawienie się pliku o nazwie wskazanej w argumencie. Skrypt powinien cyklicznie (co 5 sekund) sprawdzać istnienie pliku. Jeśli plik istnieje, skrypt powinien wyświetlić jego zawartość i zakończyć się. Uruchom skrypt, a z poziomu drugiego terminala utwórz monitorowany plik.
 
 ***
-Autor: *Adam Bondyra*, *Jakub Tomczyński*
+Author: *Adam Bondyra*
 
-Data ostatniej modyfikacji:   *24-03-2019*
+Last revision:   *02-04-2019*
 
-Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
+Based on the Open IT Studies project (*http://wazniak.mimuw.edu.pl/*).
