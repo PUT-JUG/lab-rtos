@@ -145,7 +145,10 @@ Korzystając z połączenia SSH (*serwer* oznacza w tym przypadku maszynę goszc
 
 1. Wyświetl interfejsy sieciowe serwera.
 2. Wyświetl procesy o największym użyciu procesora.
-3. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli.
+
+Korzystając z SCP pod Windowsem:
+
+3. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli (po SSH).
 4. Skopiuj z serwera wszystkie pliki z rozszerzeniem `.conf` znajdujące się w katalogu `/etc`.
 
 ---
