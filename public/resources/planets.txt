@@ -1,0 +1,9 @@
+# Name  Distance from Sun   Diameter    Number of Moons
+Mercury 57900000            4878        0
+Venus   108160000           12104       0
+Earth   149600000           12756       1 
+Mars    227936640           6794        2
+Jupiter 778369000           142984      79
+Saturn  1427034000          120536      62
+Uranus  2870658186          51118       27
+Neptune 4496976000          49532       14
