@@ -67,4 +67,4 @@ rar: 0
 ***
 Autorzy: *Jakub Tomczyński*, *Adam Bondyra*
 
-Data ostatniej modyfikacji: *28-03-2019*
+Data ostatniej modyfikacji: {JUG:MODIFICATION_DATE}
