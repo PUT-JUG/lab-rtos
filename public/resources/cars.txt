@@ -1,0 +1,20 @@
+2003;Ford GT;330
+2004;Dodge Caliber SRT-4;250
+2004;Chrysler 300C SRT-8;266
+2004;Chevrolet Corvette C6;300
+2005;Cadillac BLS 2.8 V-6T;250
+2007;Dodge Viper SRT-10;325
+2007;Chevrolet Corvette ZR1;330
+2008;SSC Ultimate Aero TT;445
+2013;Chevrolet Corvette C7 Stingray Convertible;385
+1955;Pegaso Z-102 3.2 Supercharged;257
+2006;SEAT Leon Cupra;246
+2009;Tramontana;325
+1970;Monteverdi Hai 450 SS;290
+2001;Spyker C8 Spyder;300
+2007;Spyker C12 Zagato;310
+2005;Leopard 6 Litre Roadster;250
+2005;Laraki Fulgura;350
+2008;Skoda Superb 3.6 FSI;250
+2001;Daewoo Chairman CM600L;230
+2010;Oullim Spirra EX;315
