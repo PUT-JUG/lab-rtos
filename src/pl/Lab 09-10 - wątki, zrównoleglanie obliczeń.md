@@ -162,7 +162,18 @@ Zastanów się jak podzielić pracę pomiędzy wiele wątków i jak przekazać k
 
 ### 3. Operacje na macierzach
 
-W plikach `Matrix.h` i `Matrix.cpp` dostarczono prostą bibliotekę pozwalającą na reprezentację macierzy w formie wektora wektorów. Działanie poszczególnych metod opisane jest w komentarzach przy ich deklaracjach.
+W plikach [`Matrix.h`](../resources/Matrix.h) i  [`Matrix.cpp`](../resources/Matrix.cpp) dostarczono prostą bibliotekę pozwalającą na reprezentację macierzy w formie wektora wektorów. Działanie poszczególnych metod opisane jest w komentarzach przy ich deklaracjach.
+
+Przykładowe użycie biblioteki:
+
+```cpp
+Matrix test1(3, 10);
+Matrix test2(10, 5);
+test1.rand();
+test2.rand();
+
+Matrix result = test1.multiply(test2);
+```
 
 Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wielowątkową metodę wykonującą mnożenie. Sprawdź dla jakich rozmiarów macierzy opłacalne jest wywoływanie metody wielowątkowej.
 
