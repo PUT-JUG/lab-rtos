@@ -155,7 +155,7 @@ collection.emplace_back(std::move(temporary);
 
 ### 2. Szukanie liczb pierwszych
 
-Liczby pierwsze często znajdują się w okolicy zbioru *2n - 1*, gdzie n ∈ N.
+Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N.
 
 Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wylosuj zbiór wartości początkowych spełniających powyższą zależność. Pamiętaj o ograniczeniach zakresu liczb, jakie mogą być przechowywane w wybranym typie zmiennej. Następnie dla każdej z wygenerowanych liczb, przeszukuj zbiór liczb naturalnych w kierunku malejącym, aż do napotkania liczby pierwszej. Znalezioną liczbę zapisz w przeznaczonym do tego wektorze.
 Zastanów się jak podzielić pracę pomiędzy wiele wątków i jak przekazać każdemu wątkowi część zbioru do przeszukiwania. Porównaj wyniki wydajności ze względu na liczbę wątków oraz zadaną wielkość zbioru. Aby uzyskiwać te same wylosowane liczby przy każdym uruchomieniu, możesz zainicjować generator liczb losowych stałą wartością, np. `srand(0)`.
