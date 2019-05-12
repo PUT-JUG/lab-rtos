@@ -201,23 +201,22 @@ Zauważ dodatkowy argument `this` przekazywany do konstruktora wątku, poprzedza
 
 ### 4. Dekodowanie wiadomości
 
-<!--
+W jednym z największych radioteleskopów na Ziemi w Parkes Observatory przechwycono pierwszą w historii ludzkości wiadomość od istot pozaziemskich:
 
-W jednym z największych radioteleskopów na Ziemi w Parkes Observatory przechwycono wiadomość przesłaną między kwaterą Kim Dzong Una w Pjongjangu a ośrodkiem rakietowym w Yongbyon:
+`NVD_NZJTDMJZIX^PSJ[ZROVEXOQEVUNYWBWNR^B_MIKOXU]APVBT]A__WM_AXBW_THQYWOCADCEIIUZODMWSD][RQZLSDKIARJ_AD_[SXUKEVVQ_QE_MDPPCMZD_MUGR^ZQNEXQER^[M`
 
-`XS[_K][AXKCEEO[RDO[MEYZSD_^AXKPOYKDAOPVPPAKORTLMDQWSXPI_WZVWIKYARKZEW_IO]K_MTPIIEW_SXTY_Y^W_[TKHDLKOQ`
-Wiadomość jest zakodowana, jednak wywiad dowiedział się, że Koreańczycy posługują się zmodyfikowaną wersją szyfru Cezara: zamiast stałego przesunięcia dla wszystkich liter, dla każdego kolejnego znaku używane są kolejne przesunięcia z 4-elementowego zbioru będącego kluczem. Zbiór zapętla się dla kolejnych znaków, a dostępny alfabet zawiera znaki od A (ASCII 0x41) do _ (ASCII 0x5F).
-Przykładowo, dla klucza szyfrującego {3, 7, 11, 0}, zdanie THIS_IS_A_TEST_MESSAGE zostanie zakodowane w następujący sposób:
-znak 1: T zostanie przesunięty o 3,
-znak 2: H zostanie przesunięty o 7,
-znak 3: I zostanie przesunięty o 11,
-znak 4: S zostanie przesunięty o 0,
-znak 5: _ zostanie przesunięty o 3,
-znak 6: I zostanie przesunięty o 7,
-i tak dalej, tworząc zakodowaną wiadomość: WOTSCP^_DG_EV[KMHZ^AJL
-Dodatkowo, wiadomo, że każda wiadomość zawiera zwrot GREAT_LEADER. Wykorzystując te informacje pomóż agentom jak najszybciej rozkodować wiadomość wykorzystując wszystkie rdzenie procesora w Twoim komputerze!
+Wiadomość jest zakodowana, jednak analiza pozostałości po obcej cywilizacji pozwala przypuszczać, że zastosowano w tym przypadku rozbudowaną wersję *szyfru Cezara*: zamiast stałego przesunięcia dla wszystkich liter, dla każdego kolejnego znaku używane są kolejne przesunięcia z 4-elementowego zbioru będącego kluczem. Zbiór zapętla się dla kolejnych znaków, a dostępny alfabet zawiera znaki od `A` (ASCII *0x41*) do `_` (ASCII *0x5F*).
 
--->
+Przykładowo, dla klucza szyfrującego {3, 7, 11, 0}, zdanie `THIS_IS_A_TEST_MESSAGE` zostanie zakodowane w następujący sposób:
+* znak 1: `T` zostanie przesunięty o 3,
+* znak 2: `H` zostanie przesunięty o 7,
+* znak 3: `I` zostanie przesunięty o 11,
+* znak 4: `S` zostanie przesunięty o 0,
+* znak 5: `_` zostanie przesunięty o 3,
+* znak 6: `I` zostanie przesunięty o 7,
+i tak dalej, tworząc zakodowaną wiadomość: `WOTSCP^_DG_EV[KMHZ^AJL`
+
+Sygnał pochodzi z planety *URANTIA* i naukowcy są zgodni, że to słowo prawdopodobnie jest zawarte w tekście wiadomości. Wykorzystaj wszystkie rdzenie swojego komputera aby zidentyfikować nadawcę wiadomości i rozwiązać jedną z największych zagadek w historii ludzkości!
 
 ***
 Autor: *Jakub Tomczyński*
