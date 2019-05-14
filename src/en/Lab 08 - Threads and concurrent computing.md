@@ -131,7 +131,43 @@ First numbers are often found in the proximity of the *2<sup>n</sup> - 1* collec
 Write a program that uses this property to search for prime numbers. In order to do this, draw a set of initial values that meet the above relation. Remember about the limits of the range of numbers that can be stored in the selected variable type. Then, for each of the generated numbers, search the set of natural numbers in a descending direction until you meet the prime number. Save the found number in the vector provided.
 Think about how to divide the work into multiple threads and how to pass a portion of the set of numbers to be searched for to each thread. Compare performance results based on the number of threads and the set size of the set. To get the same drawn numbers every time you start, you can initiate a random number generator with a constant value, e.g. `srand(0)`.
 
+### 3. Cryptography
+A top-secret CIA base intercepted a message sent from the Kim Dzong Un headquarters in
+Pyongyang to the nuclear research facility in Yongbyon:
+```
+XS[_K][AXKCEEO[RDO[MEYZSD_^AXKPOYKDAOPVPPAKORTLMDQWSXPI_WZVWIKYARKZEW_IO]K_MTPIIEW_SXTY_Y^W_[TKHDLKOQ
+```
 
+The message is encrypted, but the intelligence has found out that the Koreans use the modified
+Ceasar’s cipher: instead of using fixed letter shift, consecutive letters are shifted with the 4-
+element secret key, with different shifts for every next letter. The key elements loop for the
+whole message and available alphabet consists of characters from `A (ASCII 0x41)` to `_ (ASCII
+0x5F)`.
+
+For example, with the secret key `3`; `7`; `11`; `0`, expression `THIS_IS_A_TEST_MESSAGE` will be encrypted in a following way:
+
+char 1: `T` will be shifted by `3`, giving `W`
+
+char 2: `H` will be shifted by `7`, giving `O`
+
+char 3: `I` will be shifted by `11`, giving `T`
+
+char 4: `S` will be shifted by `0`, giving `S`
+
+char 5: `_` will be shifted by `3`, giving `C`
+
+char 6: `I` will be shifted by `7`, giving `P`
+
+and so on, creating an encrypted message:
+
+```
+WOTSCP^_DG_EV[KMHZ^AJL
+```
+
+In addition, it is known that every message contains a phrase `GREAT_LEADER`.
+
+Using this information, help secret CIA agents to decrypt the message using every available
+core and the power of concurrent computing!
 
 ***
 Author: *Jakub Tomczyński, Adam Bondyra*
