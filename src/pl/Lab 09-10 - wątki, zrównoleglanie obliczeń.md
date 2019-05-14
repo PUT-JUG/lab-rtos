@@ -203,7 +203,9 @@ Zauważ dodatkowy argument `this` przekazywany do konstruktora wątku, poprzedza
 
 W jednym z największych radioteleskopów na Ziemi w Parkes Observatory przechwycono pierwszą w historii ludzkości wiadomość od istot pozaziemskich:
 
-`NVD_NZJTDMJZIX^PSJ[ZROVEXOQEVUNYWBWNR^B_MIKOXU]APVBT]A__WM_AXBW_THQYWOCADCEIIUZODMWSD][RQZLSDKIARJ_AD_[SXUKEVVQ_QE_MDPPCMZD_MUGR^ZQNEXQER^[M`
+```
+NVD_NZJTDMJZIX^PSJ[ZROVEXOQEVUNYWBWNR^B_MIKOXU]APVBT]A__WM_AXBW_THQYWOCADCEIIUZODMWSD][RQZLSDKIARJ_AD_[SXUKEVVQ_QE_MDPPCMZD_MUGR^ZQNEXQER^[M
+```
 
 Wiadomość jest zakodowana, jednak analiza pozostałości po obcej cywilizacji pozwala przypuszczać, że zastosowano w tym przypadku rozbudowaną wersję *szyfru Cezara*: zamiast stałego przesunięcia dla wszystkich liter, dla każdego kolejnego znaku używane są kolejne przesunięcia z 4-elementowego zbioru będącego kluczem. Zbiór zapętla się dla kolejnych znaków, a dostępny alfabet zawiera znaki od `A` (ASCII *0x41*) do `_` (ASCII *0x5F*).
 

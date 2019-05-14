@@ -34,7 +34,7 @@ void Matrix::print() {
 
 Matrix Matrix::multiply(const Matrix &rhs) {
     if (this->cols() != rhs.rows()) {
-        std::cerr << "multiply(): bledne wymiary macierzy" << std::endl;
+        std::cerr << "multiply(): incorrect matrix dimensions" << std::endl;
         return Matrix();
     }
     Matrix result(this->rows(), rhs.cols());
