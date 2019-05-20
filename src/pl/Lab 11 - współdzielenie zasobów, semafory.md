@@ -68,7 +68,15 @@ Jako bufor możesz wykorzystać kolejkę z biblioteki standardowej (`std::queue`
 
 *Przydatne funkcje:*
 
-- generowanie ciągu znaków
+Generowanie ciągu znaków:
+
+```cpp
+std::string temp;
+temp.resize(10);
+for (int i = 0; i < 10; i++) {
+    temp[i] = rand()%('z'-'a'+1)+'a';
+}
+```
 
 Napisz program w dwóch wersjach:
 
