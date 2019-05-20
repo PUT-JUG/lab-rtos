@@ -4,7 +4,7 @@ Równoległa praca wielu wątków, które operują na wspólnych danych może pr
 
 ### Problem równoległego dostępu do zasobów
 
-Stwórz w programie zmienną całkowitą. Utwórz 10000 wątków, z których każdy odczeka 10 milisekund, a następnie zwiększy wartość stworzonej zmiennej o 100.
+Stwórz w programie zmienną całkowitą. Utwórz 1000 wątków, z których każdy odczeka 10 milisekund, a następnie zwiększy wartość stworzonej zmiennej o 100.
 
 **Podpowiedź:** Wstrzymanie wątku możliwe jest dzięki funkcji `std::this_thread::sleep_for(std::chrono::duration sleep_duration)`. Obiekt typu `std::chrono::duration` reprezentujący czas wstrzymania można stworzyć dzięki typom pomocniczym, takim jak `std::chrono::milliseconds` lub `std::chrono::seconds`, na przykład:
 
