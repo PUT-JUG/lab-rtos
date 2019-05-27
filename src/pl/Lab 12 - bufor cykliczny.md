@@ -80,10 +80,14 @@ Użytkownik wprowadza liczbę czujników *n* przy uruchomieniu programu, a ID pr
 Do powiadamiania wątku realizującego wyświetlanie o nowych danych wykorzystaj zmienną warunkową. Komunikację z czujnikiem oraz odczyt danych symuluj dostarczoną funkcją double `read_sensor(int id)`:
 
 ```cpp
-
-
+double read_sensor(int id){
+    static thread_local std::mt19937 generator(id);
+    std::uniform_int_distribution<int> sleep_distribution(100,(id+1)*1000);
+    std::uniform_real_distribution<double> value_distribution(id,id+0.99);
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleep_distribution(generator)));
+    return value_distribution(generator);
+}
 ```
-
 
 ***
 Autor: *Jakub Tomczyński*
