@@ -69,7 +69,7 @@ int main (){
 
 ### Zadanie 2
 
-W pewnym systemie występuje wiele czujników zwracających dane w nieregularnych odstępach czasu. Napisz program, który będzie cyklicznie pobierał dane ze wszystkich czujników, a po uzbieraniu w buforze 5 wartości, wypisywał dane na ekranie w postaci:
+W pewnym systemie występuje wiele czujników zwracających dane w nieregularnych odstępach czasu. Napisz program, który będzie cyklicznie pobierał dane ze wszystkich czujników (każdy czujnik w oddzielnym wątku), a po uzbieraniu w buforze 5 wartości, wypisywał dane na ekranie w postaci:
 
 ```
 New data!: ID:wartosc ID:wartosc ID:wartosc ID:wartosc ID:wartosc
