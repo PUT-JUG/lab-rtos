@@ -14,7 +14,7 @@ Zastosuj mechanizm, który będzie powodował, że wszystkie wątki przetwarzaj�
 
 Dodaj do programu możliwość poprawnego zamknięcia po naciśnięciu klawisza Enter w terminalu. Koniec transmisji z czujnikiem możesz wywołać poprzez `TemperatureSensor::stop()`. Dokończ przetwarzanie danych zebranych w buforach i zakończ program.
 
-```
+```cpp
 class TemperatureSensor {
 public:
     TemperatureSensor() {
@@ -58,7 +58,7 @@ private:
 };
 ```
 
-```
+```cpp
 double do_magic_processing(double input) {
     double sum = 0;
     for (int k = 1; k < 100; k++) {
