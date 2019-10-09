@@ -8,6 +8,7 @@ find . -name "*.html" | while read f ; do
 	fi
 done
 
+rm -rf build
 cd src
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -17,14 +18,21 @@ else
 fi
 
 find . -type d | while read d ; do
-	mkdir -p "../public/$d"
+	mkdir -p "../build/$d"
 done
 
-find . -iname "*.md" | while read f ; do
+# compile MD files
+find . -type f -iname "*.md" | while read f ; do
 	title=`basename "$f"`
-	grip --export --title "${title%.*}" "$f" "../public/${f%md}html"
+	f_ascii=`echo $f | iconv -f utf8 -t ascii//TRANSLIT`
+	grip --export --title "${title%.*}" "$f" "../build/${f_ascii%md}html"
 	MODIFICATION_DATE=`date -r "$f" '+%Y-%m-%d'`
-	"${SED[@]}" 's/\/__\/grip\/static\//..\/static\//g' "../public/${f%md}html"
-	"${SED[@]}" "s/{JUG:MODIFICATION_DATE}/$MODIFICATION_DATE/g" "../public/${f%md}html"
-	touch -r "$f" -c -m "../public/${f%md}html"
+	"${SED[@]}" 's/\/__\/grip\/static\//\/static\//g' "../build/${f_ascii%md}html"
+	"${SED[@]}" "s/{JUG:MODIFICATION_DATE}/$MODIFICATION_DATE/g" "../build/${f_ascii%md}html"
+	touch -r "$f" -c -m "../build/${f_ascii%md}html"
+done
+
+# copy all other files
+find . -type f -not -iname "*.md" | while read f ; do
+	cp -p "$f" "../build/$f"
 done
