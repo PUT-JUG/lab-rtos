@@ -186,53 +186,6 @@ Przydatne przełączniki:
 
 ---
 
-### Edytory tekstu nano, vim
-
-W pracy z systemami, które nie posiadają środowiska graficznego lub zdalnej pracy przez SSH często zachodzi konieczność edycji plików tekstowych z poziomu terminala. Sprawna edycja plików tekstowych możliwa jest dzięki konsolowym edytorom takim jak *Emacs*, *Vim* czy *Nano*.
-
-Osoby posługujące się takimi edytorami na co dzień znają mnóstwo skrótów i trików, które powodują, że praca z takim programem może być sprawniejsza niż z edytorem graficznym.
-
-Na potrzeby sporadycznej edycji plików, np. konfiguracyjnych, najprostszy w użyciu jest program *Nano*. Oferuje on quasi-graficzny interfejs z podpowiedziami skrótów klawiszowych.
-
-Przykładowe użycie (jeśli plik nie istnieje, zostanie utworzony):
-
-```bash
-nano plik.txt
-```
-
-Najważniejsze skróty:
-* **Ctrl-o** - zapisz
-* **Ctrl-x** - wyjdź
-* **Ctrl-k** - wytnij tekst (domyślnie bieżąca linia)
-* **Ctrl-u** - wklej tekst
-
-W przypadku konieczności edycji pliku pod systemem, gdzie program *Nano* jest niedostępny (i nie chcemy lub nie możemy go zainstalować), istnieje bardzo duża szansa, że zainstalowany jest program *Vim*.
-
-Przykładowe użycie (jeśli plik nie istnieje, zostanie utworzony):
-
-```bash
-vim plik.txt
-```
-
-Najważniejsze skróty klawiszowe:
-
-* `i` - przechodzi w tryb edycji, pozwala na wprowadzenie tekstu
-* `Esc` - wychodzi z trybu edycji lub przerywa wpisywanie komendy
-
-Komendy (zatwierdzane enterem):
-
-* `:w` - zapisz
-* `:q` - wyjdź
-* `:q!` - wyjdź bez zapisywania
-* `:x` - zapisz i wyjdź
-
----
-
-#### Zadania do samodzielnego wykonania
-
-16. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
-17. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
-
 ***
 Autor: *Jakub Tomczyński*
 

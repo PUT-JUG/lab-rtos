@@ -1,6 +1,9 @@
-# Procesy w systemie Linux
+# Procesy w systemie Linux, edytory tekstu
 
-## Pojęcie procesu
+## Procesy
+
+### Pojęcie procesu
+
 Każdy uruchomiony w systemie Unix program nosi nazwę procesu. Na proces składają się następujące elementy:
 
 * Kod binarny procesu załadowany z pliku.
@@ -16,14 +19,15 @@ Dodatkowo, podczas tworzenia procesu system inicjalizuje systemowe struktury dan
   
 Oprócz procesów, w systemie Unix, jak w większości nowoczesnych systemów, wyróżnia się wątki (ang. thread), będące najmniejszymi aktywnymi elementami systemu. Wątek jest rodzajem procesu, który dzieli przestrzeń adresową z innym procesem - każdemu wątkowi jest więc przydzielony niezależny identyfikator.
 
-## Procesy w systemie
+### Procesy w systemie
+
 Listę procesów dla aktualnej powłoki otrzymamy wywołując polecenie `ps` (ang. processes).
 
 ```bash
 ps
-PID             TTY             TIME		   CMD
-14285           pts/0           0:00              -csh
-14286           pts/0           0:00		   ps
+PID             TTY             TIME               CMD
+14285           pts/0           0:00               -csh
+14286           pts/0           0:00               ps
 ^^^^^^          ^^^^^^          ^^^^^              ^^^^^
 numer procesu   terminal        czas aktywności    nazwa
 ```
@@ -42,12 +46,8 @@ właściciela   procesu    procesu       uruchomienia
                          nadrzędnego
 ```
 Pełne informacje o wszystkich procesach uzyskamy łącząc opcję `-f` z `-e` (ang. *every process*). Poniżej podano inne przydatne przełączniki polecenia `ps`:
-*  `-a` (ang. *all)* wyświetla listę wszystkich procesów (także tych należących do innych użytkowników) 
-*  `-l` (ang. *long*) pozwala wyświetlić dodatkowe informacje o każdym procesie 
-*  `-x` (ang. *long*) dołącza do listy informacje o procesach nie dołączonych do terminali (procesy demony) 
-*  `-u` powoduje dodanie nazwy użytkownika na początku listy 
 *  `-w` powoduje rozszerzenie wyświetlanej listy
-*  `-l` pozwala na wyświetlenie większej liczby szczegółów dotyczących procesów. W rezultacie wyświetlane są dodatkowe kolumny zawierające następujące informacje: 
+*  `-l` (ang. *long*) pozwala wyświetlić dodatkowe informacje o każdym procesie - w rezultacie wyświetlane są dodatkowe kolumny zawierające następujące informacje: 
    *  `S` - status procesu ( `S` - proces jest uśpiony; `R` - proces jest aktualnie wykonywany, `T` - zatrzymany) 
    *  `UID` - indentyfikator właściciela procesu 
    *  `PPID` - identyfikator procesu macierzystego 
@@ -56,15 +56,18 @@ Pełne informacje o wszystkich procesach uzyskamy łącząc opcję `-f` z `-e` (
 
 Wiele z procesów uruchamianych jest przy starcie systemu, pozostałe są uaktywniane przez użytkowników w momencie zlecenia wywołania programów. Dowolny proces może uruchomić kolejny proces potomny i stać się macierzystym (nadrzędnym) wobec tego procesu potomnego. W momencie zarejestrowania się użytkownika w systemie uruchomiony zostaje jego pierwszy proces, czyli powłoka interpretująca polecenia użytkownika.
 
-Wszystkie procesy pracujące w systemie tworzą hierarchiczną strukturę, na szczycie której stoi proces `init`, będący rodzicem wszystkich procesów. Proces `init` ma zawsze wartość `PID` równą 1. Hierarchię procesów można obserwować korzystając z programu `pstree`. Istnieje także interaktywna wersja komendy `ps` - program `top`, gdzie oprócz wartości zwracanych przez polecenie `ps` wyświetlane są też inne informacje: aktualna liczbę użytkowników w systemie i średnie obciażenie (linia pierwsza), liczba procesów i ich stany(linia druga), obciążenie procesora (linia trzecia) i informację nt. dostępnej pamięci w systemie (linie czwarta i piąta).
+Wszystkie procesy pracujące w systemie tworzą hierarchiczną strukturę, na szczycie której stoi proces `init`, będący rodzicem wszystkich procesów. Proces `init` ma zawsze wartość `PID` równą 1. Hierarchię procesów można obserwować korzystając z programu `pstree`. W systemie Ubuntu, na szczycie drzewa wyświetlanego przez `pstree` znajdziemy proces *systemd*, a nie *init*. Wynika to z faktu, że *init* jest w tym systemie aliasem (dowiązaniem symbolicznym) do programu *systemd* - możesz to potwierzuć komendą `ls -l /sbin/init`.
 
-## Usuwanie procesów
+Istnieje także interaktywna wersja komendy `ps` - program `top`, gdzie oprócz wartości zwracanych przez polecenie `ps` wyświetlane są też inne informacje: aktualna liczbę użytkowników w systemie i średnie obciażenie (linia pierwsza), liczba procesów i ich stany(linia druga), obciążenie procesora (linia trzecia) i informację nt. dostępnej pamięci w systemie (linie czwarta i piąta).
+
+### Usuwanie procesów
+
 Dowolny proces może zostać usunięty z systemu przez jego właściciela. Służy do tego polecenie `kill`, wysyłające do procesu o podanym identyfikatorze sygnał przerwania pracy:
 
 ```bash
 kill [ -nazwa_lub_numer_sygnału ] identyfikator_procesu
 ```
-Domyślnie, jeśli nie podano numeru sygnału, wysłany zostanie sygnał `TERM`, powodujący zatrzymanie procesu. Aktualnie uruchomiony proces można również przerwać naciskając kombinację **Ctrl-C**, co również powoduje wysłanie sygnału `TERM`. Gdy wysłanie sygnału `TERM` jest niewystarczające do zatrzymania procesu, należy wtedy wysłać sygnał `KILL`, który powoduje bezwarunkowe przerwanie procesu:
+Domyślnie, jeśli nie podano numeru sygnału, wysłany zostanie sygnał `TERM`, powodujący zatrzymanie procesu. Aktualnie uruchomiony proces można również przerwać naciskając w konsoli kombinację **Ctrl-C**, co również powoduje wysłanie sygnału `TERM`. Gdy wysłanie sygnału `TERM` jest niewystarczające do zatrzymania procesu, należy wtedy wysłać sygnał `KILL`, który powoduje bezwarunkowe przerwanie procesu:
 
 ```bash
 kill -KILL identyfikator_procesu
@@ -85,7 +88,8 @@ powoduje zatrzymanie wszystkich programów `find`.
 
 Szczegółową listę sygnałów wraz z ich wartościami numerycznymi zawiera strona pomocy systemowej *signal(7)* (komenda `man 7 signal`). Skróconą listę dostępnych sygnałów można uzyskać poprzez wywołanie `kill -l`. 
 
-## Priorytety procesów
+### Priorytety procesów
+
 Każdy proces wykonywany w systemie posiada przypisany mu priorytet, który można odczytać w wyniku wywołania polecenia `ps` z przełącznikiem `-l`.
 
 Kolumna `PRI` wyświetlana w wyniku tego polecenia zawiera informacje o wartości priorytetu określonego procesu, nadanej mu poprzez system operacyjny. Wartość ta nie może być bezpośrednio zmieniana przez użytkownika. Jednakże użytkownik może wpłynąć na wartość `PRI`, zmnieniając tzw. liczbę *nice*, której aktualna wartość znajduje się w kolumnie `NI`. Wartość liczby nice należy do przedziału: od -20 do 19 i początkowo przyjmuje wartość 0. Im mniejsza wartość liczby *nice* tym wyższy priorytet procesu. Dla działającego procesu liczbę *nice* można zmienić poleceniem:
@@ -105,7 +109,7 @@ Możliwe jest uruchamianie nowych procesów z ustawionym już nowym priorytetem:
 nice -n zmiana_priorytetu polecenie
 ```
 
-## Zarządzanie procesami
+### Zarządzanie procesami
 
 Procesy uruchamiane z klawiatury terminala są nazywane pierwszoplanowymi. Powłoka czeka na zakończenie wykonywania procesu i dopiero wtedy jest gotowa na przyjęcie kolejnych poleceń od użytkownika.
 
@@ -129,7 +133,8 @@ jobs
 fg 1
 ```
 
-## Status zakończenia procesu
+### Status zakończenia procesu
+
 Każdy proces w systemie Unix po zakończeniu swojej pracy przekazuje do systemu informację o tym jak zakończyło się przetwarzanie, określaną statusem zakończenia procesu. Status zakończenia jest liczbą jednobajtową, przy czym przyjęto, że wartość 0 oznacza poprawne zakończenie przetwarzania. Wartości różne od 0 oznaczają błąd. Status zakończenia ostatnio wykonywanego programu można uzyskać w następujący sposób:
 ```bash
 echo $?
@@ -142,7 +147,7 @@ Natomiast gdy `polecenie_2` może być wykonane tylko wtedy gdy polecenie `polec
 ```bash
 polecenie_1 || polecenie_2
 ```
-Ponadto w systemie UNIX możemy jednym poleceniem uruchomić kilka procesów, oddzielając poszczególne z nich średnikiem:
+Ponadto w systemie UNIX możemy jednym poleceniem uruchomić kilka procesów jeden po drugim, nie zważając na wynik poprzednich, oddzielając poszczególne z nich średnikiem (jest to odpowiednik wpisania każdego polecenia w oddzielnej linii i zatwierdzania enterem):
 ```bash
 polecenie_1; polecenie_2; polecenie_3
 ```
@@ -151,13 +156,13 @@ Taką sekwencję można również wprowadzić w tło:
 (polecenie_1; polecenie_2; polecenie_3) &
 ```
 
-## Zadania do samodzielnego wykonania 
-1. Wyświetl listę własnych procesów komendą `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`. Zbadaj działanie przełączników ­`-l` i ­`-u`. 
+### Zadania do samodzielnego wykonania
+
+1. Wyświetl listę własnych procesów komendą `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`.
 2. Zaloguj się do systemu kilkukrotnie poprzez wirtualne konsole lub otwierając nowe okno w środowisku graficznym. Każdorazowo sprawdź poleceniem `tty` nazwę terminala, na którym pracujesz.
 3. Wyświetl hierarchię procesów poleceniem `pstree`. 
-4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci.
-5. Sprawdź identyfikator procesu `init`.
-6. Wykonaj kolejno następujące kroki:
+4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci (sprawdź przełącznik `-o`)
+5. Wykonaj kolejno następujące kroki:
 * Zmień priorytet powłoki `bash`, w której aktualnie się znajdujesz na 10.
 * Uruchom polecenie `sleep` na 30 sekund. Od razu wstrzymaj je kombinacją **Ctrl-Z**.
 * Uruchom *w tle* kolejne polecenie `sleep`, tym razem na 3600 sekund.
@@ -166,8 +171,58 @@ Taką sekwencję można również wprowadzić w tło:
 * Przywróć w tle działanie wstrzymanego sleep.
 * Sprawdzaj aktywne zadania poleceniem `jobs` aż do zakończenia `sleep 30`
 * Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
-7. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
-8. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
+6. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
+7. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
+
+## Edytory tekstu `nano`, `vim`
+
+W pracy z systemami, które nie posiadają środowiska graficznego lub poprzez zdalny terminal często zachodzi konieczność edycji plików tekstowych z poziomu terminala. Sprawna edycja plików tekstowych możliwa jest dzięki konsolowym edytorom takim jak *Emacs*, *Vim* czy *Nano*.
+
+Osoby posługujące się takimi edytorami na co dzień znają mnóstwo skrótów i trików, które powodują, że praca z takim programem może być sprawniejsza niż z edytorem graficznym.
+
+Na potrzeby sporadycznej edycji plików, np. konfiguracyjnych, najprostszy w użyciu jest program *Nano*. Oferuje on quasi-graficzny interfejs z podpowiedziami skrótów klawiszowych.
+
+Przykładowe użycie (jeśli plik nie istnieje, zostanie utworzony):
+
+```bash
+nano plik.txt
+```
+
+Najważniejsze skróty:
+* **Ctrl-o** - zapisz
+* **Ctrl-x** - wyjdź
+* **Ctrl-k** - wytnij tekst (domyślnie bieżąca linia)
+* **Ctrl-u** - wklej tekst
+
+W przypadku konieczności edycji pliku pod systemem, gdzie program *Nano* jest niedostępny (i nie chcemy lub nie możemy go zainstalować), istnieje bardzo duża szansa, że zainstalowany jest program *Vim*.
+
+Przykładowe użycie (jeśli plik nie istnieje, zostanie utworzony):
+
+```bash
+vim plik.txt
+```
+
+Najważniejsze skróty klawiszowe:
+
+* `i` - przechodzi w tryb edycji, pozwala na wprowadzenie tekstu
+* `Esc` - wychodzi z trybu edycji lub przerywa wpisywanie komendy
+
+Komendy (zatwierdzane enterem):
+
+* `:w` - zapisz
+* `:q` - wyjdź
+* `:q!` - wyjdź bez zapisywania
+* `:x` - zapisz i wyjdź
+
+---
+
+#### Zadania do samodzielnego wykonania
+
+16. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
+17. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
+18. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
+
+
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
