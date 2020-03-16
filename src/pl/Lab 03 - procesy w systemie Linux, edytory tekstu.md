@@ -156,6 +156,8 @@ Taką sekwencję można również wprowadzić w tło:
 (polecenie_1; polecenie_2; polecenie_3) &
 ```
 
+---
+
 ### Zadania do samodzielnego wykonania
 
 1. Wyświetl listę własnych procesów komendą `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`.
@@ -173,6 +175,9 @@ Taką sekwencję można również wprowadzić w tło:
 * Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
 6. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
 7. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
+8. Utwórz w swoim katalogu domowym folder o nazwie `readonly`. Usuń prawa do zapisu w nim. Następnie wykonaj komendę, która spróbuje utworzyć w nim plik, a w przypadku niepowodzenia wyświetli komunikat **ERROR** (polecenie `echo ERROR`).
+
+---
 
 ## Edytory tekstu `nano`, `vim`
 
@@ -216,13 +221,11 @@ Komendy (zatwierdzane enterem):
 
 ---
 
-#### Zadania do samodzielnego wykonania
+### Zadania do samodzielnego wykonania
 
-16. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
-17. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
-18. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
-
-
+9. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
+10. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
+11. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
