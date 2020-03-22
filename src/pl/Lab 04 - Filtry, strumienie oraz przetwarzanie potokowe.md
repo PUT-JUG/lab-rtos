@@ -168,16 +168,33 @@ Zasady konstrukcji podstawowych wyrażeń regularnych opisujących szukany wzorz
 
 Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znaków tych należą: `. * {} () ^ [ ] \ < > $`. W celu wykorzystania tych znaków jako zwykłych znaków, należy je poprzedzić znakiem `\`. Oprócz podstawowych wyrażeń regularnych istnieją wyrażenia rozszerzone, pozwalające w krótszy sposób opisać poszukiwane wyrażenie i oferujące bogatsze możliwości opisu wyrażeń. W celu użycia rozszerzonych wyrażeń regularnych, należy polecenie grep użyć z przełącznikiem `-E`, lub wykorzystać polecenie `egrep`.
 
+## Nowa linia na końcu pliku
+
+Zwyczajowo w systemach uniksowych pliki tekstowe (konfiguracyjne, źródłowe, skrypty itp.) zakończone są znakiem nowej linii. Niektóre edytory (np. `nano`) same dodają znak nowej linii przy każdej edycji pliku.
+
+Niektóre z przedstawionych poleceń mogą wymagać obecności znaku końca linii w ostatnim wierszu. W przypadku problemów z wczytywaniem ostatniego wiersza możesz to zweryfikować wyświetlając plik np. `cat`:
+
+```bash
+student@vbox-xubuntu-labrtos:~$ cat zly_plik 
+To jest linia tekstu
+To jest kolejna liniastudent@vbox-xubuntu-labrtos:~$ cat dobry_plik 
+A tu jest zawartosc innego pliku
+Zakonczonego znakiem nowej linii
+student@vbox-xubuntu-labrtos:~$ 
+```
+
+Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii znak zachęty (`student@vbox...`) wyświetla się w tym samym wierszu, co zawartość pliku.
+
 ## Zadania do samodzielnego wykonania
 1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. W oknie terminala wyświetlaj w danej chwili tylko jedną stronę tekstu.
-2. Korzystając z polecenia `cat` utwórz plik *tekst3*, który będzie składał się z zawartości pliku *tekst1*, ciągu znaków podanego ze standardowego wejścia (klawiatury) i pliku *tekst2*.
-3. Wyświetl po 5 pierwszych linii wszystkich plików w swoim katalogu domowym w taki sposób, aby nie były wyświetlane ich nazwy.
+2. Stwórz pliki *tekst1* oraz *tekst2*, wypełnij kilkoma linijkami tekstu. Korzystając z polecenia `cat` utwórz plik *tekst3*, który będzie składał się z zawartości plików *tekst1* oraz *tekst2*.
+3. Wyświetl po 5 pierwszych linii wszystkich plików w swoim katalogu domowym w taki sposób, aby nie były wyświetlane ich nazwy. **Podpowiedź:** pamiętaj, że z programami, które przyjmują jako argumenty nazwy plików możesz używać **wzorców**.
 4. Wyświetl linie o numerach 3, 4 i 5 z pliku */etc/passwd*
-5. Wyświetl linie o numerach 5, 6 i 7 od końca pliku */etc/passwd*
+5. Wyświetl linie o numerach 7, 6 i 5 licząc od końca pliku */etc/passwd* (czyli kolejno 7. od końca, 6. od końca i 5. od końca)
 6. Wyświetl zawartość */etc/passwd* w jednej linii
-7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa w osobnej linii.
+7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa (oddzielonych spacją) w osobnej linii.
 8. Zlicz wszystkie pliki znajdujące się w katalogu */etc* i jego podkatalogach
-9. Napisać polecenie zliczające sumę znaków z pierwszych trzech linii pliku */etc/passwd*
+9. Napisz polecenie zliczające sumę znaków z pierwszych trzech linii pliku */etc/passwd*
 10. Wyświetl listę plików z aktualnego katalogu, zamieniając wszystkie małe litery na duże.
 11. Wyświetl listę praw dostępu do plików w aktualnym katalogu, ich rozmiar i nazwę
 12. Wyświetl listę plików w aktualnym katalogu, posortowaną według rozmiaru pliku
@@ -186,11 +203,11 @@ Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znak�
 15. Podaj nazwy trzech najmniejszych plików w katalogu posortowane wg nazwy
 16. W pliku `/etc/services` przechowywana jest lista popularnych usług sieciowych, wraz z numerami portów i protokołem. Wylistuj (tylko) nazwy usług, które korzystają z protokołu `UDP`.
 17. Wyświetl, ile wirtualnych terminali (`dev/tty`) o numerach z zakresu *50-69* znajduje się w systemie.
-18. Znajdź PID procesu **cupsd**.
+18. Zbuduj potok, który wyświetli w terminalu PID procesu **cupsd**.
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
 
-Data ostatniej modyfikacji:   *18-03-2019*
+Data ostatniej modyfikacji:   *22-03-2020*
 
 Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
