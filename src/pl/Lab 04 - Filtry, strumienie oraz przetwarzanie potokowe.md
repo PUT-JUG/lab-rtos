@@ -11,7 +11,7 @@ Standardowe strumienie procesów charakteryzują się następującymi cechami:
 * Dane wypisywane są na standardowym wyjściu lub standardowym wejściu diagnostycznym.
 * Raz przeczytanych danych nie można ponownie przeczytać.
   
-Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z klawiatury na ekran. Polecenie to można zakończyć za pomocą kombinacji *Ctrl-D* (reprezentowane w listingach jako `^D`).
+Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z wejścia standardowego (klawiatury) na wyjście standardowe (okno terminala). Wpisywanie danych z klawiatury można zakończyć za pomocą kombinacji *Ctrl-D* (reprezentowane w listingach jako `^D`).
 
 ## Przekierowanie wejścia/wyjścia procesów
 Istnieje możliwość przeadresowania strumieni wyjściowych i wejściowych. Zmianę standardowego wejścia, wyjścia i wyjścia diagnostycznego można dokonać za pomocą operatorów: `>`, `<`, `>>`, `<<`.
@@ -57,7 +57,7 @@ Ala ma kota
 Kot ma Ale.
 ```
 
-Niektóre polecenia równolegle z wyświetlanymi na standardowym wyjściu informacjami wysyłają dodatkowe informacje informujące o błędach przetwarzania na standardowe wyjście diagnostyczne. Istnieje możliwość niezależnego przekierowania strumienia diagnostycznego, poprzez operator `>` poprzedzony numerem wyjścia diagnostycznego, czyli 2:
+Niektóre polecenia równolegle z wyświetlanymi na standardowym wyjściu informacjami wysyłają dodatkowe informacje informujące o błędach przetwarzania na standardowe wyjście diagnostyczne. Istnieje możliwość niezależnego przekierowania strumienia diagnostycznego, poprzez operator `>` poprzedzony numerem wyjścia diagnostycznego, czyli `2`:
 
 ```bash
 cat plik1.txt plik2.txt 2> plik3.err
@@ -79,30 +79,30 @@ W przypadku gdy strumień diagnostyczny ma trafiać tam, gdzie strumień wyjści
 cat plik1.txt plik2.txt> plik3.txt 2>&1
 ```
 
-Wiele programów konsolowych działających na strumieniach może przyjąć również nazwę pliku jako wejście: polecenie `cat < plik.txt` wygeneruje taki sam efekt jak `cat plik.txt`. Dodatkowo, wiele programów akceptuje przekazanie `-` jako nazwy pliku, co w zależności od kontekstu oznacza wejście lub wyjście standardowe.
+Wiele programów konsolowych działających na strumieniach może przyjąć również nazwę pliku jako wejście: polecenie `cat < plik.txt` wygeneruje taki sam efekt jak `cat plik.txt`, a w przypadku skomplikowanego potoku wersja druga może okazać się znacząco czytelniejsza. Dodatkowo, wiele programów akceptuje przekazanie `-` jako nazwy pliku, co w zależności od kontekstu oznacza wejście lub wyjście standardowe.
 
 ## Przetwarzanie potokowe
 Standardowe wyjście jednego procesu możne być połączone ze standardowym wejściowym innego procesu, tworząc tzw. potok pomiędzy tymi procesami.
 
 ![Standardowe wejscie-wyjście procesu](../images/lab_04_stream.png)
 
-Przetwarzanie potokowe polega na buforowaniu przez system danych produkowanych przez pierwszy proces i następnie odczytywaniu tych danych przez drugi proces. Innymi słowy proces w potoku czyta dane z wejścia, które zostało przeadresowane na wyjście procesu poprzedniego. W potoku może brać udział jednocześnie kilka procesów. Poniżej podano przykłady potoków:
+Przetwarzanie potokowe polega na buforowaniu przez system danych produkowanych przez pierwszy proces i następnie odczytywaniu tych danych przez drugi proces. Innymi słowy proces w potoku czyta dane z wejścia, które zostało przeadresowane na wyjście procesu poprzedniego. W potoku może brać udział jednocześnie kilka procesów. Do przekierowania danych do kolejnego procesu używany jest znak `|`. Poniżej podano przykłady potoków:
 
 Proces `ls` podaje wynik procesowi `more`, który w efekcie wyświetla listing strona po stronie:
 ```bash
-ls -al|more
+ls -al | more
 ```
 Proces `who` podaje wynik procesowi `sort`, podając posortowaną listę pracowników pracujących w systemie:
 ```bash
-who|sort
+who | sort
 ```
 Proces `ps` podaje wynik procesowi `grep`, wyszukując na liście procesów linii zawierających słowo `csh`:
 ```bash
-ps -ef|grep csh
+ps -ef | grep csh
 ```
 Proces `ls` podaje wynik procesowi `sort`, który następnie podaje wynik procesowi `head`, wyświetlając pierwszych 10 najmniejszych plików:
 ```bash
-ls -l /usr/bin|sort -bnr +4 -5|head
+ls -l /usr/bin | sort -bnr +4 -5 | head
 ```
 ## Filtry
 Istnieją programy, których zadaniem jest odczyt danych ze standardowego wejścia, przetworzenie tych danych i ich zapis na standardowe wyjście. Programy takie nazywane są filtrami i są szeroko wykorzystywane w przetwarzaniu potokowym. Poniżej przedstawiono najczęściej wykorzystywane filtry:
@@ -183,7 +183,7 @@ Proste wyrażenie regularne - przeszukuje plik */etc/group* pod kątem słowa *s
  
  Zaawansowane wyrażenia:
  
- Wyświetla elementy znajdunące się w głównym katalogu, o nazwach zaczynających się na `s` i minimum trzech następujących dowolnych znaków:
+ Wyświetla elementy znajdujące się w głównym katalogu, o nazwach zaczynających się na `s` i minimum trzech następujących dowolnych znakach:
 
 ```bash
 ls / | egrep '^s.{3,}'
@@ -213,7 +213,7 @@ student@vbox-xubuntu-labrtos:~$
 Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii znak zachęty (`student@vbox...`) wyświetla się w tym samym wierszu, co zawartość pliku.
 
 ## Zadania do samodzielnego wykonania
-1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. W oknie terminala wyświetlaj w danej chwili tylko jedną stronę tekstu.
+1. Wyświetl plik */etc/passwd* z podziałem na strony przyjmując, że strona ma 5 linii tekstu. **Podpowiedź:** sprawdź program `more`
 2. Stwórz pliki *tekst1* oraz *tekst2*, wypełnij kilkoma linijkami tekstu. Korzystając z polecenia `cat` utwórz plik *tekst3*, który będzie składał się z zawartości plików *tekst1* oraz *tekst2*.
 3. Wyświetl po 5 pierwszych linii wszystkich plików w swoim katalogu domowym w taki sposób, aby nie były wyświetlane ich nazwy. **Podpowiedź:** pamiętaj, że z programami, które przyjmują jako argumenty nazwy plików możesz używać **wzorców**.
 4. Wyświetl linie o numerach 3, 4 i 5 z pliku */etc/passwd*
