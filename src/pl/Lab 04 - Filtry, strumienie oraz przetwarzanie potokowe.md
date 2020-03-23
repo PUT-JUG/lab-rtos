@@ -148,25 +148,52 @@ Istnieją programy, których zadaniem jest odczyt danych ze standardowego wejśc
   * `-i` ignoruje wielkość liter przy wyszukiwaniu
   * `-n` wyświetla numery linii zawierających dany wzorzec
   * `-h` przy wyświetlaniu linii zawierających szukany wzorzec pomija nazwy plików
-  * `-r` pozwala na przeszukiwanie rekurencyjne, np. grep wzorzec -r katalog
+  * `-r` pozwala na przeszukiwanie rekurencyjne, np. `grep wzorzec -r katalog`
   * `-l` pokazuje nazwy plików zawierających określony wzorzec
   * `-L` pokazuje nazwy plików nie zawierających określonego wzorca
 
 Zasady konstrukcji podstawowych wyrażeń regularnych opisujących szukany wzorzec są następujące:
 * `.` - reprezentuje dowolny znak
 * `[abc]` - oznacza jeden ze znaków a, b lub c
-* `[a-z]` - oznacza jeden ze znaków z podanego zbioru
-* `[^0-9]` - oznacza dopełnienie podanego zbioru
-* `.*` - oznacza dowolny ciąg znaków
-* `*` - reprezentuje powtórzenie dowolną liczbę razy wyrażenia znajdującego się bezpośrednio po lewej stronie np. `A[a]*` określa A, Aa, Aaa, Aaaaaaaaa, itd.
+* `[a-z]` - oznacza jeden ze znaków z podanego zakresu
+* `[^0-9]` - oznacza dopełnienie podanego zbioru (znaki inne niż od `0` do `9`)
+* `*` - reprezentuje powtórzenie dowolną liczbę razy (0 lub więcej) wyrażenia znajdującego się bezpośrednio po lewej stronie np:
+    * `.*` oznacza dowolny ciąg znaków
+    * `A[a]*` określa A, Aa, Aaa, Aaaaaaaaa, itd.
 * `^` - reprezentuje początek linii
 * `$` - reprezentuje koniec linii
-* `a\{n\}` - oznacza n-krotne wystąpienie znaku występującego bezpośrednio po lewej stronie nawiasów
-* `a\{n, \}` - oznacza co najmniej n-krotne wystąpienie znaku występującego bezpośrednio po lewej stronie nawiasów
-* `a\{, m\}` - oznacza co najwyżej m-krotne wystąpienie znaku występującego po lewej stronie nawiasów
-* `a\{n,m\}` - oznacza co najmniej n-krotne i co najwyżej m-krotne wystąpienie znaku występującego po lewej stronie nawiasów
 
-Dodatkowo istnieje specjalna grupa znaków mająca znaczenie specjalne. Do znaków tych należą: `. * {} () ^ [ ] \ < > $`. W celu wykorzystania tych znaków jako zwykłych znaków, należy je poprzedzić znakiem `\`. Oprócz podstawowych wyrażeń regularnych istnieją wyrażenia rozszerzone, pozwalające w krótszy sposób opisać poszukiwane wyrażenie i oferujące bogatsze możliwości opisu wyrażeń. W celu użycia rozszerzonych wyrażeń regularnych, należy polecenie grep użyć z przełącznikiem `-E`, lub wykorzystać polecenie `egrep`.
+Domyślnie `grep` pracuje w uproszczonym trybie, gdzie znaki `?`, `+`, `{`, `}`, `|`, `(` oraz `)` traktowane są dosłownie. Aby uzyskać zgodność z wyrażeniami regularnymi stosowanymi w innych językach (*extended regular expressions*), należy stosować `grep` z przełącznikiem `-E` lub używać polecenia `egrep` (które wewnętrznie wywołuje `grep` z przełącznikiem `-E`). Rozbudowuje to dostępne znaczniki między innymi o:
+
+* `+` - jedno lub więcej wystąpień poprzedzającego znaku
+* `{n}` - n-krotne wystąpienie poprzedzającego znaku
+* `{n,}` - oznacza co najmniej n-krotne wystąpienie znaku występującego bezpośrednio po lewej stronie nawiasów
+* `{,m}` - oznacza co najwyżej m-krotne wystąpienie znaku występującego po lewej stronie nawiasów
+* `{n,m}` - oznacza co najmniej n-krotne i co najwyżej m-krotne wystąpienie znaku występującego po lewej stronie nawiasów
+
+Jeśli chcemy, aby znak mający znaczenie specjalne w wyrażeniach regularnych (np.  `.`, `*`, `{`, `}`,  `(`, `)`,  `^`,  `[`,  `]`,  `\`,  `<`,  `>`,  `$`) został potraktowany dosłownie, musimy poprzedzić go backslashem (`\`). Ponadto, ponieważ wiele z wymienionych znaków ma w powłoce `bash` znaczenie specjalne, całe wyrażenie wpisane w konsoli należy umieścić w pojedynczym cudzysłowie (`'`), aby uniknąć ich interpretacji przez powłokę.
+
+### Przykłady potoków z wyrażeniami regularnymi:
+
+Proste wyrażenie regularne - przeszukuje plik */etc/group* pod kątem słowa *student*:
+
+ ```bash
+ grep student /etc/group
+ ```
+ 
+ Zaawansowane wyrażenia:
+ 
+ Wyświetla elementy znajdunące się w głównym katalogu, o nazwach zaczynających się na `s` i minimum trzech następujących dowolnych znaków:
+
+```bash
+ls / | egrep '^s.{3,}'
+```
+
+Listuje zawartość pliku */etc/hosts*, sortuje ją, a następnie przeszukuje pod kątem wystąpienia *adresu IP* - liczby w formacie *w.x.y.z*, gdzie *w*, *x*, *y* oraz *z* to liczby o od 1 do 3 cyfr. Zwróć uwagę na backslash przed kropkami powodujący, że kropka jest traktowana dosłownie, a nie jako dowolny znak:
+
+```bash
+cat /etc/hosts | sort | egrep '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+```
 
 ## Nowa linia na końcu pliku
 
