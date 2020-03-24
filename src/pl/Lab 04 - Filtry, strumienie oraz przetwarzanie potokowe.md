@@ -219,7 +219,7 @@ Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii
 4. Wyświetl linie o numerach 3, 4 i 5 z pliku */etc/passwd*
 5. Wyświetl linie o numerach 7, 6 i 5 licząc od końca pliku */etc/passwd* (czyli kolejno 7. od końca, 6. od końca i 5. od końca)
 6. Wyświetl zawartość */etc/passwd* w jednej linii
-7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa (oddzielonych spacją) w osobnej linii.
+7. Za pomocą filtru `tr` wykonaj modyfikację pliku, polegającą na umieszczeniu każdego słowa (oddzielonych spacją) w osobnej linii. **Podpowiedź:** aby przekazać znak spacji jako argument, musisz umieścić go w cudzysłowie
 8. Zlicz wszystkie pliki znajdujące się w katalogu */etc* i jego podkatalogach
 9. Napisz polecenie zliczające sumę znaków z pierwszych trzech linii pliku */etc/passwd*
 10. Wyświetl listę plików z aktualnego katalogu, zamieniając wszystkie małe litery na duże.
@@ -234,7 +234,5 @@ Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
-
-Data ostatniej modyfikacji:   *22-03-2020*
 
 Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
