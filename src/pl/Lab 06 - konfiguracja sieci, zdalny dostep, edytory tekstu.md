@@ -184,7 +184,7 @@ Przydatne przełączniki:
 14. Wyświetl listę sesji *screen*.
 15. Zakończ połączenie SSH.
 
-## Zadanie domowe
+## Zadanie domowe (2020)
 Jeśli jesteś członkiem kursu laboratorium SCR, otrzymałeś maila, w którym znajduje się twój login i hasło do zewnętrznego serwera ssh `biolab.cie.put.poznan.pl -p 80` oraz plik, *.bin, który będzie konieczny do wykonania zadania. Zapisz plik na dysk, nie modyfikuj jego nazwy ani zawartości.
 
 Wykonaj następujące zadania:
@@ -192,8 +192,8 @@ Wykonaj następujące zadania:
 2. Na swoim koncie w katalogu domowym stwórz 2 kolejne podkatalogi  `~/spool` i  `~/output`
 3. Napisz skrypt, który ciągle monitoruje zawartość katalogu `spool` w poszukiwaniu plików z rozszerzeniem `*.out`, a po wykryciu pliku, kopiuje go do katalogu `~/output`. W celu oszczędzania zasobów serwera ogranicz czas sprawdzeń do 60s (możesz użyć instrukcji `sleep`)
 4. Przetestuj swój program uruchamiając skrypt skanujący i tworząc w katalogu `spool` plik lub pliki z rozszerzeniem `*.out`. Pamiętaj żeby po zakończeniu testów katalogi `~/spool` i  `~/output` były puste
-5. W najbliższy piątek uruchom skrypt skanujący w screenie, ponieważ w weekend przeprowadzimy na nim procedurę testową umieszczając w katalogu `spool` generowane przez nas pliki oraz sprawdzając czy w katalogu input znajduje się plik, który otrzymałeś w załączniku 
-6. W poniedziałek zaloguj się na serwer, zakończ sesję screen'a i prześlij przez scp plik lub pliki znajdujące się w katalogu `output`
+5. W środę 15.04 nie później niż do godz. 12:00 uruchom skrypt skanujący w screenie, ponieważ w środę lub w czwartek przeprowadzimy na nim procedurę testową umieszczając w katalogu `spool` generowane przez nas pliki oraz sprawdzając czy w katalogu input znajduje się plik, który otrzymałeś w załączniku 
+6. W piątek 17.04 zaloguj się na serwer, zakończ sesję screen'a i prześlij przez scp plik lub pliki znajdujące się w katalogu `output`
 7. Pobrany plik lub pliki oraz skrypt skanujący umieść w zadaniu domowym Lab06
 
 ---
