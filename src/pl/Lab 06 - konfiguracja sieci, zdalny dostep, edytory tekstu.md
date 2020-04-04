@@ -190,7 +190,7 @@ Jeśli jesteś członkiem kursu laboratorium SCR, otrzymałeś maila, w którym 
 Wykonaj następujące zadania:
 1. Prześlij plik na serwer używając scp i umieść go w podkatalogu `~/input`
 2. Na swoim koncie w katalogu domowym stwórz 2 kolejne podkatalogi  `~/spool` i  `~/output`
-3. Napisz skrypt, który ciągle monitoruje zawartość katalogu `spool` w poszukiwaniu plików z rozszerzeniem `*.out`, a po wykryciu pliku, kopiuje go do katalogu `~/output`. W celu oszczędzania zasobów serwera ogranicz czas sprawdzeń do 60s (możesz użyć instrukcji `sleep`)
+3. Napisz skrypt, który ciągle monitoruje zawartość katalogu `spool` w poszukiwaniu plików z rozszerzeniem `.out`, a po wykryciu pliku, kopiuje go do katalogu `~/output`. W celu oszczędzania zasobów serwera ogranicz czas sprawdzeń do 60s (możesz użyć instrukcji `sleep`)
 4. Przetestuj swój program uruchamiając skrypt skanujący i tworząc w katalogu `spool` plik lub pliki z rozszerzeniem `*.out`. Pamiętaj żeby po zakończeniu testów katalogi `~/spool` i  `~/output` były puste
 5. W środę 15.04 nie później niż do godz. 12:00 uruchom skrypt skanujący w screenie, ponieważ w środę lub w czwartek przeprowadzimy na nim procedurę testową umieszczając w katalogu `spool` generowane przez nas pliki oraz sprawdzając czy w katalogu input znajduje się plik, który otrzymałeś w załączniku 
 6. W piątek 17.04 zaloguj się na serwer, zakończ sesję screen'a i prześlij przez scp plik lub pliki znajdujące się w katalogu `output`
