@@ -185,7 +185,7 @@ Przydatne przełączniki:
 15. Zakończ połączenie SSH.
 
 ## Zadanie domowe
-Jeśli jesteś członkiem kursu laboratorium SCR, otrzymałeś maila, w którym znajduje się twój login i hasło do zewnętrznego serwera ssh [***adres***] oraz plik, *.bin, który będzie konieczny do wykonania zadania. Zapisz plik na dysk, nie modyfikuj jego nazwy ani zawartości.
+Jeśli jesteś członkiem kursu laboratorium SCR, otrzymałeś maila, w którym znajduje się twój login i hasło do zewnętrznego serwera ssh `biolab.cie.put.poznan.pl -p 80` oraz plik, *.bin, który będzie konieczny do wykonania zadania. Zapisz plik na dysk, nie modyfikuj jego nazwy ani zawartości.
 
 Wykonaj następujące zadania:
 1. Prześlij plik na serwer używając scp i umieść go w podkatalogu `~/input`
