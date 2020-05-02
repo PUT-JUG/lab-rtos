@@ -10,13 +10,13 @@ Zarządzaniem dostępnymi zasobami zajmuje się system operacyjny i przydziela o
 
 W ramach kursu wykorzystamy dwa narzędzia:
 
-* bibliotekę OpenMP służącą do zrównoleglania obliczeń - poprzez dodanie kilku odpowiednich dyrektyw możemy przerobić dzięki niej istniejący, jednowątkowy kod np. przez zrównoleglenie operacji wykonywanych w pętlach
+* bibliotekę OpenMP służącą do zrównoleglania obliczeń - poprzez dodanie kilku odpowiednich dyrektyw możemy przerobić dzięki niej w łatwy sposób zrównoleglić istniejący kod np. przez zrównoleglenie operacji wykonywanych w pętlach
 
-* klasę `std::thread` oraz powiązane obiekty służące do ręcznego tworzenia i zarządzania wątkami, dostępne w C++ od wersji C++11
+* klasę `std::thread` oraz powiązane obiekty z biblioteki standardowej służące do ręcznego tworzenia i zarządzania wątkami, dostępne w C++ od wersji C++11
 
 ## Konfiguracja środowiska dla OpenMP
 
-Większość współczesnych kompilatorów wspiera OpenMP (w różnych wersjach), ale jego obsługa jest zazwyczaj domyślnie wyłączona. Stworzymy pierwszy projekt wykorzystujący OpenMP
+Większość współczesnych kompilatorów wspiera OpenMP (w różnych wersjach), ale jego obsługa jest zazwyczaj domyślnie wyłączona. Stwórzmy nasz pierwszy projekt wykorzystujący OpenMP.
 
 ### Microsoft Visual Studio 2019
 
@@ -30,7 +30,7 @@ Następnie w sekcji **Configuration Properties** → **C/C++** → **Language** 
 
 ### Qt Creator z kompilatorem MSVC
 
-W pliku **.pro** opisującym projekt dodaj linijkę:
+Stwórz projekt aplikacji C++ nie wykorzystującej Qt (**Non-Qt Project** → **Plain C++ Application**). W pliku **.pro** opisującym projekt dodaj linijkę:
 
 ```qmake
 QMAKE_CXXFLAGS += -openmp
@@ -40,7 +40,7 @@ Wymuś ponowne przetworzenie pliku **.pro** klikając prawym przyciskiem na proj
 
 ### Inne kompilatory, środowiska programistyczne
 
-W większości środowisk i kompilatorów włączenie wsparcia dla OpenMP sprowadza się do dodania odpowiedniej flagi do kompilatora w ustawieniach projektu. W ramach kursu zakładamy korzystanie ze środowiska Visual Studio lub Qt Creator, w przypadku chęci skorzystania z innego środowiska, poszukaj pomocnych informacji w Internecie.
+W większości środowisk i kompilatorów włączenie wsparcia dla OpenMP sprowadza się do dodania odpowiedniej flagi do kompilatora (zazwyczaj `-openmp` lub `-fopenmp`) w ustawieniach projektu. W ramach kursu zakładamy korzystanie ze środowiska Visual Studio lub Qt Creator, w przypadku chęci skorzystania z innego środowiska, poszukaj pomocnych informacji w Internecie.
 
 ## Hello OpenMP
 
@@ -82,25 +82,30 @@ Zaobserwuj czas, jaki wyświetlił program.
 
 Następnie zakomentuj linijkę aktywującą użycie OpenMP: `#pragma omp parallel for private(i)`. Uruchom program raz jeszcze, w ten sam sposób i ponownie zaobserwuj zmierzony czas.
 
-W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powinien być zauważalny spadek wydajności - zazwyczaj 2-3 krotny. Jeśli nie występuje różnica w wydajności, upewnij się, że projekt został dobrze skonfigurowany. Oczywiście przyrost wydajności będzie widoczny tylko w przypadku posiadania wielordzeniowego procesora, ale ostatnie jednordzeniowe modele w komputerach osobistych pojawiały sporadycznie w okolicach 2010 roku. Liczbę rdzeni i wątków logicznych możesz sprawdzić w systemie Windows 10 otwierając **Menedżer Zadań**, w zakładce **Performance**.
+W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powinien być zauważalny spadek wydajności - zazwyczaj 2-3 krotny. Jeśli nie występuje różnica w wydajności, upewnij się, że projekt został dobrze skonfigurowany. Oczywiście przyrost wydajności będzie widoczny tylko w przypadku posiadania wielordzeniowego procesora, ale ostatnie jednordzeniowe modele w komputerach osobistych pojawiały się sporadycznie w okolicach 2010 roku. Liczbę rdzeni i wątków logicznych możesz sprawdzić w systemie Windows 10 otwierając **Menedżer Zadań**, w zakładce **Performance**.
 
 ### Dyrektywy OpenMP
 
 Powyższy program tworzy tablicę liczb, a następnie wypełnia każdy element tablicy wartością szeregu opisanego wzorem:
 
-a_i = \sum_{j=1}^{10000} \frac{1}{i^j},
+![Wzór na szereg](../images/09/series.svg),
 
-gdzie a_i to i-ty element tablicy.
+gdzie ![Wzór na szereg](../images/09/a_i.svg) to i-ty element tablicy.
 
-Ponieważ każdy element tablicy jest liczony niezależnie (nie zależy od wyników uzyskanych w pozostałych iteracjach), w prosty sposób można wykorzystać dyrektywy OpenMP do zrównoleglenia głównej pętli.
+Ponieważ każdy element tablicy jest liczony niezależnie (nie zależy od wyników uzyskanych w dla pozostałych elementów), w prosty sposób można wykorzystać dyrektywy OpenMP do zrównoleglenia głównej pętli.
 
 W ogólnym przypadku dyrektywy te mają następującą postać:
 ```
-#pragma omp nazwa_dyrektywy opcje_i_parametry
+#pragma omp dyrektywy opcje_i_parametry
 ```
 
-# `TODO`
-*Wyraz `omp` jest słowem kluczowym OpenMP. Programista wykorzystuje dyrektywę parallel, aby wskazać kompilatorowi obszar kodu, który będzie zrównoleglany. Kolejna dyrektywa - for - informuje kompilator, że zrównoleglana będzie pętle typu for. Następnie określa się, które zmienne, wykorzystane w pętli, będą zmiennymi wspólnymi (shared), a które prywatnymi (private). Zmienne wspólne są dostępne dla każdego wątku, natomiast do danej zmiennej prywatnej ma dostęp tylko jeden określony wątek. W naszym programie zmiennymi prywatnymi są i i k, czyli liczniki pętli. Uczynienie ich zmiennymi prywatnymi powoduje, że każdy wątek ma swój wewnętrzny licznik iteracji. Np.: jeśli pętla ma długość 100, to rozdzielając ją na cztery wątki, każdy wątek będzie miał do wykonania po 25 iteracji, a zmienne prywatne poinformują go, w którym miejscu wykonywania obliczeń się znajduje. Ściśle mówiąc, każdy wątek dostaje kopie zmiennych k oraz i i na tych kopiach pracuje. Jest to bardzo ważna część programu i użytkownik musi sam poprawnie określić, która zmienna ma być wspólna, a która prywatna.*
+Wyraz `omp` jest słowem kluczowym OpenMP. Dyrektywa `parallel` wskazuje kompilatorowi obszar kodu, który będzie zrównoleglany, kolejna dyrektywa `for` powoduje podział pracy na wątki w obrębie poniższej pętli for.
+
+W opcjach i parametrach określamy przede wszystkim to, które zmienne są unikalne dla każdego wątku, a które mogą być współdzielone. Dla dyrektywy `for` zmienna iterowana w poniższej pętli - w tym przypadku `i` - jest domyślnie prywatna (`private`) - **każdy wątek ma własną jej kopię**, którą wewnętrznie iteruje. Wszystkie zmienne zewnętrzne (np. `array`) są domyślnie **współdzielone** (`shared`), natomiast zmienne deklarowane lokalnie wewnątrz pętli (tutaj np. `j`) - muszą być prywatne, ponieważ są tworzone już wewnątrz wątku, a nie istniały wcześniej. Zachowanie domyślne możemy modyfikować podając nazwy zmiennych do opcji `private` lub `shared`, wymienione po przecinku, w nawiasach okrągłych.
+
+W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy np. dla `i` od 0 do 249, drugi od 250 do 499 itd.
+
+Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jego iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
 
 ## Przydatne funkcje
 
@@ -128,14 +133,27 @@ std::chrono::duration<double> elapsed_time = end - start;
 std::cerr << "czas: " << elapsed_time.count() << std::endl;
 ```
 
-## Zadania do samodzielnego wykonania `TODO`
+## Zadania do samodzielnego wykonania
 
 ### 1. Szukanie liczb pierwszych
 
-Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N.
+> Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N
 
-Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wylosuj zbiór wartości początkowych spełniających powyższą zależność. Pamiętaj o ograniczeniach zakresu liczb, jakie mogą być przechowywane w wybranym typie zmiennej. Następnie dla każdej z wygenerowanych liczb, przeszukuj zbiór liczb naturalnych w kierunku malejącym, aż do napotkania liczby pierwszej. Znalezioną liczbę zapisz w przeznaczonym do tego wektorze.
-Zastanów się jak podzielić pracę pomiędzy wiele wątków i jak przekazać każdemu wątkowi część zbioru do przeszukiwania. Porównaj wyniki wydajności ze względu na liczbę wątków oraz zadaną wielkość zbioru. Aby uzyskiwać te same wylosowane liczby przy każdym uruchomieniu, możesz zainicjować generator liczb losowych stałą wartością, np. `srand(0)`.
+Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wygeneruj wektor - serię wartości należących do powyższego zbioru, dla *n* od 2 do 64. Wykorzystaj typ liczbowy `uint64_t` aby zapewnić, że liczby da się poprawnie zapisać w zmiennej.
+
+Następnie napisz funkcję, która rozpoczynając od przekazanej do niej pojedynczej liczby, będzie przeszukiwała zbiór liczb naturalnych w kierunku malejącym, aż do napotkania liczby pierwszej:
+
+```cpp
+uint64_t prime = find_prime_from(63); // zwroci 61
+```
+
+Przetestuj działanie funkcji dla znanych sobie liczb pierwszych.
+
+Następnie wywołaj funkcję dla każdego elementu z uprzednio przygotowanego zbioru wartości początkowych, a wyniki umieszczaj w odpowiednim miejscu w uprzednio przygotowanym wektorze (pamiętaj, aby zmienić rozmiar wektora wynikowego przed uruchomieniem pętli - nie używaj metody `push_back()`!).
+
+Dodaj do programu odpowiednie dyrektywy OpenMP, dzięki którym jednocześnie będzie uruchomionych wiele wątków z funkcją `find_prime_from`. Zastanów się które zmienne są współdzielone, a które prywatne.
+
+Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej.
 
 ### 2. Operacje na macierzach
 
@@ -152,29 +170,7 @@ test2.rand();
 Matrix result = test1.multiply(test2);
 ```
 
-Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wielowątkową metodę wykonującą mnożenie. Sprawdź dla jakich rozmiarów macierzy opłacalne jest wywoływanie metody wielowątkowej.
-
-**Podpowiedź:** aby utworzyć z poziomu metody klasy wątek, który będzie wykonywał inną metodę klasy (np. wykonującą zadany fragment mnożenia), należy przekazać ją do konstruktora `std::thread` w następujący sposób:
-
-```cpp
-class SomeClass {
-    /* ... */
-
-    void some_method(int p1, int p2) {
-        /* do stuff */
-    }
-
-    void method_creating_threads() {
-        int param1 = 100;
-        int param2 = 1000;
-        std::thread some_thread(&SomeClass::some_method, this, param1, param2);
-    }
-
-    /* ... */
-}
-```
-
-Zauważ dodatkowy argument `this` przekazywany do konstruktora wątku, poprzedzający pozostałe parametry przekazywane do wywoływanej metody. Podobną funkcjonalność można uzyskać korzystając z wyrażeń lambda, metod statycznych lub zwykłych funkcji, zależnie od wygody bądź estetyki kodu.
+Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wielowątkową metodę `multiply_openmp` wykonującą mnożenie. Sprawdź dla jakich rozmiarów macierzy opłacalne jest wywoływanie metody wielowątkowej.
 
 ### 3. Dekodowanie wiadomości
 
