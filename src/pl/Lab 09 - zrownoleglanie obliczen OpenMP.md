@@ -28,12 +28,20 @@ Przełącz edytor tak, aby zmienić opcje dla każdej z konfiguracji - z listy r
 
 Następnie w sekcji **Configuration Properties** → **C/C++** → **Language** → **OpenMP Support** na **Enable**. Dodatkowo, w przypadku kompilatora MSVC, który jest używany domyślnie w Visualu, konieczne będzie wyłączenie opcji *two-phase name lookup*. W sekcji **Configuration Properties** → **C/C++** → **Command Line** dodaj w polu **Additional Options** przełącznik `/Zc:twoPhase-`. Zatwierdź zmiany i zamknij konfigurator.
 
-### Qt Creator z kompilatorem MSVC
+### Qt Creator
 
 Stwórz projekt aplikacji C++ nie wykorzystującej Qt (**Non-Qt Project** → **Plain C++ Application**). W pliku **.pro** opisującym projekt dodaj linijkę:
 
+#### Kompilator MSVC (Windows)
+
 ```qmake
 QMAKE_CXXFLAGS += -openmp
+```
+
+#### Kompilatory GCC, clang (Windows, Linux, macOS)
+
+```qmake
+QMAKE_CXXFLAGS += -fopenmp
 ```
 
 Wymuś ponowne przetworzenie pliku **.pro** klikając prawym przyciskiem na projekt w drzewie plików i wybierz **Run qmake**
@@ -82,7 +90,7 @@ Zaobserwuj czas, jaki wyświetlił program.
 
 Następnie zakomentuj linijkę aktywującą użycie OpenMP: `#pragma omp parallel for private(i)`. Uruchom program raz jeszcze, w ten sam sposób i ponownie zaobserwuj zmierzony czas.
 
-W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powinien być zauważalny spadek wydajności - zazwyczaj 2-3 krotny. Jeśli nie występuje różnica w wydajności, upewnij się, że projekt został dobrze skonfigurowany. Oczywiście przyrost wydajności będzie widoczny tylko w przypadku posiadania wielordzeniowego procesora, ale ostatnie jednordzeniowe modele w komputerach osobistych pojawiały się sporadycznie w okolicach 2010 roku. Liczbę rdzeni i wątków logicznych możesz sprawdzić w systemie Windows 10 otwierając **Menedżer Zadań**, w zakładce **Performance**.
+W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powinien być zauważalny spadek wydajności - zazwyczaj 2-3 krotny. Jeśli nie występuje różnica w wydajności, upewnij się, że projekt został dobrze skonfigurowany. Oczywiście przyrost wydajności będzie widoczny tylko w przypadku posiadania wielordzeniowego procesora, ale ostatnie jednordzeniowe modele w komputerach osobistych pojawiały się sporadycznie w okolicach 2010 roku. Liczbę rdzeni i wątków logicznych możesz sprawdzić w systemie Windows 10 otwierając **Menedżer Zadań**, w zakładce **Performance**, a w systemach Linux komendą `lscpu`.
 
 ### Dyrektywy OpenMP
 
@@ -103,7 +111,7 @@ Wyraz `omp` jest słowem kluczowym OpenMP. Dyrektywa `parallel` wskazuje kompila
 
 W opcjach i parametrach określamy przede wszystkim to, które zmienne są unikalne dla każdego wątku, a które mogą być współdzielone. Dla dyrektywy `for` zmienna iterowana w następującej pętli - w tym przypadku `i` - jest domyślnie prywatna (`private`) - **każdy wątek ma własną jej kopię**, którą wewnętrznie iteruje. Wszystkie zmienne zewnętrzne (np. `array`) są domyślnie **współdzielone** (`shared`), natomiast zmienne deklarowane lokalnie wewnątrz pętli (np. `j`) - muszą być prywatne, ponieważ są tworzone dopiero wewnątrz wątku. Zachowanie domyślne możemy modyfikować podając nazwy zmiennych do opcji `private` lub `shared`, wymienione po przecinku, w nawiasach okrągłych. Tablica wynikowa może być tutaj bez obaw współdzielona, ponieważ każdy z wyników zapisywany jest w odrębne miejsce.
 
-W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, to każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy np. dla `i` od 0 do 249, drugi od 250 do 499 itd. 
+W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, to każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy dla `i` od 0 do 249, drugi od 250 do 499 itd. 
 
 Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jej iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
 
@@ -132,6 +140,8 @@ std::chrono::duration<double> elapsed_time = end - start;
 // wypisanie czasu w sekundach
 std::cerr << "czas: " << elapsed_time.count() << std::endl;
 ```
+
+Pamiętaj, że program uzyska zupełnie różne wyniki w zależności od optymalizacji podczas kompilacji (wybór konfiguracji *Debug* lub *Release*) oraz sposobu uruchomienia - zwykłego lub w trybie debugowania. Porównując wyniki należy uruchamiać tę samą konfigurację, w ten sam sposób.
 
 ## Zadania do samodzielnego wykonania
 
