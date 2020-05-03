@@ -42,7 +42,7 @@ Wymuś ponowne przetworzenie pliku **.pro** klikając prawym przyciskiem na proj
 
 W większości środowisk i kompilatorów włączenie wsparcia dla OpenMP sprowadza się do dodania odpowiedniej flagi do kompilatora (zazwyczaj `-openmp` lub `-fopenmp`) w ustawieniach projektu. W ramach kursu zakładamy korzystanie ze środowiska Visual Studio lub Qt Creator, w przypadku chęci skorzystania z innego środowiska, poszukaj pomocnych informacji w Internecie.
 
-## Hello OpenMP
+## Hello OpenMP!
 
 Wklej poniższy tekst jako kod swojej aplikacji.
 
@@ -92,20 +92,20 @@ Powyższy program tworzy tablicę liczb, a następnie wypełnia każdy element t
 
 gdzie ![Wzór na szereg](../images/09/a_i.svg) to i-ty element tablicy.
 
-Ponieważ każdy element tablicy jest liczony niezależnie (nie zależy od wyników uzyskanych w dla pozostałych elementów), w prosty sposób można wykorzystać dyrektywy OpenMP do zrównoleglenia głównej pętli.
+Ponieważ każdy element tablicy jest liczony niezależnie (nie zależy od wyników uzyskanych w pozostałych przebiegach pętli `for(i)`), w prosty sposób można wykorzystać dyrektywy OpenMP do zrównoleglenia głównej pętli.
 
 W ogólnym przypadku dyrektywy te mają następującą postać:
 ```
 #pragma omp dyrektywy opcje_i_parametry
 ```
 
-Wyraz `omp` jest słowem kluczowym OpenMP. Dyrektywa `parallel` wskazuje kompilatorowi obszar kodu, który będzie zrównoleglany, kolejna dyrektywa `for` powoduje podział pracy na wątki w obrębie poniższej pętli for.
+Wyraz `omp` jest słowem kluczowym OpenMP. Dyrektywa `parallel` wskazuje kompilatorowi obszar kodu, który będzie zrównoleglany, kolejna dyrektywa `for` powoduje podział pracy na wątki w obrębie następującej po niej pętli for.
 
-W opcjach i parametrach określamy przede wszystkim to, które zmienne są unikalne dla każdego wątku, a które mogą być współdzielone. Dla dyrektywy `for` zmienna iterowana w poniższej pętli - w tym przypadku `i` - jest domyślnie prywatna (`private`) - **każdy wątek ma własną jej kopię**, którą wewnętrznie iteruje. Wszystkie zmienne zewnętrzne (np. `array`) są domyślnie **współdzielone** (`shared`), natomiast zmienne deklarowane lokalnie wewnątrz pętli (tutaj np. `j`) - muszą być prywatne, ponieważ są tworzone już wewnątrz wątku, a nie istniały wcześniej. Zachowanie domyślne możemy modyfikować podając nazwy zmiennych do opcji `private` lub `shared`, wymienione po przecinku, w nawiasach okrągłych.
+W opcjach i parametrach określamy przede wszystkim to, które zmienne są unikalne dla każdego wątku, a które mogą być współdzielone. Dla dyrektywy `for` zmienna iterowana w następującej pętli - w tym przypadku `i` - jest domyślnie prywatna (`private`) - **każdy wątek ma własną jej kopię**, którą wewnętrznie iteruje. Wszystkie zmienne zewnętrzne (np. `array`) są domyślnie **współdzielone** (`shared`), natomiast zmienne deklarowane lokalnie wewnątrz pętli (np. `j`) - muszą być prywatne, ponieważ są tworzone dopiero wewnątrz wątku. Zachowanie domyślne możemy modyfikować podając nazwy zmiennych do opcji `private` lub `shared`, wymienione po przecinku, w nawiasach okrągłych. Tablica wynikowa może być tutaj bez obaw współdzielona, ponieważ każdy z wyników zapisywany jest w odrębne miejsce.
 
-W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy np. dla `i` od 0 do 249, drugi od 250 do 499 itd.
+W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, to każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy np. dla `i` od 0 do 249, drugi od 250 do 499 itd. 
 
-Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jego iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
+Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jej iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
 
 ## Przydatne funkcje
 
@@ -147,11 +147,11 @@ Następnie napisz funkcję, która rozpoczynając od przekazanej do niej pojedyn
 uint64_t prime = find_prime_from(63); // zwroci 61
 ```
 
-Przetestuj działanie funkcji dla znanych sobie liczb pierwszych.
+Przetestuj działanie funkcji dla liczb nieco większych od znanych sobie liczb pierwszych, aby zweryfikować poprawność jej implementacji.
 
 Następnie wywołaj funkcję dla każdego elementu z uprzednio przygotowanego zbioru wartości początkowych, a wyniki umieszczaj w odpowiednim miejscu w uprzednio przygotowanym wektorze (pamiętaj, aby zmienić rozmiar wektora wynikowego przed uruchomieniem pętli - nie używaj metody `push_back()`!).
 
-Dodaj do programu odpowiednie dyrektywy OpenMP, dzięki którym jednocześnie będzie uruchomionych wiele wątków z funkcją `find_prime_from`. Zastanów się które zmienne są współdzielone, a które prywatne.
+Dodaj do programu odpowiednie dyrektywy OpenMP, dzięki którym jednocześnie będzie uruchomionych wiele wątków z funkcją `find_prime_from`. Zastanów się, które zmienne powinny być współdzielone, a które prywatne.
 
 Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej.
 
