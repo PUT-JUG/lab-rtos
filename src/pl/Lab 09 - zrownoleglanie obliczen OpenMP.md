@@ -184,24 +184,7 @@ Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wie
 
 ### 3. Dekodowanie wiadomości
 
-W jednym z największych radioteleskopów na Ziemi w Parkes Observatory przechwycono pierwszą w historii ludzkości wiadomość od istot pozaziemskich:
-
-```
-NVD_NZJTDMJZIX^PSJ[ZROVEXOQEVUNYWBWNR^B_MIKOXU]APVBT]A__WM_AXBW_THQYWOCADCEIIUZODMWSD][RQZLSDKIARJ_AD_[SXUKEVVQ_QE_MDPPCMZD_MUGR^ZQNEXQER^[M
-```
-
-Wiadomość jest zakodowana, jednak analiza pozostałości po obcej cywilizacji pozwala przypuszczać, że zastosowano w tym przypadku rozbudowaną wersję *szyfru Cezara*: zamiast stałego przesunięcia dla wszystkich liter, dla każdego kolejnego znaku używane są kolejne przesunięcia z 4-elementowego zbioru będącego kluczem. Zbiór zapętla się dla kolejnych znaków, a dostępny alfabet zawiera znaki od `A` (ASCII *0x41*) do `_` (ASCII *0x5F*).
-
-Przykładowo, dla klucza szyfrującego {3, 7, 11, 0}, zdanie `THIS_IS_A_TEST_MESSAGE` zostanie zakodowane w następujący sposób:
-* znak 1: `T` zostanie przesunięty o 3,
-* znak 2: `H` zostanie przesunięty o 7,
-* znak 3: `I` zostanie przesunięty o 11,
-* znak 4: `S` zostanie przesunięty o 0,
-* znak 5: `_` zostanie przesunięty o 3,
-* znak 6: `I` zostanie przesunięty o 7,
-i tak dalej, tworząc zakodowaną wiadomość: `WOTSCP^_DG_EV[KMHZ^AJL`
-
-Sygnał pochodzi z planety *URANTIA* i naukowcy są zgodni, że to słowo prawdopodobnie jest zawarte w tekście wiadomości. Wykorzystaj wszystkie rdzenie swojego komputera aby zidentyfikować nadawcę wiadomości i rozwiązać jedną z największych zagadek w historii ludzkości!
+Tutaj pojawi się treść zadania
 
 ***
 Autor: *Jakub Tomczyński*
