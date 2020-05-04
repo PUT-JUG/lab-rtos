@@ -42,6 +42,8 @@ QMAKE_CXXFLAGS += -openmp
 
 ```qmake
 QMAKE_CXXFLAGS += -fopenmp
+
+LIBS += -lomp
 ```
 
 Wymuś ponowne przetworzenie pliku **.pro** klikając prawym przyciskiem na projekt w drzewie plików i wybierz **Run qmake**
