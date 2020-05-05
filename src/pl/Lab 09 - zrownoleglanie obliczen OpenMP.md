@@ -113,7 +113,27 @@ Wyraz `omp` jest słowem kluczowym OpenMP. Dyrektywa `parallel` wskazuje kompila
 
 W opcjach i parametrach określamy przede wszystkim to, które zmienne są unikalne dla każdego wątku, a które mogą być współdzielone. Dla dyrektywy `for` zmienna iterowana w następującej pętli - w tym przypadku `i` - jest domyślnie prywatna (`private`) - **każdy wątek ma własną jej kopię**, którą wewnętrznie iteruje. Wszystkie zmienne zewnętrzne (np. `array`) są domyślnie **współdzielone** (`shared`), natomiast zmienne deklarowane lokalnie wewnątrz pętli (np. `j`) - muszą być prywatne, ponieważ są tworzone dopiero wewnątrz wątku. Zachowanie domyślne możemy modyfikować podając nazwy zmiennych do opcji `private` lub `shared`, wymienione po przecinku, w nawiasach okrągłych. Tablica wynikowa może być tutaj bez obaw współdzielona, ponieważ każdy z wyników zapisywany jest w odrębne miejsce.
 
-W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, to każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy dla `i` od 0 do 249, drugi od 250 do 499 itd. 
+Opcje pozwalają także określić sposób rozdzielania pracy na poszczególne wątki klauzulą `schedule`. Domyślny tryb zależy od konkretnej implementacji, ale zazwyczaj używane jest przydzielanie statyczne (`static`), dzielące pracę na możliwie równe "kawałki" (ang. `chunk`), po jednym dla każdego wątku. W uproszczeniu, jeśli w takim przypadku będziemy mieli do dyspozycji 4 wątki, to każdy z nich będzie miał do wykonania 250 iteracji głównej pętli - pierwszy dla `i` od 0 do 249, drugi od 250 do 499 itd:
+
+```
+schedule(static):
+****************                                                
+                ****************                                
+                                ****************                
+                                                ****************
+```
+
+Możliwa jest modyfikacja rozmiaru "kawałka" opcjonalnym argumentem `chunk-size`. Przykładowo, dla `chunk-size` równego 4 wątek pierwszy otrzyma do wykonania iteracje dla `i` równego 0, 1, 2, 3, 16, 17, 18, 19..., drugi 4, 5, 6, 7, 20, 21, 22, 23 itd.
+
+```
+schedule(static, 4):   
+****            ****            ****            ****            
+    ****            ****            ****            ****        
+        ****            ****            ****            ****    
+            ****            ****            ****            ****
+```
+
+Dostępne są także alternatywne algorytmy rozdzielania pracy: `dynamic`, `guided`, `auto` i `runtime`. Wyjaśnienie sposobu ich działania możesz sprawdzić w dokumentacji lub przeczytać wyjaśnienie tutaj: http://jakascorner.com/blog/2016/06/omp-for-scheduling.html.
 
 Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jej iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
 
@@ -147,7 +167,24 @@ Pamiętaj, że program uzyska zupełnie różne wyniki w zależności od optymal
 
 ## Zadania do samodzielnego wykonania
 
-### 1. Szukanie liczb pierwszych
+### 1. Operacje na macierzach
+
+W plikach [`Matrix.h`](../resources/Matrix.h) i  [`Matrix.cpp`](../resources/Matrix.cpp) dostarczono prostą bibliotekę pozwalającą na reprezentację macierzy w formie wektora wektorów. Działanie poszczególnych metod opisane jest w komentarzach przy ich deklaracjach.
+
+Przykładowe użycie biblioteki:
+
+```cpp
+Matrix test1(3, 10);
+Matrix test2(10, 5);
+test1.rand();
+test2.rand();
+
+Matrix result = test1.multiply(test2);
+```
+
+Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wielowątkową metodę `multiply_openmp` wykonującą mnożenie, dzieląc pracę ze względu na elementy macierzy wyjściowej. Sprawdź dla jakich rozmiarów macierzy opłacalne jest wywoływanie metody wielowątkowej.
+
+### 2. Szukanie liczb pierwszych
 
 > Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N
 
@@ -165,28 +202,11 @@ Następnie wywołaj funkcję dla każdego elementu z uprzednio przygotowanego zb
 
 Dodaj do programu odpowiednie dyrektywy OpenMP, dzięki którym jednocześnie będzie uruchomionych wiele wątków z funkcją `find_prime_from`. Zastanów się, które zmienne powinny być współdzielone, a które prywatne.
 
-Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej.
+Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej. Czy widoczny jest przyrost wydajności?
 
-### 2. Operacje na macierzach
+Zwróć uwagę na fakt, że przetworzenie małych liczb zajmie funkcji `find_prime_from` znacznie mniej iteracji (poszukiwana liczba pierwsza będzie przeciętnie znajdowała się bliżej wartości startowej). Zastanów się jak w takim przypadku będą się zachowywać poszczególne wątki przy domyślnych ustawieniach *schedulera*.
 
-W plikach [`Matrix.h`](../resources/Matrix.h) i  [`Matrix.cpp`](../resources/Matrix.cpp) dostarczono prostą bibliotekę pozwalającą na reprezentację macierzy w formie wektora wektorów. Działanie poszczególnych metod opisane jest w komentarzach przy ich deklaracjach.
-
-Przykładowe użycie biblioteki:
-
-```cpp
-Matrix test1(3, 10);
-Matrix test2(10, 5);
-test1.rand();
-test2.rand();
-
-Matrix result = test1.multiply(test2);
-```
-
-Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wielowątkową metodę `multiply_openmp` wykonującą mnożenie. Sprawdź dla jakich rozmiarów macierzy opłacalne jest wywoływanie metody wielowątkowej.
-
-### 3. Dekodowanie wiadomości
-
-Tutaj pojawi się treść zadania
+Zmodyfikuj ustawienia *schedulera* ustawiając `chunk-size` równy 1 lub wybierając alternatywny tryb jego pracy i ponownie zbadaj szybkość działania programu.
 
 ***
 Autor: *Jakub Tomczyński*
