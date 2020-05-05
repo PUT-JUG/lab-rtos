@@ -117,20 +117,20 @@ Opcje pozwalają także określić sposób rozdzielania pracy na poszczególne w
 
 ```
 schedule(static):
-****************                                                
-                ****************                                
-                                ****************                
-                                                ****************
+thread 1: ****************                                                
+thread 2:                 ****************                                
+thread 3:                                 ****************                
+thread 4:                                                 ****************
 ```
 
 Możliwa jest modyfikacja rozmiaru "kawałka" opcjonalnym argumentem `chunk-size`. Przykładowo, dla `chunk-size` równego 4 wątek pierwszy otrzyma do wykonania iteracje dla `i` równego 0, 1, 2, 3, 16, 17, 18, 19..., drugi 4, 5, 6, 7, 20, 21, 22, 23 itd.
 
 ```
 schedule(static, 4):   
-****            ****            ****            ****            
-    ****            ****            ****            ****        
-        ****            ****            ****            ****    
-            ****            ****            ****            ****
+thread 1: ****            ****            ****            ****            
+thread 2:     ****            ****            ****            ****        
+thread 3:         ****            ****            ****            ****    
+thread 4:             ****            ****            ****            ****
 ```
 
 Dostępne są także alternatywne algorytmy rozdzielania pracy: `dynamic`, `guided`, `auto` i `runtime`. Wyjaśnienie sposobu ich działania możesz sprawdzić w dokumentacji lub przeczytać wyjaśnienie tutaj: http://jakascorner.com/blog/2016/06/omp-for-scheduling.html.

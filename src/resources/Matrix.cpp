@@ -10,22 +10,22 @@
 
 Matrix::Matrix(int rows, int cols) {
     data_.resize(rows);
-    for (int r = 0; r < rows; r++) {
+    for (size_t r = 0; r < rows; r++) {
         data_[r].resize(cols);
     }
 }
 
 void Matrix::rand() {
-    for (int r = 0; r < rows(); r++) {
-        for (int c = 0; c < cols(); c++) {
+    for (size_t r = 0; r < rows(); r++) {
+        for (size_t c = 0; c < cols(); c++) {
             data_[r][c] = double(std::rand() % 101)/50.0 - 1;
         }
     }
 }
 
 void Matrix::print() {
-    for (int r = 0; r < data_.size(); r++) {
-        for (int c = 0; c < data_[r].size(); c++) {
+    for (size_t r = 0; r < data_.size(); r++) {
+        for (size_t c = 0; c < data_[r].size(); c++) {
             printf("%5.2f ", data_[r][c]);
         }
         std::cout << std::endl;
@@ -38,10 +38,10 @@ Matrix Matrix::multiply(const Matrix &rhs) {
         return Matrix();
     }
     Matrix result(this->rows(), rhs.cols());
-    for (int r = 0; r < result.rows(); r++) {
-        for (int c = 0; c < result.cols(); c++) {
+    for (size_t r = 0; r < result.rows(); r++) {
+        for (size_t c = 0; c < result.cols(); c++) {
             result.data_[r][c] = 0;
-            for (int i = 0; i < this->cols(); i++) {
+            for (size_t i = 0; i < this->cols(); i++) {
                 result.data_[r][c] += this->data_[r][i]*rhs.data_[i][c];
             }
         }
@@ -56,8 +56,8 @@ bool Matrix::compare(const Matrix &other) {
     if (this->rows() != other.rows()) {
         return false;
     }
-    for (int r = 0; r < rows(); r++) {
-        for (int c = 0; c < cols(); c++) {
+    for (size_t r = 0; r < rows(); r++) {
+        for (size_t c = 0; c < cols(); c++) {
             if (data_[r][c] != other.data_[r][c]) {
                 return false;
             }
