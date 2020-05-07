@@ -38,7 +38,15 @@ Stwórz projekt aplikacji C++ nie wykorzystującej Qt (**Non-Qt Project** → **
 QMAKE_CXXFLAGS += -openmp
 ```
 
-#### Kompilatory GCC, clang (Windows, Linux, macOS)
+#### Kompilatory GCC, clang (Windows)
+
+```qmake
+QMAKE_CXXFLAGS += -fopenmp
+
+LIBS += -lgomp
+```
+
+#### Kompilatory GCC, clang (Linux, macOS)
 
 ```qmake
 QMAKE_CXXFLAGS += -fopenmp
@@ -59,10 +67,11 @@ Wklej poniższy tekst jako kod swojej aplikacji.
 ```cpp
 #include <iostream>
 #include <chrono>
+#include <cmath>
 
 int main() {
     int array[1000];
-    int i;
+    int i = 0;
 
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
@@ -93,6 +102,8 @@ Zaobserwuj czas, jaki wyświetlił program.
 Następnie zakomentuj linijkę aktywującą użycie OpenMP: `#pragma omp parallel for private(i)`. Uruchom program raz jeszcze, w ten sam sposób i ponownie zaobserwuj zmierzony czas.
 
 W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powinien być zauważalny spadek wydajności - zazwyczaj 2-3 krotny. Jeśli nie występuje różnica w wydajności, upewnij się, że projekt został dobrze skonfigurowany. Oczywiście przyrost wydajności będzie widoczny tylko w przypadku posiadania wielordzeniowego procesora, ale ostatnie jednordzeniowe modele w komputerach osobistych pojawiały się sporadycznie w okolicach 2010 roku. Liczbę rdzeni i wątków logicznych możesz sprawdzić w systemie Windows 10 otwierając **Menedżer Zadań**, w zakładce **Performance**, a w systemach Linux komendą `lscpu`.
+
+**Uwaga!** Brak obsługi OpenMP przez kompilator lub jego niepoprawna konfiguracja nie spowoduje zazwyczaj żadnych widocznych błędów w kompilacji ani działaniu programu - dyrektywy `#pragma omp` zostaną po prostu zignorowane, generując co najwyżej ostrzeżenie preprocesora. Stąd ważna jest weryfikacja czy nasze środowisko faktycznie wykorzystuje OpenMP.
 
 ### Dyrektywy OpenMP
 
@@ -133,9 +144,9 @@ thread 3:         ****            ****            ****            ****
 thread 4:             ****            ****            ****            ****
 ```
 
-Dostępne są także alternatywne algorytmy rozdzielania pracy: `dynamic`, `guided`, `auto` i `runtime`. Wyjaśnienie sposobu ich działania możesz sprawdzić w dokumentacji lub przeczytać wyjaśnienie tutaj: http://jakascorner.com/blog/2016/06/omp-for-scheduling.html.
+Dostępne są także alternatywne algorytmy rozdzielania pracy: `dynamic`, `guided`, `auto` i `runtime`. Wyjaśnienie sposobu ich działania możesz sprawdzić w dokumentacji lub przeczytać tutaj: http://jakascorner.com/blog/2016/06/omp-for-scheduling.html.
 
-Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jej iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj jedynie określenie **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
+Jeśli mamy zatem program, w którym zaimplementowaliśmy algorytm składający się z wielokrotnie powtarzanej czynności, a kolejne jej iteracje nie zależą od wyniku poprzednich - możemy w ten sposób bardzo małym nakładem pracy spowodować, że nasz program będzie potrafił wykorzystywać wiele rdzeni procesora. Kluczowe jest tutaj określenie, **które zmienne będą prywatne, a które współdzielone**. Ważna jest też deklaracja wymaganych zmiennych ponad dyrektywą OpenMP - zwróć uwagę na wcześniejszą deklarację zmiennej `i`, zamiast zwyczajowego umieszczenia jej wewnątrz samej pętli `for`.
 
 ## Przydatne funkcje
 
@@ -188,7 +199,7 @@ Przeanalizuj działanie metody `multiply`. Na jej podstawie napisz własną, wie
 
 > Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N
 
-Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wygeneruj wektor - serię wartości należących do powyższego zbioru, dla *n* od 2 do 64. Wykorzystaj typ liczbowy `uint64_t` aby zapewnić, że liczby da się poprawnie zapisać w zmiennej.
+Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wygeneruj wektor - serię wartości należących do powyższego zbioru, dla *n* od 2 do 63. Wykorzystaj typ liczbowy `uint64_t` aby zapewnić, że liczby da się poprawnie zapisać w zmiennej.
 
 Następnie napisz funkcję, która rozpoczynając od przekazanej do niej pojedynczej liczby, będzie przeszukiwała zbiór liczb naturalnych w kierunku malejącym, aż do napotkania liczby pierwszej:
 
