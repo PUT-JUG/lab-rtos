@@ -142,9 +142,7 @@ double integrate(double x_min, double x_max, double step, std::function<double(d
 }
 ```
 
-Przyjmuje ona zakres argumentów, krok całkowania oraz obiekt typu `std::function` wskazujący na określoną funkcję, której wartości mają zostać zcałkowane.
-
-Przykładowe jej użycie może wyglądać następująco - potrzebujemy funkcji, która obliczy swoją wartość dla danego argumentu:
+Przyjmuje ona zakres argumentów, krok całkowania oraz obiekt typu `std::function` wskazujący na określoną funkcję, której wartości mają zostać zcałkowane. Przykładowe jej użycie może wyglądać następująco - potrzebujemy funkcji, która obliczy swoją wartość dla danego argumentu:
 
 ```cpp
 double sin_poly(double arg) {
@@ -152,9 +150,7 @@ double sin_poly(double arg) {
 }
 ```
 
-W tym przypadku `sin_poly` opisuje funkcję ![sin_poly](../images/10/sin_poly.svg),
-
-Następnie wywołujemy funkcję `integrate` przekazując jej odpowiednie argumenty i zdefiniowaną uprzednio funkcję `sin_poly`:
+W tym przypadku `sin_poly` opisuje funkcję ![sin_poly](../images/10/sin_poly.svg). Następnie wywołujemy funkcję `integrate` przekazując jej odpowiednie argumenty i zdefiniowaną uprzednio funkcję `sin_poly`:
 
 ```cpp
 double result = integrate(0, 100*M_PI, 0.00001, sin_poly);
@@ -164,15 +160,15 @@ Zbadaj działanie powyższego kodu. Na jego podstawie napisz własną funkcję `
 
 **Podpowiedzi:**
 
-Do sprawdzenia obliczeń możesz wykorzystać serwis wolframalpha.com
+Do sprawdzenia obliczeń możesz wykorzystać serwis www.wolframalpha.com
 Przykładowe zapytanie może mieć postać:
 
 > integrate (sin(x)^2 * x + sin(x)^3 * x + sin(x)^4 * x + sin(x)^5 * x) from 0 to 100*pi
 
 Czasem przydatne jest sprawdzenie iloma wątkami dysponujemy w systemie - wewnątrz kodu oznaczonego dyrektywą `omp parallel` możemy wykorzystać funkcje:
 
-`omp_get_num_threads()` - zwraca liczbę używanych wątków
-`omp_get_thread_num()` - zwraca indeks aktualnego wątku (w zakresie od 0 do `omp_get_num_threads()`-1)
+* `omp_get_num_threads()` - zwraca liczbę używanych wątków
+* `omp_get_thread_num()` - zwraca indeks aktualnego wątku (w zakresie od 0 do `omp_get_num_threads()`-1)
 
 ### Zadanie 3 - synchronizacja katalogów
 Załóżmy że mamy `N` serwerów, między którymi chcielibyśmy synchronizować pliki. W przypadku standardowego procesu (bez zrównoleglania) działanie wyglądałoby następująco:
