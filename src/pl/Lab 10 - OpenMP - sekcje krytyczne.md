@@ -62,10 +62,10 @@ int main() {
 Tak zmodyfikowany program traci jednak sens w kontekście wielowątkowości - całe obliczenia znajdują się w sekcji krytycznej, a do tego dokładany jest narzut związany z przełączaniem kontekstu i oczekiwaniem na wejście do sekcji krytycznej, co powoduje, że działa on wolniej niż program jednowątkowy.
 
 ## Synchronizacja wątków w OpenMP
-W odróżnieniu od sekcji krytycznych (lub semaforów - omawianych później, gdzie jednoczesny dostęp do zasobów jest ograniczony do jednego lub większej liczby wątków, czasem istnieje konieczność synchronizacji wątków, szczególnie jeśli realizują zadanie, które składa się z faz, a każda z nich wymaga wyniku z pozostałych wątków. Zadanie to można rozwiązać na kilka sposobów.
-//rysunek
 
-W OpenMP istnieje mechanizm bariery (```barier```), który powoduje że wszystkie uruchomione wątki oczekują, do czasu aż każdy z nich osiągnie barierę a dopiero potem są wznawiane. Dzięki temu mamy pewność, że wyniki, które miały zostać wygenerowane w pierwszej fazie (przed barierą) przez każdy z wątków są dostępne dla pozostałych wątków, gdy rozpoczynają wykonywanie kodu znajdującego się za barierą.
+W odróżnieniu od sekcji krytycznych (lub semaforów - omawianych później), gdzie jednoczesny dostęp do zasobów jest ograniczony do jednego lub większej liczby wątków, czasem istnieje konieczność synchronizacji wątków, szczególnie jeśli realizują zadanie, które składa się z faz, a każda z nich wymaga wyniku z pozostałych wątków. Zadanie to można rozwiązać na kilka sposobów.
+
+W OpenMP istnieje mechanizm bariery (`barrier`), który powoduje że wszystkie uruchomione wątki oczekują, do czasu aż każdy z nich osiągnie barierę a dopiero potem są wznawiane. Dzięki temu mamy pewność, że wyniki, które miały zostać wygenerowane w pierwszej fazie (przed barierą) przez każdy z wątków są dostępne dla pozostałych wątków, gdy rozpoczynają wykonywanie kodu znajdującego się za barierą.
 
 ```cpp
 #define MAX_NT 4
@@ -109,11 +109,11 @@ int main(void)
 }
 
 ```
-Dyrektywa ```#pragma omp parallel num_threads(MAX_NT)``` uruchamia ```MAX_NT``` wątków, gdzie scope wątku określony jest nawiasami klamrowymi. Daje to możliwość odpalenia danej sekcji kodu w kilku instancjach wątków mimo, że nie ma tu pętli. 
+Dyrektywa `#pragma omp parallel num_threads(MAX_NT)` uruchamia `MAX_NT` wątków, gdzie scope wątku określony jest nawiasami klamrowymi. Daje to możliwość uruchomienia danej sekcji kodu w kilku instancjach wątków mimo, że nie ma tu pętli. 
 
-Funkcja ``omp_get_thread_num()`` zwraca identyfikator wątku. Gdzie wartość 0 oznacza wątek główny programu (wątek ten nie wykonuje sekcji ``#opm parallel...``, tylko czeka na jej zakończenie), natomiast uruchamiane wątki mają kolejne numery porządkowe.
+Funkcja `omp_get_thread_num()` zwraca identyfikator wątku. Gdzie wartość 0 oznacza wątek główny programu (wątek ten nie wykonuje sekcji `#omp parallel...`, tylko czeka na jej zakończenie), natomiast uruchamiane wątki mają kolejne numery porządkowe.
 
-``#pragma omp barrier`` tworzy barierę, która zatrzymuje dalsze wykonanie każdego z wątków, do czasu aż wszystkie z nich nie osiągną bariery.
+`#pragma omp barrier` tworzy barierę, która zatrzymuje dalsze wykonanie każdego z wątków, do czasu aż wszystkie z nich nie osiągną bariery.
 
 W przykładzie powyżej w każdym z wątków uruchamiana jest funkcja ``thread_work``, której czas trwania jest zależny od numeru wątku (trwa tyle sekund ile wynosi id wątku). Uruchamiając kod zwróć uwagę w jakiej kolejności uruchamiane są wątki, oraz w jakiej kolejności wątki dochodzą do bariery. 
 
