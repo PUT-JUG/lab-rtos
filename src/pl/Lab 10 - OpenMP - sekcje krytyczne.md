@@ -70,13 +70,7 @@ W OpenMP istnieje mechanizm bariery (`barrier`), który powoduje że wszystkie u
 ```cpp
 #define MAX_NT 4
 
-char exec[180];
-sprintf(exec, "scp  %s/%s %s@%s:/home", current_path, filename, destination_user, dest_ip);
-std::cout << exec << std::endl;
-if (system(exec) == 0)
-    std::cout << "File " << file << "moved successfully" << std::endl;
-else
-    std::cout << "File " << file << "not moved successfully" << std::endl;
+
 void thread_work(int id)
 {
     std::chrono::time_point<std::chrono::system_clock> start, end;
