@@ -190,9 +190,14 @@ W tym celu:
 - w systemie w którym piszesz program, wygeneruj klucz `RSA`, który umożliwi Ci logowanie się do serwera ssh oraz używanie scp bez podawania hasła
 * Dla Windows:
     * zainstaluj program WinSC, uruchom go i wprowadź adres serwera, użytkownika oraz hasło ssh
-    * przejdź do [Advanced->Authentication](https://winscp.net/eng/docs/ui_login_authentication) i klikając na przycisk `Tools` wybierz **Generate new key pair** i wygeneruj klucz RSA - zapisz klucz publiczny i prywatny w znanej lokalizacji (https://www.ssh.com/ssh/putty/windows/puttygen)
+    * przejdź do [Advanced->Authentication](https://winscp.net/eng/docs/ui_login_authentication) i klikając na przycisk `Tools` wybierz **Generate new key pair** i wygeneruj klucz RSA - zapisz w znanej tobie lokalizacji, dostępnej tylko dla twojego użytkownika (np. w c:\Users\user\Documents): 
+        * klucz publiczny (klikając przyciski **Save public key**) dodaj rozszerzenie .ppk
+        * prywatny w standardzie openssh **Conversions-> Export OpenSSH key (new format)**
     * zainstaluj swój klucz publiczny na serwerze ssh, tak żeby była możliwa autoryzacja bez użycia hasła: w WinSCP przejdź do zakładki [authentication](https://winscp.net/eng/docs/ui_login_authentication), z kliknij na przycisku `Tools` wybierz: `Install Public Key into server` podając klucz publiczny, który zostanie zainstalowany na serwerze i powiązany z twoim loginem
     * od tego momentu możesz logować się do serwer bez podawania hasła, a jedynie załączając w poleceniu opcją `-i` ścieżkę dostępu do klucza prywatnego.
+    ```
+    ssh -i c:\sciezka\klucz user@ip_servera
+    ```
 * Dla Linux lub macOS:
     * klucz jest zazwyczaj domyślnie wygenerowany jako `~/.ssh/id_rsa` oraz  `~/.ssh/id_rsa.pub`, jeśli go nie ma możesz go wygenerować poleceniem `ssh-keygen`
     * skopiuj klucz na serwer poleceniem `ssh-copy-id` (składnia identyczna jak dla polecenia `ssh`)
