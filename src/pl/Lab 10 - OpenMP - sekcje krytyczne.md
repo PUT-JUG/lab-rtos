@@ -225,8 +225,13 @@ if (system(exec) == 0) {
 
 W systemie Windows może wystąpić problem z dostępem do pliku wykonywalnego `scp.exe`, ponieważ znajduje się on w katalogach systemowych.
 
-Możesz ominąć ten problem kopiując plik `scp.exe` z jego oryginalnej lokalizacji do katalogu uruchomieniowego projektu (domyślnie jest to katalog, gdzie znajdują się pliki źródłowe: `<lokalizacja_projektu>/<nazwa_projektu>/<nazwa_projektu>`).
+Możesz ominąć ten problem kopiując pliki `scp.exe` oraz `ssh.exe` z ich oryginalnej lokalizacji do katalogu uruchomieniowego projektu (domyślnie jest to katalog, gdzie znajdują się pliki źródłowe:
+
+```
+<lokalizacja_projektu>/<nazwa_projektu>/<nazwa_projektu>
+```
 
 Oryginalną lokalizację pliku `scp.exe` znajdziesz wpisując w terminalu polecenie `where scp`.
+
 ***
 Autor: *Jakub Tomczyński*, *Piotr Kaczmarek*
