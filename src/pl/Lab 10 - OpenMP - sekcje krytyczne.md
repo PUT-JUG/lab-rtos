@@ -121,6 +121,8 @@ W odróżnieniu od sekcji krytycznych (lub semaforów - omawianych później), g
 W OpenMP istnieje mechanizm bariery (`barrier`), który powoduje że wszystkie uruchomione wątki oczekują, do czasu aż każdy z nich osiągnie barierę a dopiero potem są wznawiane. Dzięki temu mamy pewność, że wyniki, które miały zostać wygenerowane w pierwszej fazie (przed barierą) przez każdy z wątków są dostępne dla pozostałych wątków, gdy rozpoczynają wykonywanie kodu znajdującego się za barierą.
 
 ```cpp
+#include <omp.h>
+
 #define MAX_NT 4
 
 
@@ -189,15 +191,16 @@ W tym celu:
 - stwórz na serwerze 4-8 katalogów i w każdym z nich umieść pliki `status` (o różnym rozmiarze 10-300MB).
 - w systemie w którym piszesz program, wygeneruj klucz `RSA`, który umożliwi Ci logowanie się do serwera ssh oraz używanie scp bez podawania hasła
 * Dla Windows:
-    * zainstaluj program WinSC, uruchom go i wprowadź adres serwera, użytkownika oraz hasło ssh
+    * zainstaluj program WinSCP, uruchom go i wprowadź adres serwera, użytkownika oraz hasło ssh
     * przejdź do [Advanced->Authentication](https://winscp.net/eng/docs/ui_login_authentication) i klikając na przycisk `Tools` wybierz **Generate new key pair** i wygeneruj klucz RSA - zapisz w znanej tobie lokalizacji, dostępnej tylko dla twojego użytkownika (np. w c:\Users\user\Documents): 
         * klucz publiczny (klikając przyciski **Save public key**) dodaj rozszerzenie .ppk
         * prywatny w standardzie openssh **Conversions-> Export OpenSSH key (new format)**
     * zainstaluj swój klucz publiczny na serwerze ssh, tak żeby była możliwa autoryzacja bez użycia hasła: w WinSCP przejdź do zakładki [authentication](https://winscp.net/eng/docs/ui_login_authentication), z kliknij na przycisku `Tools` wybierz: `Install Public Key into server` podając klucz publiczny, który zostanie zainstalowany na serwerze i powiązany z twoim loginem
     * od tego momentu możesz logować się do serwer bez podawania hasła, a jedynie załączając w poleceniu opcją `-i` ścieżkę dostępu do klucza prywatnego.
-    ```
+```
     ssh -i c:\sciezka\klucz user@ip_servera
-    ```
+```
+
 * Dla Linux lub macOS:
     * klucz jest zazwyczaj domyślnie wygenerowany jako `~/.ssh/id_rsa` oraz  `~/.ssh/id_rsa.pub`, jeśli go nie ma możesz go wygenerować poleceniem `ssh-keygen`
     * skopiuj klucz na serwer poleceniem `ssh-copy-id` (składnia identyczna jak dla polecenia `ssh`)
@@ -205,7 +208,7 @@ W tym celu:
 
 Napisz program, który równolegle pobierze dane ze wszystkich serwerów (zasobów sieciowych) i zapisze je do tymczasowej lokalizacji na twoim komputerze dodając do nazwy pliku identyfikator serwera (np. `status_serwer_id`), a następnie wyśle wszystkie pobrane pliki `status` do wszystkich serwerów/zasobów sieciowych. Pamiętaj, że każdy wątek przed rozpoczęciem ładowania aktualizacji plików na serwer musi poczekać do czasu, aż wszystkie wątki zakończą pobieranie.
 
-*Uwaga* w celu wywołania polecenia systemowego (np. komendy `scp`) użyj funkcji `system`. Jeśli chcesz przygotować ciąg znaków generujących polecenie (zawierających np. nazwę pliku zależną od id wątku, nazwę zasobu sieciowego itp. użyj komendy `sprintf` lub `sprintf_s`.
+**Uwaga** w celu wywołania polecenia systemowego (np. komendy `scp`) użyj funkcji `system`. Jeśli chcesz przygotować ciąg znaków generujących polecenie (zawierających np. nazwę pliku zależną od id wątku, nazwę zasobu sieciowego itp. użyj komendy `sprintf` lub `sprintf_s`.
 np. 
 ```cpp
 char exec[180];
@@ -217,5 +220,13 @@ if (system(exec) == 0) {
     std::cout << "File " << file << "not moved successfully" << std::endl;
 }
 ```
+
+**Uwaga 2**
+
+W systemie Windows może wystąpić problem z dostępem do pliku wykonywalnego `scp.exe`, ponieważ znajduje się on w katalogach systemowych.
+
+Możesz ominąć ten problem kopiując plik `scp.exe` z jego oryginalnej lokalizacji do katalogu uruchomieniowego projektu (domyślnie jest to katalog, gdzie znajdują się pliki źródłowe: `<lokalizacja_projektu>/<nazwa_projektu>/<nazwa_projektu>`).
+
+Oryginalną lokalizację pliku `scp.exe` znajdziesz wpisując w terminalu polecenie `where scp`.
 ***
 Autor: *Jakub Tomczyński*, *Piotr Kaczmarek*
