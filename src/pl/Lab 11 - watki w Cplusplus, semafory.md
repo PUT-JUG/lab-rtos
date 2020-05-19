@@ -186,51 +186,5 @@ Pamiętaj, że aby blokada miała sens, muteks - zmienna `counter_mtx` również
 
 Zastanów się, które operacje w **Zadaniu 3** powinny należeć do sekcji krytycznej. Stwórz muteks, który będzie odpowiadał za kontrolę dostępu do zwiększanej zmiennej. Zmodyfikuj program tak, aby działał poprawnie.
 
-## Problem producenta i konsumenta
-
-Problem producenta i konsumenta pojawia się, kiedy w systemie występują dane, które są generowane i przetwarzane asynchronicznie. W problemie występują dwa działające współbieżnie rodzaje procesów: producent i konsument, którzy dzielą wspólny zasób - bufor dla przetwarzanych jednostek danych. Producent nie powinien próbować umieszczać danych w buforze, kiedy ten jest pełny, a konsument nie powinien przetwarzać danych, kiedy bufor jest pusty.
-
-Przykładem występowania problemu producenta i konsumenta może być np. obsługa klawiatury, gdzie sterownik klawiatury przechwytuje naciśnięcia klawiszy i umieszcza odpowiednie znaki w buforze klawiatury, a system operacyjny bądź program pobiera znaki z bufora i podejmuje odpowiednie akcje.
-
-### ❗️Zadanie 5.❗️ - producent i konsument
-
-Napisz program, który będzie pokazywał działanie producenta i konsumenta na przykładzie produktów - losowych ciągów znaków.
-
-Producent i konsument powinni pracować w dwóch wątkach, wykonujących się w pętli nieskończoność:
-
-* Producent: cyklicznie generuje losowe 10-znakowe ciągi i próbuje umieścić je w buforze. Jeśli bufor jest pełny, wygenerowany „produkt” zostaje porzucony, a do konsoli, do strumienia błędów (*stderr*) zostaje wypisany odpowiedni komunikat, następnie czeka przez losowy czas (określony parametrami).
-
-* Konsument: sprawdza czy w buforze są jakieś elementy, jeśli tak - pobiera je i zapisuje do pliku, każdy w oddzielnej linii, następnie czeka przez czas określony parametrem.
-
-Program powinien mieć następujące parametry, definiowane stałymi w kodzie:
-
-* minimalny okres pracy producenta
-* maksymalny okres pracy producenta
-* okres pracy konsumenta
-* maksymalna głębokość kolejki
-
-Jako bufor możesz wykorzystać kolejkę z biblioteki standardowej (`std::queue`), z odpowiednimi zabezpieczeniami. Zaobserwuj działanie programu w różnych warunkach, zmieniając opóźnienia/głębokość kolejki i doprowadzając do przepełnienia bufora.
-
-*Przydatne funkcje:*
-
-Generowanie ciągu znaków:
-
-```cpp
-std::string temp;
-temp.resize(10);
-for (int i = 0; i < 10; i++) {
-    temp[i] = rand()%('z'-'a'+1)+'a';
-}
-```
-
-Napisz program w dwóch wersjach:
-
-a) Kolejka FIFO 1-1
-Uruchom jednego producenta i jednego konsumenta, działających w dwóch wątkach i wymieniających się danymi poprzez współdzielony bufor. 
-
-b) Kolejka FIFO many-many
-Rozbuduj program z podpunktu a) o możliwość uruchomienia dowolnej liczby producentów i konsumentów podanej przez użytkownika. Każdy konsument powinien zapisywać dane w pliku o nazwie zawierającej swój ID wątku.
-
-
 ***
 Autor: *Jakub Tomczyński*
