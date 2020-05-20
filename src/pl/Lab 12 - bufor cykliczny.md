@@ -72,7 +72,7 @@ Przykładowe stany bufora cyklicznego:
 
 ### ❗️Zadanie 2.❗️ - bufor cykliczny
 
-Napisz program analogiczny do **Zadania 2a** z poprzednich zajęć tak, aby wykorzystywał bufor cykliczny.
+Napisz program analogiczny do **Zadania 1** z poprzednich zajęć tak, aby wykorzystywał bufor cykliczny.
 
 ## Zmienne warunkowe
 
