@@ -72,9 +72,9 @@ Przykładowe stany bufora cyklicznego:
 
 ### ❗️Zadanie 2.❗️ - bufor cykliczny
 
-Napisz program analogiczny do **Zadania 1** z poprzednich zajęć tak, aby wykorzystywał bufor cykliczny.
+Napisz program analogiczny do **Zadania 1** tak, aby wykorzystywał bufor cykliczny.
 
-## Zmienne warunkowe
+# Zmienne warunkowe
 
 Zmienne warunkowe (ang. *condition variables*) są jednym ze sposobów na synchronizację pomiędzy wątkami. Pozwalają na przysłanie sygnału z jednego wątku do pozostałych, które mogą na niego oczekiwać (np. sygnał o nadejściu danych, zwolnieniu bufora itp.). Dzięki temu nie jest konieczne np. okresowe sprawdzanie w pętli danego warunku, co mogłoby zwiększać czas reakcji na wystąpienie warunku lub powodować niepotrzebne użycie procesora. Zmienne warunkowe w C++11 są dostępne pod postacią klasy `std::condition_variable` po załączeniu nagłówka `<condition_variable>`. Zmienna warunkowa używana jest zawsze w połączeniu z muteksem oraz obiektem `std::unique_lock`, który zarządza blokadą muteksu. Oczekiwanie na sygnał od zmiennej warunkowej (dodanie wątku do kolejki oczekujących) rozpoczynamy metodą `wait()`. Pozostałe wątki korzystające z danej zmiennej warunkowej mogą powiadomić jeden z kolejki oczekujących wątków metodą `notify_one()` lub wszystkie oczekujące metodą `notify_all()`. Przykładowe użycie zmiennej warunkowej pokazano na poniżej:
 
@@ -135,5 +135,3 @@ double read_sensor(int id){
 
 ***
 Autor: *Jakub Tomczyński*
-
-Data ostatniej modyfikacji: {JUG:MODIFICATION_DATE}
