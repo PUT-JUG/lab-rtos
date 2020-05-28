@@ -10,7 +10,7 @@ Napisz program, który będzie pokazywał działanie producenta i konsumenta na 
 
 Producent i konsument powinni pracować w dwóch wątkach, wykonujących się w pętli nieskończoność:
 
-* Producent: cyklicznie generuje losowe 10-znakowe ciągi i próbuje umieścić je w buforze. Jeśli bufor jest pełny, wygenerowany „produkt” zostaje porzucony, a do konsoli, do strumienia błędów (*stderr*) zostaje wypisany odpowiedni komunikat, następnie czeka przez losowy czas (określony parametrami).
+* Producent: cyklicznie generuje losowe 10-znakowe ciągi i próbuje umieścić je w buforze, a następnie czeka przez losowy czas (ograniczony parametrami). Jeśli bufor jest pełny, wygenerowany „produkt” zostaje porzucony, a do konsoli, do strumienia błędów (*stderr*) zostaje wypisany odpowiedni komunikat, .
 
 * Konsument: sprawdza czy w buforze są jakieś elementy, jeśli tak - pobiera je i zapisuje do pliku, każdy w oddzielnej linii, następnie czeka przez czas określony parametrem.
 
@@ -25,13 +25,27 @@ Jako bufor możesz wykorzystać kolejkę z biblioteki standardowej (`std::queue`
 
 *Przydatne funkcje:*
 
-Generowanie ciągu znaków:
+Generator liczb losowych, którego można używać bezpiecznie z poziomu wielu wątków (sam generator jest współdzielony - `static`, ale jego wywołanie jest chronione muteksem).
+
+```cpp
+int random_int(int min, int max) {
+    static std::mt19937 random_number_engine;
+    static std::mutex rng_mtx;
+    std::uniform_int_distribution<int> distribution(min, max);
+    rng_mtx.lock();
+    int retval = distribution(random_number_engine);
+    rng_mtx.unlock();
+    return retval;
+}
+```
+
+Generowanie ciągu znaków na podstawie powyższego:
 
 ```cpp
 std::string temp;
 temp.resize(10);
 for (int i = 0; i < 10; i++) {
-    temp[i] = rand()%('z'-'a'+1)+'a';
+    temp[i] = random('a', 'z');
 }
 ```
 
