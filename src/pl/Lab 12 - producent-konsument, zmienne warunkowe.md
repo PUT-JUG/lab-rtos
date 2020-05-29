@@ -25,7 +25,7 @@ Jako bufor możesz wykorzystać kolejkę z biblioteki standardowej (`std::queue`
 
 *Przydatne funkcje:*
 
-Generator liczb losowych, którego można używać bezpiecznie z poziomu wielu wątków (sam generator jest współdzielony - `static`, ale jego wywołanie jest chronione muteksem).
+Generator liczb losowych, którego można używać bezpiecznie z poziomu wielu wątków (sam generator jest współdzielony między wszystkie wątki i wywołania funkcji (`static`), ale jego wywołanie jest chronione muteksem).
 
 ```cpp
 int random_int(int min, int max) {
@@ -45,7 +45,7 @@ Generowanie ciągu znaków na podstawie powyższego:
 std::string temp;
 temp.resize(10);
 for (int i = 0; i < 10; i++) {
-    temp[i] = random('a', 'z');
+    temp[i] = random_int('a', 'z');
 }
 ```
 
