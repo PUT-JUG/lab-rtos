@@ -51,10 +51,12 @@ for (int i = 0; i < 10; i++) {
 
 Napisz program w dwóch wersjach:
 
-a) Kolejka FIFO 1-1
+#### a) Kolejka FIFO 1-1
+
 Uruchom jednego producenta i jednego konsumenta, działających w dwóch wątkach i wymieniających się danymi poprzez współdzielony bufor. 
 
-b) Kolejka FIFO many-many
+#### b) Kolejka FIFO many-many
+
 Rozbuduj program z podpunktu a) o możliwość uruchomienia dowolnej liczby producentów i konsumentów podanej przez użytkownika. Każdy konsument powinien zapisywać dane w pliku o nazwie zawierającej swój ID wątku.
 
 
