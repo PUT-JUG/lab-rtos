@@ -15,7 +15,6 @@ Przykładowy plik wejściowy możesz pobrać tutaj (słowa celowo są sztucznie 
 #include <iostream>
 #include <string>
 #include <vector>
-#include <thread>
 #include <map>
 
 int calculate_points(const std::string& word, const std::map<char, unsigned int> &face_values) {
@@ -57,6 +56,8 @@ int main() {
 }
 ```
 
+***
+
 ## Zadanie 2
 
 Poniżej umieszczono kod programu odczytującego i przetwarzającego dane z symulowanego czujnika wilgotności.
@@ -70,7 +71,7 @@ Poza tym w wątku głównym aktualne dane (po filtracji) są wyświetlane w kons
 Wymiana danych pomiędzy wątkami używa współdzielonych zmiennych. Zmodyfikuj program tak, aby wyeliminować możliwość pojawienia się związanych z tym błędów.
 
 **Uwaga!**
-Nie modyfikuj klas `HumiditySensor` ani `Filter` - wszystkie modyfikacje powinny mieć miejsce w funkcji `main()`.
+Nie modyfikuj klas `HumiditySensor` ani `Filter`
 
 ```cpp
 #include <csignal>
@@ -163,6 +164,8 @@ int main() {
     filter_thread.join();
 }
 ```
+
+***
 
 ## Zadanie 3
 
