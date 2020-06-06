@@ -1,6 +1,170 @@
 # Programowanie współbieżne - powtórka
 
-## Zadanie
+## Zadanie 1
+
+Poniżej umieszczono kod programu obliczającego punktację w grze Scrabble dla słów zaczytanych z pliku tekstowego.
+
+Program wczytuje słowa do wektora `words`, a następnie umieszcza odpowiadające im wartości punktów w wektorze `scores`.
+
+Wykorzystując wybrane mechanizmy C++, zrównolegl obliczanie punktów.
+
+Przykładowy plik wejściowy możesz pobrać tutaj (słowa celowo są sztucznie posklejane w długie ciągi): [`gibberish.txt`](../resources/gibberish.txt)
+
+```cpp
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <thread>
+#include <map>
+
+int calculate_points(const std::string& word, const std::map<char, unsigned int> &face_values) {
+    int value = 0;
+    for (const char &c : word) {
+        value += face_values.at(c);
+    }
+    return value;
+}
+
+int main() {
+    std::map<char, unsigned int> face_values_english = {
+        {'a', 1}, {'e', 1}, {'i', 1}, {'o', 1}, {'u', 1}, {'l', 1}, {'n', 1}, {'s', 1}, {'t', 1}, {'r', 1},
+        {'d', 2}, {'g', 2},
+        {'b', 3}, {'c', 3}, {'m', 3}, {'p', 3},
+        {'f', 4}, {'h', 4}, {'v', 4}, {'w', 4}, {'y', 4},
+        {'k', 5},
+        {'j', 8}, {'x', 8},
+        {'q', 10}, {'z', 10}
+    };
+
+    std::ifstream file("gibberish.txt");
+    if (file.fail()) {
+        std::cerr << "Could not open file" << std::endl;
+        return 1;
+    }
+    std::vector<std::string> words;
+    while (file.good()) {
+        std::string word;
+        file >> word;
+        words.push_back(word);
+    }
+
+    std::vector<int> scores;
+    scores.reserve(words.size());
+    for (const std::string &w : words) {
+         scores.push_back(calculate_points(w, face_values_english));
+    }
+}
+```
+
+## Zadanie 2
+
+Poniżej umieszczono kod programu odczytującego i przetwarzającego dane z symulowanego czujnika wilgotności.
+
+W programie uruchomione są (poza wątkiem głównym) wątki:
+* czujnika - gdzie dane pobierane są z czujnika z maksymalną prędkością (jeden odczyt trwa ok. 100 ms)
+* filtra - gdzie dane są poddawane filtracji na podstawie ostatnich 10 próbek, co 1 sekundę
+
+Poza tym w wątku głównym aktualne dane (po filtracji) są wyświetlane w konsoli, co 3 sekundy. Przerwanie programu możliwe jest kombinacją klawiszy Ctrl-C.
+
+Wymiana danych pomiędzy wątkami używa współdzielonych zmiennych. Zmodyfikuj program tak, aby wyeliminować możliwość pojawienia się związanych z tym błędów.
+
+**Uwaga!**
+Nie modyfikuj klas `HumiditySensor` ani `Filter` - wszystkie modyfikacje powinny mieć miejsce w funkcji `main()`.
+
+```cpp
+#include <csignal>
+#include <iostream>
+#include <string>
+#include <thread>
+#include <random>
+#include <vector>
+#include <queue>
+
+class HumiditySensor {
+public:
+    HumiditySensor() {
+        rng_.seed(static_cast<unsigned int>(std::time(nullptr)));
+    }
+    
+    double blocking_read() {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        return dist_(rng_);
+    }
+private:
+    std::mt19937 rng_;
+    std::normal_distribution<double> dist_{40.0, 10.0};
+};
+
+class Filter {
+public:
+    Filter(size_t buffer_length = 10) : buffer_length_(buffer_length) {
+        buffer_.reserve(buffer_length);
+    }
+    void add_data(double data) {
+        if (buffer_.size() < buffer_length_) {
+            buffer_.push_back(data);
+        } else {
+            buffer_[buffer_idx_] = data;
+            buffer_idx_ = (buffer_idx_ + 1) % buffer_length_;
+        }
+    }
+    double output() {
+        return std::accumulate(buffer_.begin(), buffer_.end(), 0.0) / buffer_.size();
+    }
+private:
+    std::vector<double> buffer_;
+    size_t buffer_idx_ = 0;
+    size_t buffer_length_;
+};
+
+void sensor_thread_func(bool& cont, std::queue<double> &raw_data) {
+    HumiditySensor sensor;
+    while (cont) {
+        raw_data.push(sensor.blocking_read());
+    }
+}
+
+void filter_thread_func(bool& cont, std::queue<double> &raw_data, std::vector<double> &filtered_data) {
+    Filter filter;
+    while (cont) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        while (!raw_data.empty()) {
+            filter.add_data(raw_data.back());
+            raw_data.pop();
+        }
+        filtered_data.push_back(filter.output());
+    }
+}
+
+bool cont = true;
+
+int main() {
+    std::signal(SIGINT, [](int){std::cout << "Quitting"; cont = false;});
+    
+    std::queue<double> raw_data_;
+    std::vector<double> filtered_data_;
+    
+    std::thread sensor_thread(sensor_thread_func, std::ref(cont), std::ref(raw_data_));
+    std::thread filter_thread(filter_thread_func, std::ref(cont), std::ref(raw_data_), std::ref(filtered_data_));
+    
+    while (cont) {
+        if (!filtered_data_.empty()) {
+            std::cout << "filtered data:";
+            for (double v : filtered_data_) {
+                std::cout << " " << v;
+            }
+            std::cout << std::endl;
+            filtered_data_.clear();
+        }
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+    }
+    sensor_thread.join();
+    filter_thread.join();
+}
+```
+
+## Zadanie 3
 
 Dostarczono klasę `TemperatureSensor`, która odpowiada za komunikację z symulowanym czujnikiem temperatury oraz funkcję `do_magic_processing()`, która dokonuje czasochłonnego przetwarzania danych.
 
@@ -71,5 +235,3 @@ double do_magic_processing(double input) {
 
 ***
 Autor: *Jakub Tomczyński*
-
-Data ostatniej modyfikacji: {JUG:MODIFICATION_DATE}
