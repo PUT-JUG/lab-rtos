@@ -236,5 +236,42 @@ double do_magic_processing(double input) {
 }
 ```
 
+**Podpowiedź:** aby utworzyć wątek, który będzie wykonywał metodę klasy inną niż statyczną, należy przekazać do konstruktora `std::thread` wskaźnik do metody (`&nazwa_klasy::nazwa_metody`) jako funkcję, a następnie dodatkowy argument będący wskaźnikiem do konkretnej instancji obiektu:
+
+Z zewnątrz:
+```cpp
+class SomeClass {
+    /* ... */
+
+    void some_method(int p1, int p2) {
+        /* do stuff */
+    }
+}
+```
+
+```cpp
+SomeClass obj;
+std::thread some_thread(&SomeClass::some_method, &obj, 1, -100);
+```
+
+Z poziomu klasy:
+```cpp
+class SomeClass {
+    /* ... */
+
+    void some_method(int p1, int p2) {
+        /* do stuff */
+    }
+
+    void method_creating_threads() {
+        int param1 = 100;
+        int param2 = 1000;
+        std::thread some_thread(&SomeClass::some_method, this, param1, param2);
+    }
+
+    /* ... */
+}
+```
+
 ***
 Autor: *Jakub Tomczyński*

@@ -23,6 +23,20 @@ public:
     Matrix(int rows = 0, int cols = 0);
     
     /**
+      * Access element
+      */
+    double& operator()(int row, int col) {
+        return data_[row][col];
+    }
+
+    /**
+      * Access element read-only
+      */
+    const double& operator()(int row, int col) const {
+        return data_[row][col];
+    }
+    
+    /**
      * Fills the matrix with random values of range [-1.0; 1.0]
      */
     void rand();
