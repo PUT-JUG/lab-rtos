@@ -230,6 +230,4 @@ Komendy (zatwierdzane enterem):
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
 
-Data ostatniej modyfikacji:   *12-03-2019*
-
-Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/)*.

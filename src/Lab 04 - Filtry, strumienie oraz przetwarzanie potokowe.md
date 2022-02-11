@@ -82,7 +82,7 @@ cat plik1.txt plik2.txt> plik3.txt 2>&1
 Wiele programów konsolowych działających na strumieniach może przyjąć również nazwę pliku jako wejście: polecenie `cat < plik.txt` wygeneruje taki sam efekt jak `cat plik.txt`, a w przypadku skomplikowanego potoku wersja druga może okazać się znacząco czytelniejsza. Dodatkowo, wiele programów akceptuje przekazanie `-` jako nazwy pliku, co w zależności od kontekstu oznacza wejście lub wyjście standardowe.
 
 ## Przetwarzanie potokowe
-Standardowe wyjście jednego procesu możne być połączone ze standardowym wejściowym innego procesu, tworząc tzw. potok pomiędzy tymi procesami.
+Standardowe wyjście jednego procesu może być połączone ze standardowym wejściem innego procesu, tworząc tzw. potok pomiędzy tymi procesami.
 
 ![Standardowe wejscie-wyjście procesu](_images/lab_04_stream.png)
 
@@ -202,12 +202,12 @@ Zwyczajowo w systemach uniksowych pliki tekstowe (konfiguracyjne, źródłowe, s
 Niektóre z przedstawionych poleceń mogą wymagać obecności znaku końca linii w ostatnim wierszu. W przypadku problemów z wczytywaniem ostatniego wiersza możesz to zweryfikować wyświetlając plik np. `cat`:
 
 ```bash
-student@vbox-xubuntu-labrtos:~$ cat zly_plik 
+student@vbox-xubuntu-rtos:~$ cat zly_plik 
 To jest linia tekstu
-To jest kolejna liniastudent@vbox-xubuntu-labrtos:~$ cat dobry_plik 
+To jest kolejna liniastudent@vbox-xubuntu-rtos:~$ cat dobry_plik 
 A tu jest zawartosc innego pliku
 Zakonczonego znakiem nowej linii
-student@vbox-xubuntu-labrtos:~$ 
+student@vbox-xubuntu-rtos:~$ 
 ```
 
 Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii znak zachęty (`student@vbox...`) wyświetla się w tym samym wierszu, co zawartość pliku.
@@ -235,4 +235,4 @@ Zwróć uwagę, że po wyświetleniu pliku nie zakończonego znakiem nowej linii
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
 
-Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/)*.

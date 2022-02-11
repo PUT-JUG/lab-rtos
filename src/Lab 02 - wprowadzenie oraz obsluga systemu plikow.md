@@ -162,9 +162,9 @@ Podstawowe operacje obsługi plików można realizować z wykorzystaniem następ
   
 Przydatnym przełącznikiem polecenia `cp` jest przełącznik `-r`, który służy do kopiowania całych struktur katalogów.
 
-* `rm [przełączniki] lista_plików` -usuwanie plików podanych jako argumenty wywołania, np.:
-  * `rm abc.txt xyz.txt` - usuwa pliki `abc.txt` i `xyz.txt` w katalogu bieżącym;
-  * `rm /tmp/abc.txt` - usuwa plik `abc.txt` z katalogu `/tmp`;
+* `rm [przełączniki] lista_plików` - usuwanie plików podanych jako argumenty wywołania, np.:
+  * `rm abc.txt xyz.txt` - usuwa pliki `abc.txt` i `xyz.txt` w katalogu bieżącym
+  * `rm /tmp/abc.txt` - usuwa plik `abc.txt` z katalogu `/tmp`
 
 Przydatnym przełącznikiem polecenia `rm` jest przełącznik -r, który służy do usuwania całych struktur katalogów.
 
@@ -177,19 +177,19 @@ Przydatnym przełącznikiem polecenia `rm` jest przełącznik -r, który służy
   
 Polecenia dotyczące plików (i katalogów) można także wydawać z wykorzystaniem tzw. wzorców uogólniających, które tworzy się z zastosowaniem następujących operatorów:
 
-`*` - zastępuje dowolny ciąg znaków (także pusty);
+`*` - zastępuje dowolny ciąg znaków (także pusty),
 
-`?` - zastępuje dokładnie jeden dowolny znak;
+`?` - zastępuje dokładnie jeden dowolny znak,
 
-`[<znaki>]` - zastępuje dokładnie jeden znak z podanego zakresu, np.: `[xyz]`;
+`[<znaki>]` - zastępuje dokładnie jeden znak z podanego zakresu, np.: `[xyz]`
 
 `[^<znaki>]` - znak ^ na początku oznacza dopełnienie zbioru, czyli dla  przykładu `[^xyz]`, oznacza dowolny znak nie będący literą `x, y` i `z`.
 
 Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 
-`cp ./*.txt ~` - kopiowanie wszystkich plików z rozszerzeniem .txt z katalogu bieżącego do katalogu domowego użytkownika;
+`cp ./*.txt ~` - kopiowanie wszystkich plików z rozszerzeniem .txt z katalogu bieżącego do katalogu domowego użytkownika,
 
-`rm ./[0-9]*` - usunięcie wszystkich plików z katalogu domowego, których nazwa rozpoczyna się od cyfry.
+`rm ~/[0-9]*` - usunięcie wszystkich plików z katalogu domowego, których nazwa rozpoczyna się od cyfry.
 
 ## Zadania do samodzielnego wykonania - część I
 
@@ -355,6 +355,4 @@ Przykładowe wywołania zlecenia utworzenia dowiązań:
 ***
 Autor: *Adam Bondyra*
 
-Data ostatniej modyfikacji:   *28-02-2019*
-
-Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/)*.

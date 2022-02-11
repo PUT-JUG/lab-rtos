@@ -6,7 +6,7 @@ Powłoka systemowa (ang. *shell*) to program komputerowy pełniący rolę pośre
 
 Podczas poprzednich zajęć, za każdym razem kiedy otwieraliśmy emulator terminala, uruchamiana została nowa instancja powłoki naszego użytkownika - program `bash`. Część poleceń to tzw. polecenia wbudowane (bezpośrednio w powłokę) - np. `cd`, `pwd`, inne to zupełnie oddzielne programy, które `bash` wywoływał - np. `ls`, `chmod` itd.
 
-*Zmienne środowiskowe* to bardzo wygodny i uniwersalny sposób konfigurowania i parametryzowania powłok systemowych i - za ich pomocą - także innych programów. Dostępne zmienne środowiskowe tworzą tzw. *środowisko wykonania procesu* - środowisko to jest kopiowane do wszystkich nowych procesów, a więc modyfikacje zmiennych wykonane w powłoce są widoczne we wszystkich programach uruchomionych przy użyciu tej powłoki. Każdy użytkownik może definiować dowolną ilość własnych zmiennych oraz przypisywać im dowolne wartości. Aby zdefiniować zmienną środowiskową należy zastosować operator przypisania (znak "=") w następujący sposób:
+*Zmienne środowiskowe* to bardzo wygodny i uniwersalny sposób konfigurowania i parametryzowania powłok systemowych i - za ich pomocą - także innych programów. Dostępne zmienne środowiskowe tworzą tzw. *środowisko wykonania procesu* - środowisko to jest kopiowane do wszystkich nowych procesów, a więc modyfikacje zmiennych wykonane w powłoce są widoczne we wszystkich programach uruchomionych przy użyciu tej powłoki. Każdy użytkownik może definiować dowolną ilość własnych zmiennych oraz przypisywać im dowolne wartości. Aby zdefiniować zmienną środowiskową, należy zastosować operator przypisania (znak "=") w następujący sposób:
 
 ```bash
 ZMIENNA=wartosc
@@ -62,9 +62,9 @@ Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w syst
  Zmienne systemowe nie mają typu - wszystkie przechowywane są jako napis (ciąg znaków), niezależnie od zawartości.
  
  ## Zadania do samodzielnego wykonania
- 1. Zdefiniuj zmienną `IMIE` i przypisz jej swoje imię. Wyświetl zawartość tej zmiennej. Wyeksportuj tą zmienną i sprawdź, czy jest dostępna w nowym (potomnym) interpreterze.
- 2. Wyświetl listę zmiennych eksportowanych.
- 3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
+1. Zdefiniuj zmienną `IMIE` i przypisz jej swoje imię. Wyświetl zawartość tej zmiennej. Wyeksportuj tą zmienną i sprawdź, czy jest dostępna w nowym (potomnym) interpreterze.
+2. Wyświetl listę zmiennych eksportowanych.
+3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
   
 ## Skrypty i ich argumenty
 Współczesne powłoki pozwalają także na tworzenie konstrukcji programistycznych takich jak instrukcje warunkowe czy pętle. Ponieważ kolejne ciągi poleceń możemy umieścić w pliku tekstowym, a następnie taki plik uruchomić w powłoce - w połączeniu ze zmiennymi środowiskowymi uzyskujemy możliwość pisania programów (skryptów) w języku `bash`.
@@ -146,8 +146,10 @@ Po znaku `[` i przed znakiem `]` konieczne jest wprowadzenie znaku spacji. Możl
 | `-r nazwa`    |     	Weryfikacja, czy użytkownik ma prawo odczytu dla pliku o podanej nazwie     |
 | `-w nazwa`    |     	Weryfikacja, czy użytkownik ma prawo zapisu dla pliku o podanej nazwie     |
 | `-x nazwa`    |     	Weryfikacja, czy użytkownik ma prawo wykonywania dla pliku o podanej nazwie     |
-| `warunek1 -a warunek2`     |     	Iloczyn logiczny warunków     |
+| `warunek1 -a warunek2`   |     	Iloczyn logiczny warunków     |
+| `warunek1 && warunek2`   |     	Iloczyn logiczny warunków     |
 | `warunek1 -o warunek2`    |     	Suma logiczna warunków     |
+| `warunek1 \|\| warunek2`    |     	Suma logiczna warunków     |
 | `! warunek1`     |     	Negacja warunku     |
 
 ## Pętle
@@ -156,7 +158,7 @@ Skrypty powłoki mogą także zawierać pętle - podstawowe dwie z nich to pętl
 ```bash
 for zmienna in lista
 do
-    instrukcje do wykonania
+    instrukcje_do_wykonania
 done
 ```
 
@@ -187,7 +189,7 @@ Pętla `while` pozawala na realizację pętli, dla których ilość iteracji nie
 ```bash
 while warunek
 do
-   instrukcje do wykonania
+   instrukcje_do_wykonania
 done
 ```
 
@@ -205,6 +207,21 @@ done
 ```
 
 Warunkiem wykonania pętli jest sprawdzenie, czy pierwszy argument wywołania skryptu ma niezerową długość - jeśli skrypt został uruchomiony bez żadnych argumentów, to pętla nie zostanie wykonana. Jeśli natomiast skrypt został wykonany z argumentami, to w pierwszym wykonaniu pętli zostanie wyświetlona wartość pierwszego argumentu, a następnie nastąpi przesunięcie argumentów w lewo poleceniem `shift` (drugi argument stanie się pierwszym, trzeci drugim itd.). Pętla zakończy się jeśli zostaną wyświetlone i przesunięte wszystkie argumenty (zmienna pozycyjna `$1` będzie miała wówczas zerową długość).
+
+Aby wyświetlić wszystkie argumenty skryptu bez korzystania z pętli wystarczy wykorzystać zmienną `$*`, natomiast ich liczbę - `$#`
+```bash
+#!/bin/bash
+echo "Liczba argumentow: $#"
+echo "Wszystkie argumenty: $*"
+```
+W ten sposób można również iterować po argumentach:
+```bash
+#!/bin/bash
+for arg in $*
+do
+    echo "Argument: $arg"
+done
+```
 
 Obie zaprezentowane pętle mogą zostać przerwane poleceniem `break` - oto przykład zastosowania przerywania pętli:
 
@@ -299,12 +316,46 @@ Umieszczenie tekstu w *grawisie* (`` ` ``) powoduje **uruchomienie** zawartego w
 CURRENT_DIR=`pwd`
 ```
 
-Bash oferuje również prostą arytmetykę na liczbach całkowitych. Kontekst arytmetyczny wywołujemy umieszczając formułę pomiędzy `$((` a `))`:
+## Funkcje
+W skryptach bash możemy również definiować funkcje, które pozwalają na uproszczenie kodu. Przykład prostej funkcji oraz jej wywołania pokazano poniżej:
 
 ```bash
-a=3
-b=$((a+5))
+#!/bin/bash
+
+function total_files {
+        find $1 -type f | wc -l
+}
+
+katalog="`pwd`"
+echo -n "Liczba plikow w katalogu $katalog = "
+total_files $katalog
 ```
+Wewnątrz definicji funkcji, którą podajemy w nawiasach klamrowych po nazwie funkcji, można wykorzystać argumenty przekazywane do funkcji analogicznie jak argumenty przekazywane do skryptu, tzn. za pomocą `$1`, `$2`, `$3` itd.
+Funkcja total_files sprawdza liczbę plików w podanym katalogu. Aby użyć zdefiniowanej funkcji w dalszej części skryptu, wystarczy podać jej nazwę oraz po kolei argumenty przekazywane do funkcji. Jeśli chcemy przypisać wynik funkcji do zmiennej należy wykorzystać operator $:
+```bash
+files=$(total_files $katalog)
+```
+
+## Operacje matematyczne
+W skryptach bash można wykonywać operacje matematyczne na zmiennych całkowitoliczbowych. Jest na to kilka sposobów. Pierwszy to wykorzystanie podwójnych nawiasów:
+```bash
+wynik=$((5+8))
+```
+Drugim sposobem jest wykorzystanie polecenia `expr`:
+```bash
+wynik=$(expr 5+8)
+```
+Inny sposób polega na użyciu polecenia `let`:
+```bash
+let wynik=5+8
+```
+Podstawowe operatory matematyczne w skryptach bash:
+|                  Operator                   |      Opis      |
+|------------------------------------------|--------------|
+|     +, -, \*, /      |     suma, różnica, mnożenie, dzielenie     |
+|     var++      |     inkrementacja     |
+|     var--      |     derementacja     |
+|     %      |     modulo     |
 
 ## Debugowanie skryptów
 
@@ -331,22 +382,23 @@ Przykładowo:
 ```
 Skopiuje:
 
-`notatki.txt` do `backup/notatki.txt_2019-02-29`
+`notatki.txt` do `backup/notatki.txt_2021-10-29`
 
-`zdjecia.tar.gz` do `backup/zdjecia.tar.gz_2019-02-29`
+`zdjecia.tar.gz` do `backup/zdjecia.tar.gz_2021-10-29`
 
 Jeśli folder `backup` nie istnieje, program powinien go utworzyć.
 Jeśli plik docelowy już istnieje, program powinien wyświetlić stosowny komunikat i przerwać pracę.
 
 Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
 
-8. Zmodyfikuj skrypt z zadania 7 tak, aby argumentem skryptu była nazwa pliku zawierającego (po jednym na linię) nazwy plików do zarchiwizowania.
 
-9. Napisz skrypt, który będzie oczekiwał na pojawienie się pliku o nazwie wskazanej w argumencie. Skrypt powinien cyklicznie (co 5 sekund) sprawdzać istnienie pliku. Jeśli plik istnieje, skrypt powinien wyświetlić jego zawartość i zakończyć się. Uruchom skrypt, a z poziomu drugiego terminala utwórz monitorowany plik.
+8. Napisz skrypt, który będzie oczekiwał na pojawienie się pliku o nazwie wskazanej w argumencie. Skrypt powinien cyklicznie (co 5 sekund) sprawdzać istnienie pliku. Jeśli plik istnieje, skrypt powinien wyświetlić jego zawartość i zakończyć się. Uruchom skrypt, a z poziomu drugiego terminala utwórz monitorowany plik.
+
+9. Utwórz skrypt i umieść w nim funkcję realizującą sumę dwóch argumentów (liczb) podawanych do skryptu.
 
 ***
-Autor: *Adam Bondyra*, *Jakub Tomczyński*
+Autorzy: \
+*Adam Bondyra*, *Jakub Tomczyński*, *Bartłomiej Kulecki*
 
-Data ostatniej modyfikacji:   *24-03-2019*
 
-Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/*).
+Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/)*.

@@ -6,7 +6,7 @@ Linux to tak naprawdę nazwa darmowego, otwartego jądra systemu uniksopodobnego
 
 Systemy linuksowe dostarczane są w formie dystrybucji takich jak Ubuntu, Debian czy Fedora, z których każda składa się z jądra oraz zestawu pakietów oprogramowania dobranego przez twórców danej dystrybucji.
 
-Podczas zajęć posługiwać będziemy się dystrybucją **Xubuntu** w wersji **18.04 LTS**, która jest odmianą bardzo popularnej dystrybucji Ubuntu, jednak z lekkim interfejsem graficznym XFCE doskonale nadającym się do pracy w środowisku wirtualizowanym lub na nieco starszych komputerach.
+Podczas zajęć posługiwać będziemy się dystrybucją **Xubuntu** w wersji **20.04 LTS**, która jest odmianą bardzo popularnej dystrybucji Ubuntu, jednak z lekkim interfejsem graficznym XFCE doskonale nadającym się do pracy w środowisku wirtualizowanym lub na nieco starszych komputerach.
 
 Większość operacji oraz poleceń prezentowanych podczas zajęć jest uniwersalna i powinna działać bez zmian lub z drobnymi modyfikacjami pod większością dystrybucji (wyjątki zostaną wyróżnione).
 
@@ -22,9 +22,9 @@ Do zarządzania i uruchamiania maszyn wirtualnych potrzebujemy *hypervisora*. Wy
 
 ## Instalacja programu VirtualBox
 
-* Pobierz ze strony https://www.virtualbox.org/wiki/Downloads:
-    * z sekcji **VirtualBox platform packages** plik instalacyjny dla danego systemu operacyjnego **hosta** (w przypadku komputerów w Laboratorium - Windows)
-    * z sekcji **VirtualBox Oracle VM VirtualBox Extension Pack** pakiet dodatków (plik wspólny dla wszystkich platform)
+* Pobierz ze strony https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html
+    * z sekcji **Oracle VM VirtualBox Base Packages** plik instalacyjny dla danego systemu operacyjnego **hosta** (zazwyczaj Windows)
+    * z sekcji **Oracle VM VirtualBox Extension Pack** pakiet dodatków (plik wspólny dla wszystkich platform)
 
 * Zainstaluj program zostawiając domyślne ustawienia.
     * System zapyta o zezwolenie na instalację sterowników interfejsów sieciowych, potwierdź zgodę.
@@ -37,7 +37,7 @@ Uruchom program VirtualBox.
 
 Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogowego:
 
-* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Podczas zajęć nazwę ustaw na *Xubuntu 18.04 L-?*, gdzie *?* to numer Twojej grupy laboratoryjnej. Z tej maszyny wirtualnej będziesz korzystać podczas kolejnych zajęć.
+* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Na potrzeby zajęć nazwę ustaw np. na *Xubuntu 20.04 SCR*.
 * Wybierz typ instalowanego systemu operacyjnego oraz architekturę - Linux / Ubuntu 64-bit - VirtualBox stara się rozpoznać typ systemu po nazwie maszyny.
 
 ![Tworzenie maszyny wirtualnej](_images/lab_01_create_vm.png)
@@ -48,7 +48,7 @@ Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogow
     * Format VDI
     * Dynamicznie przydzielany rozmiar
     * Rozmiar maksymalny 10 GB
-    * Lokalizacja obrazu w wewnątrz folderu *\~/Virtualbox VMs/\<nazwa maszyny wirtualnej\>*
+    * Lokalizacja obrazu wewnątrz folderu *\~/Virtualbox VMs/\<nazwa maszyny wirtualnej\>*
 
 Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
 
@@ -56,7 +56,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 ## Instalacja systemu
 
-* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 18.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (*mirror*) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-18.04.2-desktop-amd64.iso*).
+* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 20.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (*mirror*) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-20.04.3-desktop-amd64.iso*).
 
 * Uruchom maszynę kilkając *Start*. Maszyna domyślnie ustawiona jest na boot z wirtualnego napędu CD. Przy pierwszym uruchomieniu maszyny VirtualBox poprosi o wskazanie obrazu ISO płyty:
 
@@ -82,7 +82,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 * Podaj dane użytkownika i nazwę komputera.
 
-    Podczas zajęć posługujemy się loginem *student*, nazwą komputera *vbox-xubuntu-labrtos* i hasłem *Over9000*
+    Podczas zajęć posługujemy się loginem *student*, nazwą komputera *vbox-xubuntu-rtos* i hasłem *Over9000*
 
 ![Dane użytkownika](_images/lab_01_xubuntu_user.png)
 
@@ -199,13 +199,14 @@ Poza przywracaniem masz możliwość:
 * *Clone*: utworzenia nowej maszyny na podstawie migawki
 * *Discard*: wymuszenia wyłączenia maszyny, której stan został zapisany podczas gdy była uruchomiona
 
-Pozostaw migawkę *clean install* na komputerze w laboratorium, tak aby zawsze móc wrócić do działającego systemu.
+Pozostaw migawkę *clean install* na komputerze, tak aby zawsze móc wrócić do działającego systemu.
 
 ## Poznaj nowy system!
 
-Do poleceń terminala wrócimy na kolejnych laboratoriach, a na razie - poznaj nowy system od bardziej przyjaznej, graficznej strony!
+Do poleceń terminala wrócimy w kolejnej instrukcji, a na razie - poznaj nowy system od bardziej przyjaznej, graficznej strony!
 
 Uruchom przeglądarkę plików, sprawdź jakie aplikacje i opcje są dostępne w menu. Zajrzyj do ustawień, eksperymentuj. To tylko maszyna wirtualna, którą zawsze możesz w łatwy sposób przywrócić do sprawnej migawki lub skonfigurować od zera bez obaw o system, na którym pracujesz na co dzień.
 
 ***
-Autor: *Jakub Tomczyński*
+Autorzy: \
+*Jakub Tomczyński*, *Bartłomiej Kulecki*
