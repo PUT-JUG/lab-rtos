@@ -40,7 +40,7 @@ Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogow
 * Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Podczas zajęć nazwę ustaw na *Xubuntu 18.04 L-?*, gdzie *?* to numer Twojej grupy laboratoryjnej. Z tej maszyny wirtualnej będziesz korzystać podczas kolejnych zajęć.
 * Wybierz typ instalowanego systemu operacyjnego oraz architekturę - Linux / Ubuntu 64-bit - VirtualBox stara się rozpoznać typ systemu po nazwie maszyny.
 
-![Tworzenie maszyny wirtualnej](../images/lab_01_create_vm.png)
+![Tworzenie maszyny wirtualnej](../_images/lab_01_create_vm.png)
 
 * Ustaw ilość pamięci RAM, jaką otrzyma maszyna wirtualna. Pamiętaj, że system hosta i maszyny wirtualne współdzielą pamięć jednej maszyny. Podczas zajęć ustaw *1024 MB*.
 
@@ -52,7 +52,7 @@ Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogow
 
 Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
 
-![Utworzona maszyna wirtualna](../images/lab_01_fresh_vm.png)
+![Utworzona maszyna wirtualna](../_images/lab_01_fresh_vm.png)
 
 ## Instalacja systemu
 
@@ -60,7 +60,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 * Uruchom maszynę kilkając *Start*. Maszyna domyślnie ustawiona jest na boot z wirtualnego napędu CD. Przy pierwszym uruchomieniu maszyny VirtualBox poprosi o wskazanie obrazu ISO płyty:
 
-![Wybór obrazu ISO](../images/lab_01_choose_iso.png)
+![Wybór obrazu ISO](../_images/lab_01_choose_iso.png)
 
 | Podpowiedź: obsługa maszyny wirtualnej |
 | ------------- |
@@ -70,7 +70,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 * Wybierz układ klawiatury *Polish*/*Polish*, przejdź dalej przyciskiem *Continue*.
 
-![Wybór obrazu ISO](../images/lab_01_xubuntu_keyboard.png)
+![Wybór obrazu ISO](../_images/lab_01_xubuntu_keyboard.png)
 
 * Wszystkie pozostałe opcje mogą pozostać domyślne, przejdź przez kolejne etapy instalacji przyciskiem *Continue*.
 
@@ -84,7 +84,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
     Podczas zajęć posługujemy się loginem *student*, nazwą komputera *vbox-xubuntu-labrtos* i hasłem *Over9000*
 
-![Dane użytkownika](../images/lab_01_xubuntu_user.png)
+![Dane użytkownika](../_images/lab_01_xubuntu_user.png)
 
 * Po zakończeniu zatwierdź prośbę o restart maszyny. Instalator poprosi o wyjęcie płyty z napędu (VirtualBox zrobi to automatycznie), co potwierdź naciskając *Enter*. Po ponownym uruchomieniu zostaniesz powitany graficznym interfejsem użytkownika. Zaloguj się podając hasło użyte podczas instalacji.
 
@@ -110,7 +110,7 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, 
 
 Uruchom aplikację *Terminal Emulator* korzystając z ikony menu Xubuntu w lewym górnym rogu. Jeśli nie wyświetla się na liście, możesz wpisać w wyszukiwarce \"terminal\". Powinno pojawić się następujące okno:
 
-![Terminal Emulator](../images/lab_01_xubuntu_terminal.png)
+![Terminal Emulator](../_images/lab_01_xubuntu_terminal.png)
 
 Linia poleceń zawiera m.in. Twoją nazwę użytkownika i nazwę komputera, a na końcu *znak zachęty* ($). Po znaku zachęty możesz wpisywać polecenia do wykonania, zatwierdzane enterem.
 
@@ -122,7 +122,7 @@ ping www.google.com
 
 W terminalu co sekundę powinna pokazywać się odpowiedź od serwera.
 
-![Terminal Emulator](../images/lab_01_xubuntu_ping.png)
+![Terminal Emulator](../_images/lab_01_xubuntu_ping.png)
 
 Działanie programów konsolowych możesz przerwać skrótem klawiszowym *control-c*. Pamiętaj, że prawy control jest skonfigurowany jako specjalny *klawisz hosta*, zatem do skrótów używaj lewego klawisza control. Przerwij działanie polecenia `ping`.
 
@@ -151,15 +151,15 @@ Wróć do okna terminala i uruchom polecenie `autorun.sh` z płyty. Ponieważ pr
 ```
 Instalator zapyta ponownie o hasło użytkownika, a następnie wyświetli dodatkowe okno terminala z komunikatami. Po zakończeniu instalacji powinno wyglądać następująco:
 
-![Additions installed](../images/lab_01_xubuntu_additions.png)
+![Additions installed](../_images/lab_01_xubuntu_additions.png)
 
 Możesz zamknąć teminale, a następnie usunąć płytę z dodatkami z wirtualnego napędu korzystając z ikony w prawym dolnym rogu. Konieczne może być wymuszenie wyjęcia płyty (*Force Unmount*):
 
-![Remove CD](../images/lab_01_vbox_remove_cd.png)
+![Remove CD](../_images/lab_01_vbox_remove_cd.png)
 
 Zrestartuj maszynę wirtualną korzystając z menu Xubuntu:
 
-![Additions installed](../images/lab_01_xubuntu_shutdown.png)
+![Additions installed](../_images/lab_01_xubuntu_shutdown.png)
 
 Po ponownym uruchomieniu włącz współdzielony schowek w menu VirtualBoxa: *Devices* &rarr; *Shared Clipboard* &rarr; *Bidirectional*, co znacznie ułatwi Ci przenoszenie informacji pomiędzy gościem a hostem. Od tej pory rozdzielczość systemu gościa będzie się także dopasowywała do rozmiaru okna VirtualBoxa. Możesz przełączyć się na pełny ekran naciskając *przycisk hosta*+*F*.
 
@@ -173,7 +173,7 @@ Wyłącz stworzoną w poprzednich punktach maszynę wirtualną. Stwórz migawkę
 
 * Przełącz widok opcji na *Snapshots* podświetlając wybraną maszynę i klikając rozwijane menu:
 
-![Snapshots](../images/lab_01_snapshots.png)
+![Snapshots](../_images/lab_01_snapshots.png)
 
 * Stwórz nową migawkę przyciskiem *Take*
 
@@ -181,7 +181,7 @@ Wyłącz stworzoną w poprzednich punktach maszynę wirtualną. Stwórz migawkę
 
 Stan migawek wyświetlany jest w formie drzewa - maszyna może mieć kilka migawek, migawki mogą być też zależne od innych:
 
-![Snapshots](../images/lab_01_snapshot_tree.png)
+![Snapshots](../_images/lab_01_snapshot_tree.png)
 
 Powyższy widok oznacza, że stan bieżący i wszystkie zmiany jakie w nim znajdą są będą zapisywane jako zmiany względem migawki *clean install*. Co istotne, w migawce przechowywane są jedynie faktyczne zmiany na dysku - posiadanie wielu migawek nie musi oznaczać, że zajmują one bardzo dużo przestrzeni dyskowej.
 
@@ -189,7 +189,7 @@ Uruchom maszynę wirtualną i dokonaj drobnych zmian w systemie - np. zmień tap
 
 Wyłącz system gościa, a następnie przywróć zapisany wcześniej system zaznaczając migawkę *clean install* i kilkając *Restore*. VirtualBox zapyta, czy chcesz zapisać zmiany, które wprowadziłeś od czasu utworzenia migawki *clean install* jako nową migawkę - zrezygnuj z tej opcji deaktywując pole wyboru *Create a snapshot of the current machine state*:
 
-![Snapshots](../images/lab_01_snapshot_restore.png)
+![Snapshots](../_images/lab_01_snapshot_restore.png)
 
 Sprawdź czy przywrócenie się powiodło - po uruchomieniu maszyny nie powinno być zmian, które wprowadziłeś od chwili zrobienia migawki.
 
