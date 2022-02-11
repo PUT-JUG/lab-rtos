@@ -4,17 +4,17 @@
 
 Domyślna konfiguracja sieci pod VirtualBox (NAT) sprawdza się, kiedy potrzebny jest dostęp z poziomu maszyny wirtualnej do Internetu lub do sieci, do której podłączony jest host. VirtualBox tworzy "wirtualny router" pomiędzy hostem a maszyną goszczoną, przez co z poziomu fizycznej sieci widziane są one jako jedno urządzenie:
 
-![VirtualBox NAT](../images/VirtualBox_NAT.svg)
+![VirtualBox NAT](_images/VirtualBox_NAT.svg)
 
 Do pełnej komunikacji sieciowej pomiędzy systemem goszczonym a hostem, konieczna będzie modyfikacja ustawień sieciowych. Możliwe są dwa rozwiązania:
 
 * **Mostek sieciowy (ang. *bridge*) z fizycznym interfejsem** - karta sieciowa maszyny wirtualnej zostaje połączona przez "wirtualny switch" z siecią fizyczną. Router przydziela maszynie wirtualnej IP z tej samej puli, wszystkie urządzenia w danej podsieci widzą maszynę wirtualną jako dodatkowy komputer w sieci:
 
-![VirtualBox bridge](../images/VirtualBox_bridge.svg)
+![VirtualBox bridge](_images/VirtualBox_bridge.svg)
 
 * **Dodatkowe połączenie host-only** - dodatkowa sieć łącząca maszynę wirtualną z hostem, poprzez wirtualną kartę sieciową, równolegle z kartą połączoną przez NAT (dla zachowania dostępu do Internetu). Umożliwia to pełną komunikację host-guest, nie wystawiając dostępu do gościa "na zewnątrz":
 
-![VirtualBox host only plus NAT](../images/VirtualBox_host_only.svg)
+![VirtualBox host only plus NAT](_images/VirtualBox_host_only.svg)
 
 ## Konfiguracja połączenia sieciowego
 
@@ -22,17 +22,17 @@ W ramach zajęć będziemy posługiwać się dodatkowym połączeniem **host-onl
 
 Wyłącz maszynę wirtualną i wejdź w jej ustawienia, w zakładkę *Network*. Pozostaw *Adapter 1* bez zmian, natomiast w karcie *Adapter 2* włącz interfejs i ustaw go jako podpięty do *Host-only Adapter*. Domyślnie w systemie jest jedna karta sieciowa *VirtualBox Host-Only Ethernet Adapter* i powinna zostać wybrana:
 
-![VirtualBox konfiguracja w trybie bridged](../images/lab_06_network_host_only.png)
+![VirtualBox konfiguracja w trybie bridged](_images/lab_06_network_host_only.png)
 
 Dodatkowo należy skonfigurować sieć *Host-Only*. W oknie głównym VirtualBox, z menu *File* wybierz opcję *Host Network Manager...*. Podświetl interfejs *VirtualBox Host-Only* i skonfiguruj jego adres IP oraz włącz serwer DHCP:
 
-![VirtualBox konfiguracja w trybie bridged](../images/lab_06_network_host_network_manager.png)
+![VirtualBox konfiguracja w trybie bridged](_images/lab_06_network_host_network_manager.png)
 
 ---
 
 W większości przypadków (np. w sieci domowej) praktyczniejsze jest rozwiązanie z **mostkiem**. Konfiguracja sprowadza się do przełączenia w VirtualBoxie interfejsu sieciowego maszyny wirtualnej w tryb *Bridged Adapter* i wskazania odpowiedniej fizycznej karty sieciowej:
 
-![VirtualBox konfiguracja w trybie bridged](../images/lab_06_network_bridged.png)
+![VirtualBox konfiguracja w trybie bridged](_images/lab_06_network_bridged.png)
 
 **Ważne**: jak wspomniano w opisie architektury sieci, router do którego podłączona jest maszyna wirtualna przez zmostkowany interfejs będzie widział dwa urządzenia. Niektóre sieci, zwłaszcza bezprzewodowe, blokują możliwość mostkowania połączenia (np. w sieci *eduroam* połączenie dwóch urządzeń jednocześnie może spowodować blokadę dostępu dla certyfikatu użytkownika).
 
@@ -40,7 +40,7 @@ W większości przypadków (np. w sieci domowej) praktyczniejsze jest rozwiązan
 
 ## Test połączenia sieciowego, polecenie `ip`
 
-Po skonfigurowaniu sieci zgodnie z powyższym opisem uruchom maszynę. Stan interfejsów sieciowych pod *XFCE* możesz sprawdzić korzystając z apletu *NetworkManager*. Naciśnij ikonę ![XFCE NetworkManager](../images/lab_06_nm_icon.png) i wybierz *Connection Information*. Powinny widoczne być dwa interfejsy:
+Po skonfigurowaniu sieci zgodnie z powyższym opisem uruchom maszynę. Stan interfejsów sieciowych pod *XFCE* możesz sprawdzić korzystając z apletu *NetworkManager*. Naciśnij ikonę ![XFCE NetworkManager](_images/lab_06_nm_icon.png) i wybierz *Connection Information*. Powinny widoczne być dwa interfejsy:
 
 * podłączony do NAT, z adresem z puli *10.0.2.\** i przydzieloną domyślną bramą i serwerem DNS
 * podłączony do sieci *Host-Only*, z adresem z puli *192.168.56.\**

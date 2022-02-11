@@ -72,19 +72,19 @@ Przykładowe stany bufora cyklicznego:
 
 * Stan początkowy, bufor pusty:
 
-![Bufor pusty](../images/cyclic_buffer_empty.svg)
+![Bufor pusty](_images/cyclic_buffer_empty.svg)
 
 * Dodano 5 elementów:
 
-![Dodano 5 elementów](../images/cyclic_buffer_head_moved.svg)
+![Dodano 5 elementów](_images/cyclic_buffer_head_moved.svg)
 
 * Pobrano 2 elementy, 3 zostały w buforze:
 
-![Pobrano 2 elementy](../images/cyclic_buffer_tail_moved.svg)
+![Pobrano 2 elementy](_images/cyclic_buffer_tail_moved.svg)
 
 * Dodano 4 elementy, bufor pełny:
 
-![Dodano 5 elementów](../images/cyclic_buffer_full.svg)
+![Dodano 5 elementów](_images/cyclic_buffer_full.svg)
 
 ### ❗️Zadanie 2.❗️ - bufor cykliczny
 

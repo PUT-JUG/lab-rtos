@@ -109,9 +109,9 @@ W zależności od posiadanego procesora, po wyłączeniu dyrektywy OpenMP powini
 
 Powyższy program tworzy tablicę liczb, a następnie wypełnia każdy element tablicy wartością szeregu opisanego wzorem:
 
-![Wzór na szereg](../images/09/series.svg),
+![Wzór na szereg](_images/09/series.svg),
 
-gdzie ![Wzór na szereg](../images/09/a_i.svg) to i-ty element tablicy.
+gdzie ![Wzór na szereg](_images/09/a_i.svg) to i-ty element tablicy.
 
 Ponieważ każdy element tablicy jest liczony niezależnie (nie zależy od wyników uzyskanych w pozostałych przebiegach pętli `for(i)`), w prosty sposób można wykorzystać dyrektywy OpenMP do zrównoleglenia głównej pętli.
 

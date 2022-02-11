@@ -94,7 +94,7 @@ double sin_poly(double arg) {
 }
 ```
 
-W tym przypadku `sin_poly` opisuje funkcję ![sin_poly](../images/10/sin_poly.svg). Następnie wywołujemy funkcję `integrate` przekazując jej odpowiednie argumenty i zdefiniowaną uprzednio funkcję `sin_poly`:
+W tym przypadku `sin_poly` opisuje funkcję ![sin_poly](_images/10/sin_poly.svg). Następnie wywołujemy funkcję `integrate` przekazując jej odpowiednie argumenty i zdefiniowaną uprzednio funkcję `sin_poly`:
 
 ```cpp
 double result = integrate(0, 100*M_PI, 0.00001, sin_poly);

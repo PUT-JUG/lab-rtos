@@ -3,7 +3,7 @@
 ## Standardowe wejście/wyjście
 Każdy proces domyślnie korzysta ze standardowych strumieni danych, będących abstrakcją źródła lub ujścia danych. Dla każdego procesu system tworzy standardowy strumień wejściowy (ang. *standard input*), reprezentujący urządzenia wejściowe, np. klawiaturę i dysk, standardowy strumień wyjściowy (ang. *standard output*), którym może być terminal (monitor komputera) lub plik oraz strumień diagnostyczny (ang. *standard error*). Strumienie wejściowy, wyjściowy i diagnostyczny oznaczane są odpowiednio: `stdin`, `stdout`, `stderr`. Każdy strumień ma odpowiadające mu wartości: `stdin` - 0, `stdout` - 1 i `stderr` - 2.
 
-![Standardowe wejscie-wyjscie procesu](../images/lab_04_proc_std.png)
+![Standardowe wejscie-wyjscie procesu](_images/lab_04_proc_std.png)
 
 Standardowe strumienie procesów charakteryzują się następującymi cechami:
 
@@ -84,7 +84,7 @@ Wiele programów konsolowych działających na strumieniach może przyjąć rów
 ## Przetwarzanie potokowe
 Standardowe wyjście jednego procesu możne być połączone ze standardowym wejściowym innego procesu, tworząc tzw. potok pomiędzy tymi procesami.
 
-![Standardowe wejscie-wyjście procesu](../images/lab_04_stream.png)
+![Standardowe wejscie-wyjście procesu](_images/lab_04_stream.png)
 
 Przetwarzanie potokowe polega na buforowaniu przez system danych produkowanych przez pierwszy proces i następnie odczytywaniu tych danych przez drugi proces. Innymi słowy proces w potoku czyta dane z wejścia, które zostało przeadresowane na wyjście procesu poprzedniego. W potoku może brać udział jednocześnie kilka procesów. Do przekierowania danych do kolejnego procesu używany jest znak `|`. Poniżej podano przykłady potoków:
 
