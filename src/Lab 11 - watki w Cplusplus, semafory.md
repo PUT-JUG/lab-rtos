@@ -132,6 +132,12 @@ std::thread temporary(foo);
 collection.emplace_back(std::move(temporary));
 ```
 
+Można również pozwolić metodzie  `emplace_back` na utworzenie obiektu `std::thread` za nas, przekazując jedynie argumenty jego konstruktora:
+```cpp
+threads.emplace_back(foo);
+```
+
+
 ### ❗️Zadanie 2.❗️ - szukanie liczb pierwszych
 
 Wykorzystując kod z zadania 2. z *Lab 09 - zrównoleglanie obliczeń OpenMP* przenieś obliczenia do wielu wątków z wykorzystaniem `std::thread` (zamiast OpenMP). Zastanów się jak uzyskać wartość zwróconą przez funkcję `find_prime_from` uruchomioną w wątku. W razie konieczności użyj funkcji lambda lub funkcji pośredniczącej w wywołaniu.
