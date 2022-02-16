@@ -132,7 +132,7 @@ std::thread temporary(foo);
 collection.emplace_back(std::move(temporary));
 ```
 
-Można również pozwolić metodzie  `emplace_back` na utworzenie obiektu `std::thread` za nas, przekazując jedynie argumenty jego konstruktora:
+Można również pozwolić metodzie  `emplace_back` na utworzenie obiektu typu `std::thread` za nas, przekazując jedynie argumenty jego konstruktora:
 ```cpp
 collection.emplace_back(foo);
 ```
