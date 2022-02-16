@@ -129,7 +129,7 @@ lub wymusić przeniesienie korzystając z narzędzia `std::move` i metod typu `e
 
 ```cpp
 std::thread temporary(foo);
-collection.emplace_back(std::move(temporary);
+collection.emplace_back(std::move(temporary));
 ```
 
 ### ❗️Zadanie 2.❗️ - szukanie liczb pierwszych
