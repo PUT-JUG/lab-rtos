@@ -211,7 +211,7 @@ Return value: 94300. The result shoudl be 100000
 
 Program napisany w powyższy sposób **pomija** dwie istotne cechy zapewniające bezpieczeństwo w programowaniu współbieżnym:
 
-* Atomowość operacji, czyli niepodzielność. Żaden inny wątek nie może zobaczyć pośredniego stanu operacji atomowej. Inkrementacja nie jest operacją atomową. W C++ atomowość zapewnia biblioteka [std::atomic](https://en.cppreference.com/w/cpp/atomic).
+* Atomowość operacji, czyli niepodzielność. Żaden inny wątek nie może zobaczyć pośredniego stanu operacji atomowej (brak możliwości zakłócenia takiej operacji). Inkrementacja nie jest operacją atomową. W C++ atomowość zapewnia biblioteka [std::atomic](https://en.cppreference.com/w/cpp/atomic).
 * Synchronizacja operacji (semafory i muteksy), czyli kontrolowany dostęp do zmiennych współdzielonych.
 
 ## Semafory, muteksy, operacje atomowe
