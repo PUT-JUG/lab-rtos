@@ -272,9 +272,7 @@ Zastanów się, które operacje w **Zadaniu 3** powinny należeć do sekcji kryt
 Operacja atomowa jest niepodzielna. Oznacza to, że żaden wątek w systemie nie ma
 dostępu do wyniku częściowego wykonania takiej operacji — każda operacja tego typu
 jest albo wykonana, albo nie. W języku C++ korzystanie z operacji atomowych w większości przypadków wymaga
-stosowania typów atomowych, zatem zacznijmy od omówienia właśnie tych typów.
-
-Standardowe typy atomowe można znaleźć w pliku nagłówkowym `<atomic>`, a pełna lista obsługiwanych typów zmiennych jest dostępna w dokumentacji [std::atomic](https://en.cppreference.com/w/cpp/atomic/atomic). Zapewniają one zabezpieczenie przed wyścigiem danych.
+stosowania typów atomowych. Standardowe typy atomowe można znaleźć w pliku nagłówkowym `<atomic>`, a pełna lista obsługiwanych typów zmiennych jest dostępna w dokumentacji [std::atomic](https://en.cppreference.com/w/cpp/atomic/atomic). Zapewniają one zabezpieczenie przed wyścigiem danych.
 
 Poniżej ponownie przykład, jeśli wiele wątków ma pracować na zmiennej `counter`:
 
