@@ -252,7 +252,6 @@ void bad(int& counter)
  
 void good(int& counter)
 {
-    
     std::lock_guard<std::mutex> lk_guard(counter_mtx); // RAII class: mutex acquisition is initialization
     some_operation(counter);                           // if some_operation(counter) throws an exception, the mutex is released
     if(!everything_ok()) return;                       // early return, the mutex is released
