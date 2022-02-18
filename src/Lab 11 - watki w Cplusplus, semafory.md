@@ -158,7 +158,7 @@ Przenieś obliczenia do wielu wątków z wykorzystaniem `std::thread`. Zastanów
 
 * Wersja podstawowa: uruchom tyle wątków, ile jest liczb do znalezienia
 
-* Wersja zaawansowana: postaraj się samodzielnie podzielić pracę w zależności od liczby rdzeni dostępnych w komputerze (patrz: [Przydatne funkcje](#przydatne-funkcje-i-mechanizmy) powyżej).
+* Wersja zaawansowana: postaraj się samodzielnie podzielić pracę w zależności od liczby rdzeni dostępnych w komputerze (patrz: [**Przydatne funkcje**](#przydatne-funkcje-i-mechanizmy) powyżej).
 
 Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej. Czy widoczny jest przyrost wydajności?
 
