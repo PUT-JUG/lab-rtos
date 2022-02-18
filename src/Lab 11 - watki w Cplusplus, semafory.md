@@ -140,11 +140,27 @@ collection.emplace_back(foo);
 
 ### ❗️Zadanie 2.❗️ - szukanie liczb pierwszych
 
-Wykorzystując kod z zadania 2. z *Lab 09 - zrównoleglanie obliczeń OpenMP* przenieś obliczenia do wielu wątków z wykorzystaniem `std::thread` (zamiast OpenMP). Zastanów się jak uzyskać wartość zwróconą przez funkcję `find_prime_from` uruchomioną w wątku. W razie konieczności użyj funkcji lambda lub funkcji pośredniczącej w wywołaniu.
+> Liczby pierwsze często znajdują się w okolicy zbioru *2<sup>n</sup> - 1*, gdzie n ∈ N
+
+Napisz program, który wykorzystując tę własność, będzie wyszukiwał liczby pierwsze. W tym celu wygeneruj wektor - serię wartości należących do powyższego zbioru, dla *n* od 2 do 63. Wykorzystaj typ liczbowy `uint64_t` aby zapewnić, że liczby da się poprawnie zapisać w zmiennej.
+
+Następnie napisz funkcję, która rozpoczynając od przekazanej do niej pojedynczej liczby, będzie przeszukiwała zbiór liczb naturalnych w kierunku malejącym, aż do napotkania liczby pierwszej:
+
+```cpp
+uint64_t prime = find_prime_from(63); // zwroci 61
+```
+
+Przetestuj działanie funkcji dla liczb nieco większych od znanych sobie liczb pierwszych, aby zweryfikować poprawność jej implementacji.
+
+Następnie wywołaj funkcję dla każdego elementu z uprzednio przygotowanego zbioru wartości początkowych, a wyniki umieszczaj w odpowiednim miejscu w uprzednio przygotowanym wektorze.
+
+Przenieś obliczenia do wielu wątków z wykorzystaniem `std::thread`. Zastanów się jak uzyskać wartość zwróconą przez funkcję `find_prime_from` uruchomioną w wątku. W razie konieczności użyj funkcji lambda lub funkcji pośredniczącej w wywołaniu.
 
 * Wersja podstawowa: uruchom tyle wątków, ile jest liczb do znalezienia
 
 * Wersja zaawansowana: postaraj się samodzielnie podzielić pracę w zależności od liczby rdzeni dostępnych w komputerze (patrz: **Przydatne funkcje** powyżej).
+
+Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej. Czy widoczny jest przyrost wydajności?
 
 ## Problem równoległego dostępu do zasobów
 
