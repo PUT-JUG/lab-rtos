@@ -189,7 +189,7 @@ Przenieś obliczenia do wielu wątków z wykorzystaniem `std::thread`. Zastanów
 
 Dodaj do programu funkcje pomiaru czasu i porównaj wynik działania na jednym wątku oraz wersji wielowątkowej. Czy widoczny jest przyrost wydajności?
 
-## Problem równoległego dostępu do zasobów
+## Problemy równoległego dostępu do zasobów (sytuacja wyścigu, wyścig danych)
 
 W programach wielowątkowych dane mogą być współdzielone pomiędzy wątkami. Równoległa praca wielu wątków, które operują na wspólnych danych może prowadzić do nieoczekiwanych rezultatów. Należy pamiętać, że wątki mogą zostać wywłaszczane w dowolnych momentach, co bez odpowiednich zabezpieczeń może spowodować, że dane będące w trakcie modyfikacji przez jeden wątek zostaną błędnie wykorzystane lub nadpisane przez inny.
 
