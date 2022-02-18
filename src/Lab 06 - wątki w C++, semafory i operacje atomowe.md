@@ -235,7 +235,7 @@ Na obiekcie mutex możemy wykonać trzy metody:
 * `trylock()`: próbuje zablokować muteks, zwraca true jeśli blokada się powiodła
 * `unlock()`: odblokowuje muteks
 
-Bezpośrednie wywoływanie tych funkcji składowych nie jest jednak zalecane, ponieważ w takim przypadku programista musi pamiętać o wywołaniu funkcji `unlock()` we wszystkich ścieżkach wykonywania kodu (także w razie wystąpienia wyjątków). Zamiast wspomnianych funkcji można użyć szablonu klasy `std::lock_guard` dostępnego w bibliotece standardowej języka C++. Szablon implementuje wzorzec projektowy [RAII](https://en.cppreference.com/w/cpp/language/raii) dla muteksu — blokuje wskazany muteks podczas konstruowania obiektu i zwalnia ten muteks w ramach procedury niszczenia tego obiektu, co gwarantuje prawidłowe zarządzanie muteksami.
+Bezpośrednie wywoływanie tych funkcji składowych nie jest jednak zalecane, ponieważ w takim przypadku programista musi pamiętać o wywołaniu funkcji `unlock()` we wszystkich ścieżkach wykonywania kodu (także w razie wystąpienia wyjątków). Zamiast wspomnianych funkcji można użyć szablonu klasy `std::lock_guard` dostępnego w bibliotece standardowej języka C++. Szablon implementuje wzorzec projektowy [RAII](https://en.cppreference.com/w/cpp/language/raii) dla muteksu — blokuje wskazany muteks podczas konstruowania obiektu i zwalnia ten muteks w ramach procedury niszczenia tego obiektu, co gwarantuje prawidłowe zarządzanie muteksami (nie pozwala na samodzielne zablokowanie i odblokowanie muteksów, gdyż dzieje się to automatycznie zdejmując z nas odpowiedzialność).
 
 Przykładowo, jeśli wiele wątków ma pracować na zmiennej `counter`:
 
