@@ -235,13 +235,29 @@ Na obiekcie mutex możemy wykonać trzy metody:
 * `trylock()`: próbuje zablokować muteks, zwraca true jeśli blokada się powiodła
 * `unlock()`: odblokowuje muteks
 
+Bezpośrednie wywoływanie tych funkcji składowych nie jest jednak zalecane, ponieważ w takim przypadku programista musi pamiętać o wywołaniu funkcji `unlock()` we wszystkich ścieżkach wykonywania kodu (także w razie wystąpienia wyjątków). Zamiast wspomnianych funkcji można użyć szablonu klasy `std::lock_guard` dostępnego w bibliotece standardowej języka C++. Szablon implementuje wzorzec projektowy [RAII](https://en.cppreference.com/w/cpp/language/raii) dla muteksu — blokuje wskazany muteks podczas konstruowania obiektu i zwalnia ten muteks w ramach procedury niszczenia tego obiektu, co gwarantuje prawidłowe zarządzanie muteksami.
+
 Przykładowo, jeśli wiele wątków ma pracować na zmiennej `counter`:
 
 ```cpp
-int result = do_stuff();
-counter_mtx.lock();
-counter += result();
-counter_mtx.unlock();
+std::mutex counter_mtx;
+
+void bad(int& counter) 
+{
+    counter_mtx.lock();          // acquire the mutex
+    some_operation(counter);     // if some_operation(counter) throws an exception, the mutex is never released
+    if(!everything_ok()) return; // early return, the mutex is never released
+    counter_mtx.unlock();        // if bad() reaches this statement, the mutex is released
+}
+ 
+void good(int& counter)
+{
+    
+    std::lock_guard<std::mutex> lk_guard(counter_mtx); // RAII class: mutex acquisition is initialization
+    some_operation(counter);                           // if some_operation(counter) throws an exception, the mutex is released
+    if(!everything_ok()) return;                       // early return, the mutex is released
+}                                                      // if good() returns normally, the mutex is released
+
 ```
 
 Pamiętaj, że aby blokada miała sens, muteks - zmienna `counter_mtx` również musi być współdzielona przez wątki.
