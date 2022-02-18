@@ -1,4 +1,4 @@
-# Programowanie współbieżne - wątki w C++, semafory
+# Programowanie współbieżne - wątki w C++, semafory i operacje atomowe
 
 ## Wątki w C++11 – klasa `std::thread`
 
