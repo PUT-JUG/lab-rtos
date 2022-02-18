@@ -113,6 +113,33 @@ std::thread watek3([&zmienna2](){
 });
 ```
 
+### Pomiar czasu
+
+W celu określenia czy wprowadzane przez nas rozwiązania przekładają się na zysk w wydajności możemy wykorzystać funkcje pomiaru czasu dostarczone w bibliotece `<chrono>`. W pierwszym przykładzie funkcje biblioteki `chrono` zostały wykorzystane do pomiaru czasu, jaki upłynął między dwoma miejscami w kodzie.
+
+Poniżej zaprezentowano wyodrębniony fragment kodu realizujacy pomiar czasu, opatrzony dodatkowymi komentarzami:
+
+```cpp
+// deklarujemy obiekty przechowujace moment rozpoczecia i zakonczenia
+std::chrono::time_point<std::chrono::system_clock> start, end;
+// zapisujemy biezacy czas jako moment rozpoczecia
+start = std::chrono::system_clock::now();
+
+/*
+kod, ktorego wydajnosc badamy
+*/
+
+// zapisujemy biezacy czas jako moment zakonczenia
+end = std::chrono::system_clock::now();
+// obliczamy roznice
+std::chrono::duration<double> elapsed_time = end - start;
+// wypisanie czasu w sekundach
+std::cerr << "czas: " << elapsed_time.count() << std::endl;
+```
+
+Pamiętaj, że program uzyska zupełnie różne wyniki w zależności od optymalizacji podczas kompilacji (wybór konfiguracji *Debug* lub *Release*) oraz sposobu uruchomienia - zwykłego lub w trybie debugowania. Porównując wyniki należy uruchamiać tę samą konfigurację, w ten sam sposób.
+
+
 ### ❗️Zadanie 1.❗️ - kolekcja wątków
 
 Zmodyfikuj pierwszy przykład tak, aby uruchamiał podaną przez użytkownika liczbę wątków, wykonujących jedną funkcję. Funkcja ma wyświetlić w konsoli wiadomość zawierającą unikalne *ID* wątku. *ID* można pobrać z poziomu wątku dzięki funkcji `std::this_thread::get_id()`. Zastanów się jak możesz wygodnie przechowywać informacje o kolekcji wątków i czekać na zakończenie wszystkich.
