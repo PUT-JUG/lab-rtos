@@ -266,4 +266,29 @@ Pamiętaj, że aby blokada miała sens, muteks - zmienna `counter_mtx` również
 Zastanów się, które operacje w **Zadaniu 3** powinny należeć do sekcji krytycznej. Stwórz muteks, który będzie odpowiadał za kontrolę dostępu do zwiększanej zmiennej. Zmodyfikuj program tak, aby działał poprawnie.
 
 ***
+
+## Operacje atomowe w C++
+
+Operacja atomowa jest niepodzielna. Oznacza to, że żaden wątek w systemie nie ma
+dostępu do wyniku częściowego wykonania takiej operacji — każda operacja tego typu
+jest albo wykonana, albo nie. W języku C++ korzystanie z operacji atomowych w większości przypadków wymaga
+stosowania typów atomowych, zatem zacznijmy od omówienia właśnie tych typów.
+
+Standardowe typy atomowe można znaleźć w pliku nagłówkowym `<atomic>`, a pełna lista obsługiwanych typów zmiennych jest dostępna w dokumentacji [std::atomic](https://en.cppreference.com/w/cpp/atomic/atomic). Zapewniają one zabezpieczenie przed wyścigiem danych.
+
+Poniżej ponownie przykład, jeśli wiele wątków ma pracować na zmiennej `counter`:
+
+```cpp
+void good(std::atomic<int>& counter)
+{
+    some_operation(counter);
+}                                                      
+```
+
+### ❗️Zadanie 5.❗️ - atomowa operacja inkrementacji
+
+Zastanów się, które zmienne w **Zadaniu 3** powinny być atomowe, aby uniknąć wyścigu danych. Stwórz odpowiednią zmienną atomową, która umożliwi poprawnie działanie programu.
+
+***
+
 Autor: *Jakub Tomczyński*
