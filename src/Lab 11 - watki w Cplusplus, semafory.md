@@ -277,9 +277,10 @@ stosowania typów atomowych. Standardowe typy atomowe można znaleźć w pliku n
 Poniżej ponownie przykład, jeśli wiele wątków ma pracować na zmiennej `counter`:
 
 ```cpp
-void good(std::atomic<int>& counter)
+void atomic_operation(std::atomic<int>& counter)
 {
-    some_operation(counter);
+    int result = do_stuff();
+    counter += result;
 }                                                      
 ```
 
