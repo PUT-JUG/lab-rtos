@@ -201,7 +201,7 @@ Czy wynik jest powtarzalny i zgodny ze spodziewanym? Zastanów się jakie operac
 
 ![Threads race](_images/lab_11_threads-race.png)
 
-Jak pewnie zauważysz taki program sprawdziłby się lepiej jako generator losowych wartości, ponieważ wyniki nie są powtarzalne ani przewidywalne. Taka niepożadana sytuacja, kiedy wynik zależy od od kolejności lub czasu wystąpienia zadania nazywana jest wyścigiem (and. *race condition*, *hazard*). Jest to błąd semantyczny, czyli można wykryć go już w momencie kompilacji. Standard C++ definiuje też pojęcie wyścigu danych (ang. *data race*), czyli szczególnej formy sytuacji wyścigu, która ma miejsce w wyniku jednoczesnej modyfikacji jednego obiektu. Oba problemy mogą występować jednocześnie. W poniższym przykładzie ma miejsce przerwanie wykonywania operacji wątku oraz jednoczesny dostęp do współdzielonnej zmiennej, dając w efekcie nieprzewidywalny wynik. 
+Jak pewnie zauważysz taki program sprawdziłby się lepiej jako generator losowych wartości, ponieważ wyniki nie są powtarzalne ani przewidywalne. Taka niepożadana sytuacja, kiedy wynik zależy od kolejności lub czasu wystąpienia zadania nazywana jest wyścigiem (and. *race condition*, *hazard*). Jest to błąd semantyczny, czyli można wykryć go już w momencie kompilacji. Standard C++ definiuje też pojęcie wyścigu danych (ang. *data race*), czyli szczególnej formy sytuacji wyścigu, która ma miejsce w wyniku jednoczesnej modyfikacji jednego obiektu. Oba problemy mogą występować jednocześnie. W poniższym przykładzie ma miejsce przerwanie wykonywania operacji wątku oraz jednoczesny dostęp do współdzielonnej zmiennej, dając w efekcie nieprzewidywalny wynik. 
 
 ```cpp
 Return value: 94800. The result shoudl be 100000
