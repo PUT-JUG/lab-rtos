@@ -201,6 +201,19 @@ Czy wynik jest powtarzalny i zgodny ze spodziewanym? Zastanów się jakie operac
 
 ![Threads race](_images/lab_11_threads-race.png)
 
+Jak pewnie zauważysz taki program sprawdziłby się lepiej jako generator losowych wartości, ponieważ wyniki nie są powtarzalne ani przewidywalne. Taka niepożadana sytuacja, kiedy wynik zależy od od kolejności lub czasu wystąpienia zadania nazywana jest wyścigiem (and. *race condition*, *hazard*). Jest to błąd semantyczny, czyli można wykryć go już w momencie kompilacji.
+
+```cpp
+Return value: 94800. The result shoudl be 100000
+Return value: 96400. The result shoudl be 100000
+Return value: 94300. The result shoudl be 100000
+```
+
+Program napisany w powyższy sposób **pomija** dwie istotne cechy zapewniające bezpieczeństwo w programowaniu współbieżnym:
+
+* Atomowość operacji, czyli niepodzielność. Żaden inny wątek nie może zobaczyć pośredniego stanu operacji atomowej. Inkrementacja nie jest operacją atomową. W C++ atomowość zapewnia biblioteka [std::atomic](https://en.cppreference.com/w/cpp/atomic).
+* Synchronizacja operacji (semafory i muteksy), czyli kontrolowany dostęp do zmiennych współdzielonych.
+
 ## Semafory, muteksy, operacje atomowe
 
 Aby zapobiec podobnym sytuacjom, w programach, gdzie zasoby są współdzielone pomiędzy wiele wątków, wprowadza się sekcje krytyczne. Sekcja krytyczna to fragment programu, w którym odbywa się dostęp do zasobów współdzielonych, i który nie może być wykonywany przez więcej niż jeden proces jednocześnie.
