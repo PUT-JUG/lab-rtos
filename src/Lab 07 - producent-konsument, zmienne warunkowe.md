@@ -36,7 +36,6 @@ int random_int(int min, int max) {
     int retval = distribution(random_number_engine);
     return retval;
 }
-}
 ```
 
 Generowanie ciągu znaków na podstawie powyższego:
