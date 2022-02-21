@@ -32,10 +32,10 @@ int random_int(int min, int max) {
     static std::mt19937 random_number_engine;
     static std::mutex rng_mtx;
     std::uniform_int_distribution<int> distribution(min, max);
-    rng_mtx.lock();
+    std::lock_guard<std::mutex> lk_guard(rng_mtx);
     int retval = distribution(random_number_engine);
-    rng_mtx.unlock();
     return retval;
+}
 }
 ```
 
