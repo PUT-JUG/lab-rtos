@@ -290,4 +290,4 @@ Zastanów się, które zmienne w **Zadaniu 3** powinny być atomowe, aby unikną
 
 ***
 
-Autor: *Jakub Tomczyński*
+Autorzy: *Jakub Tomczyński*, *Jakub Chudziński*, *Bartłomiej Kulecki*
