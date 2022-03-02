@@ -50,7 +50,7 @@ Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogow
     * Rozmiar maksymalny 10 GB
     * Lokalizacja obrazu wewnątrz folderu *\~/Virtualbox VMs/\<nazwa maszyny wirtualnej\>*
 
-Utworzona zostanie konfiguracja z domyślnymi dla danego sysytemu ustawieniami, które są odpowiednie dla większości zastosowań:
+Utworzona zostanie konfiguracja z domyślnymi dla danego systemu ustawieniami, które są odpowiednie dla większości zastosowań:
 
 ![Utworzona maszyna wirtualna](_images/lab_01_fresh_vm.png)
 
