@@ -70,7 +70,7 @@ Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek":
  ***
 
 ## Pomoc systemowa
-W systemie Linux dla każdego polecenia dostępna jest pomoc systemowa opisująca różne aspekty i zastosowania danego narzędzia oraz dostępne przełączniki. Jednym z mechnizmów pozwalających na wyświetlenie plików pomocy jest wywołanie polecenia z przełącznikiem `--help`, np:
+W systemie Linux dla każdego polecenia dostępna jest pomoc systemowa opisująca różne aspekty i zastosowania danego narzędzia oraz dostępne przełączniki. Jednym z mechanizmów pozwalających na wyświetlenie plików pomocy jest wywołanie polecenia z przełącznikiem `--help`, np:
 ```bash
 ls --help
 ```
