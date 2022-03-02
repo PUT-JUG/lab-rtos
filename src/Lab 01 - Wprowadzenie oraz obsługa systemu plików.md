@@ -88,7 +88,7 @@ Pomoc systemowa wyświetlana jest za pomocą przeglądarki *more*, którą obsł
 * `q` - zamknięcie i opuszczenie przeglądarki;
 * `/` - wyszukiwanie tekstu w przód, po znaku / należy wpisać tekst do wyszukania;
 * `?` - wyszukiwanie w tył;
-* `n`, `N` - przejście do następnego (n)/poprzedniego (N) wystąpienia poszukiwanego wyrażenia.
+* `n`, `N` - przejście do następnego (n) lub poprzedniego (N) wystąpienia poszukiwanego wyrażenia.
 
 ## Struktura katalogów
 
@@ -102,7 +102,7 @@ Postać systemu plików systemów UNIX jest w dużej części ustandaryzowana - 
 * `/dev` - katalog zawierający pliki specjalne, które reprezentują dostępne urządzenia;
 * `/etc` - katalog z lokalnymi plikami konfiguracyjnymi systemu;
 * `/home` - w tym katalog znajdują się podkatalogi domowe użytkowników systemu;
-* `/proc` - wirtualny system plików, który dostarcza informacji o bieżących prcesach w systemie i jego jądrze;
+* `/proc` - wirtualny system plików, który dostarcza informacji o bieżących procesach w systemie i jego jądrze;
 * `/root` - zwyczajowo katalog domowy użytkownika *//root//*, czyli administratora systemu;
 * `/usr` - katalog zawierający zestaw oprogramowania użytkowego dostępnego dla użytkowników;
 * `/var` - katalog ten zawiera pliki, które często zmieniają swoją zawartość i/lub rozmiar.
