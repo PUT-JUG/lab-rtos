@@ -351,10 +351,10 @@ let wynik=5+8
 ```
 Podstawowe operatory matematyczne w skryptach bash:
 |                  Operator                   |      Opis      |
-|------------------------------------------|--------------|
-|     +, -, \*, /      |     suma, różnica, mnożenie, dzielenie     |
-|     var++      |     inkrementacja     |
-|     var--      |     derementacja     |
+|:------------------------------------------:|:--------------:|
+|     \+, \-, \*, /      |     suma, różnica, mnożenie, dzielenie     |
+|     var\+\+      |     inkrementacja     |
+|     var\-\-      |     dekrementacja     |
 |     %      |     modulo     |
 
 ## Debugowanie skryptów
