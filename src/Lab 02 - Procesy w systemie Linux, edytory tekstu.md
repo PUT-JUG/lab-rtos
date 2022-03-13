@@ -155,6 +155,9 @@ Taką sekwencję można również wprowadzić w tło:
 ```bash
 (polecenie_1; polecenie_2; polecenie_3) &
 ```
+### Dostęp do informacji o procesach z poziomu systemu plików
+
+W systemach Unixowych niemal wszystko jest reprezentowane za pomocą plików. Dotyczy to również procesów, które posiadają swój katalog systemowy: `/proc`. Wewnątrz przechowywane są podkatalogi o nazwach odpowiadającym wartościom `PID`. Możliwe jest odczytanie pliku, który przechowuje informacje o zużyciu pamięci przez procesy (plik `meminfo`), a także o zużyciu procesora (plik `cpuinfo`). Jednak te parametry w trakcie działania procesu ulegają zmianie, stąd informacje o procesach są aktualne tylko w momencie odczytu pliku. Powoduje to również że, wszystkie pliki w obrębie system plików `/proc` nazywane są pseudo-plikami, których rozmiar na dysku wynosi 0 bajtów pomimo, że zapisane są w nich konkretne dane - tworzone są one dynamicznie w momencie odczytu. Programy typu `top` i `ps` odczytują dane właśnie z tego systemu pliku i przedstawiają je nam w przystępnej formie. Katalogu `/proc` zawiera również parametry kernela, które można nadpisać wprowadzając nieporządane zmiany, stąd warto zachować ostrożność korzystając z tego systemu plików.
 
 ---
 
@@ -176,6 +179,11 @@ Taką sekwencję można również wprowadzić w tło:
 6. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
 7. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
 8. Utwórz w swoim katalogu domowym folder o nazwie `readonly`. Usuń prawa do zapisu w nim. Następnie wykonaj komendę, która spróbuje utworzyć w nim plik, a w przypadku niepowodzenia wyświetli komunikat **ERROR** (polecenie `echo ERROR`).
+9. Przejdź do katalogu `/proc` i odczytaj jego zawartość poleceniem `ls -l /proc`.
+10. Porównaj wartości `PID` procesów wskazywanych po wywołaniu programu `ps` z nazwami katalogów w folderze `/proc`. Następnie spróbuj przejść do katalogu o nazwie odpowiadającej `PID` procesu `ps` - czy podany katalog nadal istnieje?
+11. Przejdź do podkatalogu w `/proc` o nazwie odpowiadającej `PID` procesu `bash` (uzyskasz go po wpisaniu `ps`). Przejrzyj jego zawartość i wyświetl zawartość pliku `status`. Zwróc uwagę na przechowywane informacje (np. `Name`, `State`,`PID`).
+12. Sprawdź informacje o tym na jakim procesorze obecnie pracujesz. W tym celu odczytaj zawartość pliku `cpuinfo` poleceniem `cat /proc/cpuinfo`.
+13. Sprawdź informacje o wykorzystaniu pamięci RAM. W tym celu odczytaj zawartość pliku `meminfo` poleceniem `cat /proc/meminfo`.
 
 ---
 
