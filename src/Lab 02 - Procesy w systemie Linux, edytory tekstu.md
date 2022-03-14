@@ -231,9 +231,9 @@ Komendy (zatwierdzane enterem):
 
 ### Zadania do samodzielnego wykonania
 
-9. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
-10. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
-11. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
+14. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
+15. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
+16. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
