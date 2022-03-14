@@ -286,8 +286,8 @@ void atomic_operation(std::atomic<int>& counter)
 
 ### ❗️Zadanie 5.❗️ - atomowa operacja inkrementacji
 
-Zastanów się, które zmienne w **Zadaniu 3** powinny być atomowe, aby uniknąć wyścigu danych. Stwórz odpowiednią zmienną atomową, która umożliwi poprawnie działanie programu.
+Zastanów się, które zmienne w **Zadaniu 3** powinny być atomowe, aby uniknąć wyścigu danych. Stwórz odpowiednią zmienną atomową, która umożliwi poprawne działanie programu.
 
 ***
 
-Autor: *Jakub Tomczyński*
+Autorzy: *Jakub Tomczyński*, *Jakub Chudziński*
