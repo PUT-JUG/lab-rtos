@@ -100,7 +100,7 @@ Proces `ps` podaje wynik procesowi `grep`, wyszukując na liście procesów lini
 ```bash
 ps -ef | grep csh
 ```
-Proces `ls` podaje wynik procesowi `sort`, który następnie podaje wynik procesowi `head`, wyświetlając pierwszych 10 najmniejszych plików:
+Proces `ls` podaje wynik procesowi `sort`, który następnie podaje wynik procesowi `head`, wyświetlając pierwszych 10 największych plików:
 ```bash
 ls -l /usr/bin | sort -bnr +4 -5 | head
 ```
@@ -108,7 +108,7 @@ ls -l /usr/bin | sort -bnr +4 -5 | head
 Istnieją programy, których zadaniem jest odczyt danych ze standardowego wejścia, przetworzenie tych danych i ich zapis na standardowe wyjście. Programy takie nazywane są filtrami i są szeroko wykorzystywane w przetwarzaniu potokowym. Poniżej przedstawiono najczęściej wykorzystywane filtry:
 
 * `cat` - najprostszy filtr, nie wprowadzający zmian do przetwarzanych danych. Użyteczne przełączniki:
-  * `-s` z paru pustych linii robi jedna
+  * `-s` z paru pustych linii robi jedną
   * `-n` numeruje wszystkie linie
   * `-b` numeruje niepuste linie
   * `-A` pokazuje znaki specjalne
