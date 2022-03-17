@@ -243,7 +243,7 @@ Jak widać pętla zostanie przerwana, jeśli pobrana nazwa z rozszerzeniem `*.tm
 Wykonywanie całego skryptu można przerwać poleceniem `exit`.
 
 ## Pobieranie wartości do skryptów
-Jeśli skrypt wymaga iteracji z użytkownikiem, to niezbędne staje się pobieranie wartości przekazywanych przez użytkownika. Służy do tego polecenie:
+Jeśli skrypt wymaga interakcji z użytkownikiem, to niezbędne staje się pobieranie wartości przekazywanych przez użytkownika. Służy do tego polecenie:
 
 ```bash
 read [argumenty]
