@@ -350,6 +350,7 @@ Inny sposób polega na użyciu polecenia `let`:
 let wynik=5+8
 ```
 Podstawowe operatory matematyczne w skryptach bash:
+
 |                  Operator                   |      Opis      |
 |:------------------------------------------:|:--------------:|
 |     \+, \-, \*, /      |     suma, różnica, mnożenie, dzielenie     |
