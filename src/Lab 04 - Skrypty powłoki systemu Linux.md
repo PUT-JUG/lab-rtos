@@ -353,7 +353,8 @@ Podstawowe operatory matematyczne w skryptach bash:
 
 |                  Operator                   |      Opis      |
 |:------------------------------------------:|:--------------:|
-|     \+, \-, \*, /      |     suma, różnica, mnożenie, dzielenie     |
+|     \+, \-, \*, /     |     suma, różnica, mnożenie, dzielenie     |
+|   \*\*  | potęgowanie |
 |     var\+\+      |     inkrementacja     |
 |     var\-\-      |     dekrementacja     |
 |     %      |     modulo     |
