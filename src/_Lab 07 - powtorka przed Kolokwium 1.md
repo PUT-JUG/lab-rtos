@@ -1,4 +1,4 @@
-# Powtórka przed Kolokwium 1
+# Powtórka przed Kolokwium (Linux)
 
 ## Dodatkowe zadania:
 
