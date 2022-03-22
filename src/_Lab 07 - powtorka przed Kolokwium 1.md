@@ -26,6 +26,11 @@ Dla każdego pliku *.txt w aktualnym katalogu, porównaj jego sumę kontrolną o
 7. Napisz skrypt, który na podstawie pliku wejściowego wskazanego pierwszym argumentem wyświetli nazwy trzech planet o największej liczbie księżycy, w kolejności alfabetycznej. Przykładowy plik wejściowy: [planets.txt](_resources/planets.txt).
 
 8. W pliku [trees.txt](_resources/trees.txt) zapisane są w formacie csv informacje o kilku drzewach rosnących w ogrodzie (wraz z nagłówkiem w pierwszej linii, informującym o zawartości kolumn pliku). Napisz skrypt, który zapisze do pliku output.txt 3 wysokości dwóch najwyższych brzóz o statusie “chronione”.
+Weryfikacja: \
+`./skrypt.sh` \
+Oczekiwana zawartość pliku output.txt po uruchomieniu skryptu: \
+11.0 \
+10.8
 
 9. Napisz skrypt, który sklei zawartość wszystkich plików przekazanych jako argumenty i wypisze w konsoli zgodnie z następującym przykładem:
 
