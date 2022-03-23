@@ -184,7 +184,7 @@ done
 ```
 spowoduje dziesięciokrotne wykonanie pętli.
 
-Pętla `while` pozawala na realizację pętli, dla których ilość iteracji nie jest znana z góry, jej składnia dla skryptów powłoki jest następująca:
+Pętla `while` pozwala na realizację pętli, dla których ilość iteracji nie jest znana z góry, jej składnia dla skryptów powłoki jest następująca:
 
 ```bash
 while warunek
@@ -326,7 +326,7 @@ function total_files {
         find $1 -type f | wc -l
 }
 
-katalog="`pwd`"
+katalog=`pwd`
 echo -n "Liczba plikow w katalogu $katalog = "
 total_files $katalog
 ```
