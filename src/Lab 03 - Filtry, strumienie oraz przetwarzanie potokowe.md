@@ -1,14 +1,14 @@
 # Filtry, strumienie oraz przetwarzanie potokowe
 
 ## Standardowe wejście/wyjście
-Każdy proces domyślnie korzysta ze standardowych strumieni danych, będących abstrakcją źródła lub ujścia danych. Dla każdego procesu system tworzy standardowy strumień wejściowy (ang. *standard input*), reprezentujący urządzenia wejściowe, np. klawiaturę i dysk, standardowy strumień wyjściowy (ang. *standard output*), którym może być terminal (monitor komputera) lub plik oraz strumień diagnostyczny (ang. *standard error*). Strumienie wejściowy, wyjściowy i diagnostyczny oznaczane są odpowiednio: `stdin`, `stdout`, `stderr`. Każdy strumień ma odpowiadające mu wartości: `stdin` - 0, `stdout` - 1 i `stderr` - 2.
+Każdy proces domyślnie korzysta ze standardowych strumieni danych, będących abstrakcją źródła lub ujścia danych. Dla każdego procesu system tworzy standardowy strumień wejściowy (ang. *standard input*), reprezentujący urządzenia wejściowe, np. klawiaturę i dysk, standardowy strumień wyjściowy (ang. *standard output*), którym może być terminal (monitor komputera) lub plik oraz standardowy strumień diagnostyczny (ang. *standard error*). Strumienie wejściowy, wyjściowy i diagnostyczny oznaczane są odpowiednio: `stdin`, `stdout`, `stderr`. Każdy strumień ma odpowiadające mu wartości: `stdin` - 0, `stdout` - 1 i `stderr` - 2.
 
 ![Standardowe wejscie-wyjscie procesu](_images/lab_04_proc_std.png)
 
 Standardowe strumienie procesów charakteryzują się następującymi cechami:
 
 * Dane odczytywane są poprzez standardowe wejście.
-* Dane wypisywane są na standardowym wyjściu lub standardowym wejściu diagnostycznym.
+* Dane wypisywane są na standardowym wyjściu lub standardowym wyjściu diagnostycznym.
 * Raz przeczytanych danych nie można ponownie przeczytać.
   
 Działanie standardowych strumieni ilustruje program `cat`. Uruchomienie tego programu bez argumentów powoduje przepisanie tego, co zostanie wpisane z wejścia standardowego (klawiatury) na wyjście standardowe (okno terminala). Wpisywanie danych z klawiatury można zakończyć za pomocą kombinacji *Ctrl-D* (reprezentowane w listingach jako `^D`).
