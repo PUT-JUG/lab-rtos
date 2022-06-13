@@ -343,7 +343,7 @@ wynik=$((5+8))
 ```
 Drugim sposobem jest wykorzystanie polecenia `expr`:
 ```bash
-wynik=$(expr 5+8)
+wynik=$(expr 5 + 8)
 ```
 Inny sposób polega na użyciu polecenia `let`:
 ```bash
