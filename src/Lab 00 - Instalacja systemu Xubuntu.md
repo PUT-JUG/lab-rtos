@@ -1,4 +1,4 @@
-# Instalacja i konfiguracja systemu Xubuntu w środowisku VirtualBox
+# Instalacja i konfiguracja systemu Ubuntu/Xubuntu w środowisku VirtualBox
 
 ## Systemy GNU/Linux
 
@@ -6,15 +6,15 @@ Linux to tak naprawdę nazwa darmowego, otwartego jądra systemu uniksopodobnego
 
 Systemy linuksowe dostarczane są w formie dystrybucji takich jak Ubuntu, Debian czy Fedora, z których każda składa się z jądra oraz zestawu pakietów oprogramowania dobranego przez twórców danej dystrybucji.
 
-Podczas zajęć posługiwać będziemy się dystrybucją **Xubuntu** w wersji **20.04 LTS**, która jest odmianą bardzo popularnej dystrybucji Ubuntu, jednak z lekkim interfejsem graficznym XFCE doskonale nadającym się do pracy w środowisku wirtualizowanym lub na nieco starszych komputerach.
+Podczas zajęć posługiwać będziemy się dystrybucją **Ubuntu** w wersji **22.04 LTS**, jeżeli taki system jest dostępny na komputerach w laboratorium. W przypadku braku systemu Ubuntu na komputerach w laboratorium lub chęci korzystania z lżejszego UI, skorzystać można z z dystrybucji **Xubuntu**. Jest to odmiana bardzo popularnej dystrybucji Ubuntu, jednak z lekkim interfejsem graficznym XFCE doskonale nadającym się do pracy w środowisku wirtualizowanym lub na nieco starszych komputerach.
 
-Większość operacji oraz poleceń prezentowanych podczas zajęć jest uniwersalna i powinna działać bez zmian lub z drobnymi modyfikacjami pod większością dystrybucji (wyjątki zostaną wyróżnione).
+Większość operacji oraz poleceń prezentowanych podczas zajęć jest uniwersalna i powinna działać bez zmian lub z drobnymi modyfikacjami pod większością dystrybucji (wyjątki zostaną wyróżnione). Ilustracje w dalszej czesci instrukcji pochodzą z instalacji systemu **Xubuntu** 20.04, jednak nie powinny one znacząco odbiegać od instlacji innych dystrybucji.
 
 ## Maszyny wirtualne
 
 Aby ułatwić poznanie nowego systemu, zainstalujemy go na maszynie wirtualnej.
 
-Tworząc maszynę wirtualną, nasz komputer będzie "symulował" istnienie zasobów, które tworzą kompletny komputer - chipsetu płyty głównej, dysków, karty graficznej, interfejsów sieciowych. Wirtualizacja nie jest emulacją - w przeciwieństwie do emulacji, goszczony system operacyjny będzie miał niemal bezpośredni dostęp do fizycznego procesora w komputerze. 
+Tworząc maszynę wirtualną, nasz komputer będzie "symulował" istnienie zasobów, które tworzą kompletny komputer - chipsetu płyty głównej, dysków, karty graficznej, interfejsów sieciowych. Wirtualizacja nie jest emulacją - w przeciwieństwie do emulacji, goszczony system operacyjny będzie miał niemal bezpośredni dostęp do fizycznego procesora w komputerze.
 
 Dzięki temu unikniemy ryzyka uszkodzenia głównego systemu operacyjnego, na którym pracujemy na co dzień, bądź utraty plików. Będziemy również w stanie uruchomić - poza systemem głównym (*host*) - jeden lub więcej system "gościa" (*guest*) jednocześnie.
 
@@ -37,17 +37,17 @@ Uruchom program VirtualBox.
 
 Kliknij przycisk *New* z paska narzędziowego. W kolejnych etapach okna dialogowego:
 
-* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Na potrzeby zajęć nazwę ustaw np. na *Xubuntu 20.04 SCR*.
+* Wprowadź nazwę maszyny wirtualnej (nazwa może być dowolna, warto aby reprezentowała typ bądź przeznaczenie danej maszyny). Na potrzeby zajęć nazwę ustaw np. na *Xubuntu 22.04 SCR*.
 * Wybierz typ instalowanego systemu operacyjnego oraz architekturę - Linux / Ubuntu 64-bit - VirtualBox stara się rozpoznać typ systemu po nazwie maszyny.
 
 ![Tworzenie maszyny wirtualnej](_images/lab_01_create_vm.png)
 
-* Ustaw ilość pamięci RAM, jaką otrzyma maszyna wirtualna. Pamiętaj, że system hosta i maszyny wirtualne współdzielą pamięć jednej maszyny. Podczas zajęć ustaw *1024 MB*.
+* Ustaw ilość pamięci RAM, jaką otrzyma maszyna wirtualna. Pamiętaj, że system hosta i maszyny wirtualne współdzielą pamięć jednej maszyny. Podczas zajęć ustaw *2048 MB*.
 
-* Stwórz nowy obraz dysku dla maszyny wirtualnej, pozostaw domyśne opcje:
+* Stwórz nowy obraz dysku dla maszyny wirtualnej:
     * Format VDI
     * Dynamicznie przydzielany rozmiar
-    * Rozmiar maksymalny 10 GB
+    * Rozmiar maksymalny 25 GB
     * Lokalizacja obrazu wewnątrz folderu *\~/Virtualbox VMs/\<nazwa maszyny wirtualnej\>*
 
 Utworzona zostanie konfiguracja z domyślnymi dla danego systemu ustawieniami, które są odpowiednie dla większości zastosowań:
@@ -56,7 +56,8 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego systemu ustawieniami, k
 
 ## Instalacja systemu
 
-* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 20.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (*mirror*) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-20.04.3-desktop-amd64.iso*).
+* Pobierz obraz *ISO* płyty instalacyjnej ze strony https://xubuntu.org/download/ - wersja 22.04.\*, *Desktop* dla architektury 64-bit - wybierz serwer (*mirror*) z pobliskiego kraju, a następnie odpowiedni plik ISO (aktualnie *xubuntu-22.04.2-desktop-amd64.iso*).
+* W przypadku chęci skorzystania z dystrybucji **Ubuntu** obraz instalacyjny pobrać można ze strony https://www.releases.ubuntu.com/22.04/ - wybierając "Desktop image".
 
 * Uruchom maszynę kilkając *Start*. Maszyna domyślnie ustawiona jest na boot z wirtualnego napędu CD. Przy pierwszym uruchomieniu maszyny VirtualBox poprosi o wskazanie obrazu ISO płyty:
 
@@ -75,9 +76,9 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego systemu ustawieniami, k
 * Wszystkie pozostałe opcje mogą pozostać domyślne, przejdź przez kolejne etapy instalacji przyciskiem *Continue*.
 
     * Typ instalacji (Installation type)
-    
+
         Podczas instalacji na maszynie wirtualnej możesz bez obaw wybrać usunięcie danych i użycie całego dysku - opcja *Erase disk and install Xubuntu*. Jedyne do czego ma dostęp maszyna wirtualna, to uprzednio stworzony obraz wirtualnego dysku. Podczas ewentualnej instalacji na fizycznym komputerze masz możliwość instalacji obok istniejącego systemu operacyjnego (np. Windows) wraz z *bootloaderem* pozwalającym na wybór systemu podczas uruchamiania. Wymaga to jednak podziału dysku na partycje oraz pewnej wiedzy i doświadczenia.
-        
+
         **WAŻNE: Przed instalacją jakiegokolwiek systemu na fizycznym komputerze, na którym znajdują się dane WYKONAJ KOPIĘ ZAPASOWĄ**
 
 * Podaj dane użytkownika i nazwę komputera.
@@ -97,15 +98,15 @@ Utworzona zostanie konfiguracja z domyślnymi dla danego systemu ustawieniami, k
 Świeżo po instalacji systemu gościa VirtualBox musi w pełni symulować niektóre urządzenia sprzętowe. Wydajność i wygodę obsługi maszyny wirtualnej można poprawić instalując tzw. dodatki gościa (*Guest Additions*).
 
 * Dla systemów goszczonych Windows od wersji NT dodatki są dostarczone w formie graficznego instalatora.
-    
+
 * Dla systemów goszczonych Linux, aby osiągnąć pełną funkcjonalność, instalator musi skompilować tzw. *moduły jądra* (sterowniki) dedykowane dla wirtualizowanego sprzętu i systemu, co będzie wymagało zainstalowania kompilatora.
-    
+
 ### Instalacja kompilatora i pierwsze kroki w terminalu
-    
+
 * Programy i biblioteki dla wielu dystrubucji dostarczane są w formie *pakietów* (paczek), którymi zarządza menadżer paczek używany w danej dystrybucji. Menadżer ten automatycznie rozwiązuje *zależności* pomiędzy paczkami (dany program może wymagać do działania innego programu lub specyficznych bibliotek), pobiera je z *repozytoriów* i instaluje w systemie.
 
     * Współczesne dystrybucje dostarczają też często graficzny \"sklep\" z popularnymi aplikacjami użytkowymi.
-    
+
 * W systemach z rodziny Debian (w tym Ubuntu i pochodne) wykorzystywany jest menadżer paczek *APT* (*Advanced Packaging Tool*). Paczki przechowywane są w archiwach *.deb*. Funkcje *APT* są dostępne z poziomu linii poleceń pod komentą `apt`.
 
 Uruchom aplikację *Terminal Emulator* korzystając z ikony menu Xubuntu w lewym górnym rogu. Jeśli nie wyświetla się na liście, możesz wpisać w wyszukiwarce \"terminal\". Powinno pojawić się następujące okno:
@@ -195,7 +196,7 @@ Sprawdź czy przywrócenie się powiodło - po uruchomieniu maszyny nie powinno 
 
 Poza przywracaniem masz możliwość:
 
-* *Delete*: usunięcia migawki 
+* *Delete*: usunięcia migawki
 * *Clone*: utworzenia nowej maszyny na podstawie migawki
 * *Discard*: wymuszenia wyłączenia maszyny, której stan został zapisany podczas gdy była uruchomiona
 

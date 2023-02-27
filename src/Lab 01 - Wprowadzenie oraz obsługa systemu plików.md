@@ -8,11 +8,7 @@ Podczas tego ćwiczenia poznamy podstawy pracy z systemem Linux przy wykorzystan
 
 Po uruchomieniu terminala wyświetlana jest linia poleceń wraz z nazwą użytkownika (*student*), nazwą maszyny (*vbox-xubuntu-labrtos*) oraz znak zachęty $. Oznacza to, że zalogowany użytkownik jest użytkownikiem zwykłym. Oprócz tego wyróżniamy, użytkownika uprzywilejowanego *root* posiadającego pełne prawa administracyjne do systemu. W takim wypadku, znak zachęty zmienia się na #, a nazwa użytkownika na *root*. Po znaku zachęty możemy wprowadzać kolejne polecenia zatwierdzanie klawiszem *Enter*.
 
-Po zalogowaniu do systemu użytkownik ma możliwość zmiany własnego hasła - służy do tego polecenie:
-```bash
-passwd
-```
-Po jego wydaniu należy wprowadzić dotychczasowe hasło, a następnie nowe hasło, które trzeba także powtórzyć, aby system mógł zweryfikować czy nie popełniono błędu przy jego wprowadzaniu (np. "literówki"). W trakcie wpisywania hasła, ze względów bezpieczeństwa na monitorze nie są wyświetlane żadne znaki. System identyfikuje użytkowników na podstawie specjalnych identyfikatorów numerycznych (takie numery są łatwiejsze do przetwarzania) - nazywanych **id**. Każdy użytkownik systemu operacyjnego może także sprawdzić jaki identyfikator numeryczny **id** został mu przydzielony - należy wówczas zastosować polecenie:
+System identyfikuje użytkowników na podstawie specjalnych identyfikatorów numerycznych (takie numery są łatwiejsze do przetwarzania) - nazywanych **id**. Każdy użytkownik systemu operacyjnego może także sprawdzić jaki identyfikator numeryczny **id** został mu przydzielony - należy wówczas zastosować polecenie:
 ```bash
 id
 ```
@@ -60,7 +56,7 @@ Każde z pokazanych powyżej poleceń jest równoważne i skutkuje wykonaniem te
 ***
 ##  Garść porad i wskazówek:
 
-Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek": 
+Dla efektywnej pracy z terminalem warto poznać kilka przydatnych "sztuczek":
 *  Podczas wpisywania poleceń, ścieżek dostępu itp. naciskając klawisz `Tab` terminal uzupełni dalszą część polecenia, jeśli jest tylko jedno możliwe dopełnienie. Jeśli możliwości jest kilka, dwukrotne naciśnięcie `Tab` wyświetli możliwe dopełnienia.
 * Naciskając klawisze strzałek góra-dół w trakcie pracy z linią poleceń, możemy w łatwy sposób poruszać się pomiędzy wydawanymi w tej sesji poleceniami.
 *  Szerszy dostęp do historii komend uzyskamy naciskając `Ctrl+R` i wyszukując odpowiednie polecenie
@@ -137,7 +133,7 @@ Podstawowe operacje obsługi katalogów można realizować z wykorzystaniem nast
   * `ls` - wyświetla zawartość katalogu bieżącego;
   * `ls -a` - wyświetla zawartość katalogu bieżącego uwzględniając wszystkie pliki - tzn. także te, których nazwa zaczyna się od znaku `.` (umownie są to pliki ukryte);
   * `ls -l` - wyświetla wszystkie pliki z katalogu bieżącego z uwzględnieniem tzw. "długiego formatu", czyli podając typ każdego obiektu w katalogu (pierwszy znak linii: `d` - katalog, znak `-` - plik zwykły, `l` - dowiązanie), prawa dostępu, liczbę dowiązań, właściciela, nazwę grupy, rozmiar (w bajtach), data ostatniej modyfikacji oraz nazwę (patrz rysunek poniżej)
-  
+
     ![Polecenie ls -l](_images/lab_02_lsl.png)
   * `ls -al ~` - jak wyżej, przy czym wyświetlana jest zawartość katalogu domowego wraz z plikami ukrytymi;
   * `ls -al /etc` - jak wyżej, ale wyświetlana jest zawartość katalogu `/etc`.
@@ -159,7 +155,7 @@ Podstawowe operacje obsługi plików można realizować z wykorzystaniem następ
   * `cp abc.txt xyz.txt` - kopiuje plik `abc.txt` pod nową nazwę `xyz.txt` w katalogu bieżącym;
   * `cp /tmp/abc.txt ~` - kopiuje plik `abc.txt` z katalogu `/tmp` do katalogu domowego użytkownika;
   * `cp abc.txt ~/xyz.txt` - kopiuje plik `abc.txt` z katalogu bieżącego pod nową nazwę `xyz.txt` w katalogu domowym użytkownika.
-  
+
 Przydatnym przełącznikiem polecenia `cp` jest przełącznik `-r`, który służy do kopiowania całych struktur katalogów.
 
 * `rm [przełączniki] lista_plików` - usuwanie plików podanych jako argumenty wywołania, np.:
@@ -171,10 +167,10 @@ Przydatnym przełącznikiem polecenia `rm` jest przełącznik -r, który służy
 * `mv [przełączniki] nazwa_pliku nowa_nazwa` - zmiana nazwy pliku określonego pierwszym argumentem wywołania na nazwę określoną drugim argumentem wywołania. Jeśli drugi argument wywołania jest katalogiem, to wówczas plik zostanie przeniesiony do tego katalogu, np.:
   * `mv abc.txt xyz.txt` - zmiana nazwy pliku `abc.txt` na nazwę `xyz.txt` w katalogu bieżącym;
   * `mv /tmp/abc.txt ~` - przeniesienie pliku `abc.txt` z katalogu `/tmp` do katalogu domowego użytkownika.
-  
+
 * `touch [przełączniki] nazwa_pliku` - modyfikuje informacje na temat czasów modyfikacji i odczytu pliku, ale pozwala także na utworzenie pliku, np.:
   * `touch abc.txt` - utworzenie (pustego) pliku `abc.txt` w katalogu bieżącym.
-  
+
 Polecenia dotyczące plików (i katalogów) można także wydawać z wykorzystaniem tzw. wzorców uogólniających, które tworzy się z zastosowaniem następujących operatorów:
 
 `*` - zastępuje dowolny ciąg znaków (także pusty),
@@ -193,7 +189,7 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 
 ## Zadania do samodzielnego wykonania - część I
 
-1. Zmień własne hasło. Następnie powróć do hasła domyślnego.
+1. Poczuj się komfortowo w terminalu - zmaksymalizuj okno.
 2. Sprawdź własny identyfikator oraz grupy, do których należysz.
 3. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
 4. Zapoznaj się z opisem struktury katalogów - polecenie `man 7 hier`.
@@ -243,7 +239,7 @@ Pierwszym argumentem wywołania polecenia `find` jest nazwa katalogu, od któreg
 * `mtime <dni>` - pozycje, na które były modyfikowane podaną liczbę dni temu; przed ilością dni można podać znaki + lub -, oznaczają one wówczas odpowiednio: pozycje, na które były modyfikowane więcej/mniej dni temu;
 * `type <typ>` - określenie jakie pozycje mają zostać odnalezione: `f` - pliki zwykłe, `d` - katalogi, `l` - dowiązania symboliczne, `c` - urządzenia znakowe (niebuforowane), `b` - urządzenia blokowe (buforowane), `p` - kolejki FIFO;
 * `exec <polecenie> [{}] \;`; - wykonuje dowolne polecenie; polecenie może zostać wykonane na odszukanych pozycjach, wówczas należy zastosować jako argument polecenia znaki `{}`.
-  
+
 Oto przykłady użycia polecenia find:
 
 * `find ~ -name abc.txt` - wyszuka wszystkie pozycje o nazwie `abc.txt`, które znajdują sie w katalogu domowym użytkownika (oraz podkatalogach);
@@ -257,10 +253,10 @@ Oto przykłady użycia polecenia find:
 18.   Korzystając z programu find znajdź wszystkie pliki, które posiadają w nazwie słowo `mozilla` i znajdują się w podkatalogach katalogu `/usr`.
 19.   Korzystając z programu `find` znajdź wszystkie katalogi o nazwie `bin`, które znajdują się w katalogu `/usr`.
 20.   Skopiuj wszystkie pliki zwykłe o rozmiarze pomiędzy 10 a 100 bajtów z katalogu `/usr/bin` do katalogu `kat1/kat2` (wykorzystaj polecenie `find` z parametrem `-exec`).
-    
+
 ## Prawa dostępu
 
-W systemach UNIX dostęp do plików i katalogów zabezpieczony jest tzw. prawami dostępu, które regulują zasady na jakich użytkownicy mogą korzystać z tych zasobów. Wyróżnia się trzy rodzaje praw: prawo odczytu - oznaczane `r` (ang. `read`), prawo zapisu - oznaczane `w` (ang. `write`) oraz prawo wykonania - oznaczane `x` (ang. `execute`). Takie prawa są określane niezależnie dla: użytkownika, który jest właścicielem pliku lub katalogu (domyślnie właścicielem jest użytkownik, który utworzył dany plik lub katalog); użytkowników, którzy należą do tej samej grupy, do której należy plik lub katalog oraz dla pozostałych użytkowników. 
+W systemach UNIX dostęp do plików i katalogów zabezpieczony jest tzw. prawami dostępu, które regulują zasady na jakich użytkownicy mogą korzystać z tych zasobów. Wyróżnia się trzy rodzaje praw: prawo odczytu - oznaczane `r` (ang. `read`), prawo zapisu - oznaczane `w` (ang. `write`) oraz prawo wykonania - oznaczane `x` (ang. `execute`). Takie prawa są określane niezależnie dla: użytkownika, który jest właścicielem pliku lub katalogu (domyślnie właścicielem jest użytkownik, który utworzył dany plik lub katalog); użytkowników, którzy należą do tej samej grupy, do której należy plik lub katalog oraz dla pozostałych użytkowników.
 
 Interpretacja praw dostępu jest następująca:
 
@@ -274,7 +270,7 @@ Interpretacja praw dostępu jest następująca:
 |         Odczytanie zawartości pliku        |       r--      |        --x        |
 |               Zapis do pliku               |       -w-      |        --x        |
 | Wykonanie pliku (np. programu lub skryptu) |       --x      |        --x        |
-		
+
 
 Jak już wspomniano informacje o prawach dostępu można uzyskać dzięki poleceniu `ls` z przełącznikiem `-l` - oto przykład oraz jego interpretacja:
 
@@ -296,7 +292,7 @@ Zatem dla pliku `abc.txt` dostępne są następujące prawa (znak "-" oznacza br
 Prawami dostępu można także operować stosując notację numeryczną, w której każde prawo ma przypisaną pewną wartość liczbową, i tak: prawo odczytu - `4`; prawo zapisu - `2`, prawo wykonywania - `1`. Tak więc, prawa zapisane numerycznie dla pliku `abc.txt` z powyższego przykładu miałyby następującą postać:
 
 * `745` - 7 oznacza wszystkie prawa dla użytkownika (4 + 2 + 1), 4 oznacza prawo odczytu dla grupy, a 5 oznacza prawo odczytu i wykonywania (4 + 1) dla pozostałych użytkowników.
-  
+
 Operowanie prawami dostępu i określaniem prawa własności jest możliwe dzięki następującym poleceniom systemowym:
 
 * `chmod [przełączniki] uprawnienia nazwa_pliku_lub_katalogu` - zmiana praw dostępu wskazanych pierwszym argumentem wywołania dla pliku lub katalogu wskazanym drugim argumentem wywołania; możliwości wywołania tego polecenia przedstawiono poniżej:
@@ -307,9 +303,9 @@ Operowanie prawami dostępu i określaniem prawa własności jest możliwe dzię
 W specyfikacji należy zatem wskazać dla kogo mają być zmienione prawe (`u` - właściciel, `g` - użytkownicy z tej samej grupy, `o` - inni użytkownicy, `a` - wszyscy), (ii) rodzaj zmiany (`+` - dodanie praw, `-` - odjęcie praw, `=` - ustalenie praw) oraz (iii) prawa. Oto przykładowe zlecenia z wykorzystaniem polecenia chmod:
 
   * `chmod u+w plik.txt` - dodaje prawo zapisu dla właściciela do pliku `plik.txt`;
-  * `chmod go-x plik.txt` - usuwa prawo wykonywania dla użytkowników z tej samej grupy i innych do pliku `plik.txt`; 
+  * `chmod go-x plik.txt` - usuwa prawo wykonywania dla użytkowników z tej samej grupy i innych do pliku `plik.txt`;
   * `chmod a=r plik.txt` - ustawia prawa dostępu na tylko do odczytu dla wszystkich użytkowników do pliku `plik.txt`;
-  
+
 Polecenie `chmod` umożliwia także określanie praw dostępu w postaci numerycznej, np.:
 
   * `chmod 777 plik.txt` - ustawia wszystkie prawa, wszystkim użytkownikom do pliku `plik.txt;`
@@ -318,7 +314,7 @@ Polecenie `chmod` umożliwia także określanie praw dostępu w postaci numerycz
 Dodatkowo, możliwa jest zmiana własciciela lub grupy właścicieli pliku/katalogu:
 
 * `chown [przełączniki] nazwa_nowego_właściciela nazwa_pliku_lub_katalogu` - zmiana właściciela pliku lub katalogu. Ze względu na nieodwracalność ewentualnych zmian, polecenie to jest często zarezerwowane dla administratora systemu.
-  
+
 * `chgrp [przełączniki] nazwa_nowej_grupy nazwa_pliku_lub_katalogu` - zmienia grupę, do której należy wskazany plik lub katalog. Podobnie jak polecenie chown, i to polecenie najczęściej jest zarezerwowane dla administratora.
 
 
@@ -331,8 +327,8 @@ Istnieją dwa rodzaje dowiązań: tzw. dowiązania twarde (ang. *hard links*) or
 Tworzenie dowiązań jest możliwe dzięki poleceniu:
 
 * `ln [przełączniki] źródło nazwa_dowiązania`
-  
-Pierwszy argument musi wskazywać na istniejący plik (lub katalog w przypadku dowiązań symbolicznych), do którego tworzone jest dowiązanie, a drugim argumentem jest nowa nazwa dla tego pliku. Utworzenie dowiązania symbolicznego wymaga zastosowania przełącznika `-s`. 
+
+Pierwszy argument musi wskazywać na istniejący plik (lub katalog w przypadku dowiązań symbolicznych), do którego tworzone jest dowiązanie, a drugim argumentem jest nowa nazwa dla tego pliku. Utworzenie dowiązania symbolicznego wymaga zastosowania przełącznika `-s`.
 
 Przykładowe wywołania zlecenia utworzenia dowiązań:
 
@@ -340,7 +336,7 @@ Przykładowe wywołania zlecenia utworzenia dowiązań:
 * `ln -s ./abc/plik.txt ~/plik1.txt` - tworzy dowiązanie symboliczne do pliku `plik.txt` w katalogu `./abc` pod nazwą `plik1.txt` w katalogu domowym użytkownika.
 
 
-## Zadania do samodzielnego wykonania - część III 
+## Zadania do samodzielnego wykonania - część III
 
 21.   W katalogu domowym utwórz plik o nazwie plik.txt - sprawdź jakie są prawa dostępu do niego.
 22.   Dla pliku plik.txt dodaj prawo zapisu dla pozostałych użytkowników.
