@@ -189,12 +189,13 @@ Oto przykładowe polecenia z wykorzystaniem wzorców uogólniających:
 
 ## Zadania do samodzielnego wykonania - część I
 
-1. Poczuj się komfortowo w terminalu - zmaksymalizuj okno.
-2. Sprawdź własny identyfikator oraz grupy, do których należysz.
-3. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
-4. Zapoznaj się z opisem struktury katalogów - polecenie `man 7 hier`.
-5. Wyświetl zawartość katalogu domowego.
-6. Wyświetl zawartość podstawowych katalogów w systemie (np. `/dev`, `/etc`, `/home`, `/usr`).
+0. Poczuj się komfortowo w terminalu - zmaksymalizuj okno.
+1. Sprawdź własny identyfikator oraz grupy, do których należysz.
+2. Sprawdź kto jest zalogowany w chwili obecnej w systemie.
+3. Zapoznaj się z opisem struktury katalogów - polecenie `man 7 hier`.
+4. Wyświetl zawartość katalogu domowego (podpowiedź: nie katalogu `/home`, ale `home/username`)
+5. Wyświetl zawartość podstawowych katalogów w systemie (np. `/dev`, `/etc`, `/home`, `/usr`).
+6. Utwórz katalog o swoim imieniu w folderze domowym (e.g. `/home/student/przemek`). Następnie przejdź do tego katalogu, aby nie stworzyć bałaganu w głównym folderze użytkownika.
 7. Utwórz katalog `kat1` w katalogu domowym.
 8. W katalogu `kat1` utwórz jednym poleceniem strukturę katalogów `kat2/kat3/kat4`.
 9.  Usuń jednym poleceniem cała strukturę katalogów `kat3/kat4`.
