@@ -1,4 +1,5 @@
-# Procesy w systemie Linux, edytory tekstu
+# Procesy w systemie Linux, ssh, edytory tekstu
+
 
 ## Procesy
 
@@ -186,6 +187,72 @@ W systemach Unixowych niemal wszystko jest reprezentowane za pomocą plików. Do
 13. Sprawdź informacje o wykorzystaniu pamięci RAM. W tym celu odczytaj zawartość pliku `meminfo` poleceniem `cat /proc/meminfo`.
 
 ---
+## Zdalne zarządzanie przez sieć
+
+### SSH
+
+SSH (*secure shell*) to popularny standard protokołu komunikacyjnego pozwalający m.in. na zdalne wykonywanie poleceń przez sieć TCP/IP za pośrednictwem terminala. Połączenie jest szyfrowane i uwierzytelnione np. hasłem lub certyfikatem.
+
+Użytkownik, przy pomocy *klienta SSH*, łączy się z akceptującym połączenia zdalne *serwerem SSH*, dzięki czemu może wykonywać z poziomu maszyny *klienta* polecenia i uruchamiać programy konsolowe na *serwerze*.
+
+Większość dystrybucji ma domyślnie zainstalowanego klienta SSH, serwer należy często doinstalować z repozytoriów. 
+
+W aktualnym systemie Windows 10/11, klient SSH również jest domyślnie zainstalowany. W starszych wersjach systemu Windows można doinstalować klient i serwer w postaci *OpenSSH for Windows*, bądź wykorzystać popularny graficzny klient SSH *Putty*.
+Otwórz terminal w systemie Windows/Linux i połącz się z gościem poleceniem `ssh [user@]host`, na przykład:
+
+```bash
+ssh student@192.168.56.3
+```
+
+Przy pierwszym połączeniu z danym komputerem zdalnym, klient poprosi o potwierdzenie tożsamości hosta (wpisujemy *yes*). Po poprawnym połączeniu ukaże się znak zachęty taki, jak na komputerze, z którym się łączymy. Sesję kończymy poleceniem `exit`.
+
+Przydatne zaawansowane przełączniki klienta SSH:
+
+* `-p port` - zmienia docelowy port (domyślnie 22)
+* `-L port_lokalny_klienta:host:port_zdalny` - *local port forwarding*, tuneluje `port_lokalny_klienta` z klienta SSH na `port_zdalny` serwera `host` przez serwer SSH
+* `-R port_lokalny_serwera:host:port_zdalny` - *remote port forwarding*, tuneluje `port_lokalny_serwera` z serwera SSH na `port_zdalny` komputera `host` przez klienta SSH
+* `-D port` - *dynamic port forwarding* - otwiera proxy SOCKS na porcie `port` klienta
+
+Przekierowywanie portów (tunelowanie) SSH pozwala m.in. przesyłać dane po bezpiecznym, szyfrowanym połączeniu, ominąć ograniczenia sieciowe w postaci zablokowanych portów lub uruchomić prosty serwer proxy dla przeglądarki WWW.
+
+### `scp`
+
+Częścią pakietu OpenSSH są programy `scp` oraz `sftp`, wykorzystujące protokół SSH do zdalnej wymiany plików.
+
+Program `scp` pozwala na kopiowanie plików z/na zdalny komputer, na którym uruchomiony jest serwer SSH, w analogiczny sposób do programu `cp`:
+
+```bash
+scp source destination
+```
+Zarówno `source` jak i `destination` mogą być lokalnymi ścieżkami do pliku lub ścieżką do pliku na serwerze SSH w postaci `[user@]host:[path]`.
+
+Przykładowe wywołania:
+
+Kopiowanie pliku na zdalny komputer, do katalogu domowego:
+```bash
+scp dane.txt student@192.168.56.3:/home/student
+```
+
+Kopiowanie pliku ze zdalnego komputera
+```bash
+scp student@192.168.56.3:/etc/resolv.conf resolv.conf
+```
+
+---
+
+#### Zadania do samodzielnego wykonania
+
+Korzystając z połączenia SSH (*serwer* oznacza w tym przypadku maszynę zdalną):
+
+1. Wyświetl procesy o największym użyciu procesora.
+2. Sprawdź zawartość katalogu domowego
+
+Korzystając z SCP pod Windowsem:
+
+3. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli (po SSH).
+4. Skopiuj z serwera wszystkie pliki z rozszerzeniem `.conf` znajdujące się w katalogu `/etc`.
+
+---
 
 ## Edytory tekstu `nano`, `vim`
 
@@ -231,7 +298,7 @@ Komendy (zatwierdzane enterem):
 
 ### Zadania do samodzielnego wykonania
 
-14. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym)
+14. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym na serwerze)
 15. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
 16. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
 
