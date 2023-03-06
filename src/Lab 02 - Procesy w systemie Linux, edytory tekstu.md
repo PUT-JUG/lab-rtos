@@ -87,28 +87,7 @@ killall find
 ```
 powoduje zatrzymanie wszystkich programów `find`.
 
-Szczegółową listę sygnałów wraz z ich wartościami numerycznymi zawiera strona pomocy systemowej *signal(7)* (komenda `man 7 signal`). Skróconą listę dostępnych sygnałów można uzyskać poprzez wywołanie `kill -l`. 
-
-### Priorytety procesów
-
-Każdy proces wykonywany w systemie posiada przypisany mu priorytet, który można odczytać w wyniku wywołania polecenia `ps` z przełącznikiem `-l`.
-
-Kolumna `PRI` wyświetlana w wyniku tego polecenia zawiera informacje o wartości priorytetu określonego procesu, nadanej mu poprzez system operacyjny. Wartość ta nie może być bezpośrednio zmieniana przez użytkownika. Jednakże użytkownik może wpłynąć na wartość `PRI`, zmnieniając tzw. liczbę *nice*, której aktualna wartość znajduje się w kolumnie `NI`. Wartość liczby nice należy do przedziału: od -20 do 19 i początkowo przyjmuje wartość 0. Im mniejsza wartość liczby *nice* tym wyższy priorytet procesu. Dla działającego procesu liczbę *nice* można zmienić poleceniem:
-
-```bash
-renice zmiana_priorytetu [ -p ] pid [ -u użytkownik ]
-```
-Na przykład:
-```bash
-renice +10 3442
-```
-zwiększa liczbe *nice* o 10, co powoduje zmniejszenie priorytetu tego zadania. Zwykli użytkownicy mogą jedynie zwiększać liczbę *nice*, czyli obniżać priorytet wykonania swoich zadań, natomiast użytkownik *root* jest uprawniony do wykonywania wszelkich zmian na wartości *nice*.
-
-Możliwe jest uruchamianie nowych procesów z ustawionym już nowym priorytetem:
-
-```bash
-nice -n zmiana_priorytetu polecenie
-```
+Szczegółową listę sygnałów wraz z ich wartościami numerycznymi zawiera strona pomocy systemowej *signal(7)* (komenda `man 7 signal`). Skróconą listę dostępnych sygnałów można uzyskać poprzez wywołanie `kill -l`.
 
 ### Zarządzanie procesami
 
@@ -156,35 +135,27 @@ Taką sekwencję można również wprowadzić w tło:
 ```bash
 (polecenie_1; polecenie_2; polecenie_3) &
 ```
-### Dostęp do informacji o procesach z poziomu systemu plików
-
-W systemach Unixowych niemal wszystko jest reprezentowane za pomocą plików. Dotyczy to również procesów, które posiadają swój katalog systemowy: `/proc`. Wewnątrz przechowywane są podkatalogi o nazwach odpowiadającym wartościom `PID`. Możliwe jest odczytanie pliku, który przechowuje informacje o zużyciu pamięci przez procesy (plik `meminfo`), a także o zużyciu procesora (plik `cpuinfo`). Jednak te parametry w trakcie działania procesu ulegają zmianie, stąd informacje o procesach są aktualne tylko w momencie odczytu pliku. Powoduje to również, że wszystkie pliki w obrębie system plików `/proc` nazywane są pseudo-plikami, których rozmiar na dysku wynosi 0 bajtów pomimo, że zapisane są w nich konkretne dane - tworzone są one dynamicznie w momencie odczytu. Programy typu `top` i `ps` odczytują dane właśnie z tego systemu pliku i przedstawiają je nam w przystępnej formie. Katalogu `/proc` zawiera również parametry kernela, które można nadpisać wprowadzając niepożądane zmiany, stąd warto zachować ostrożność korzystając z tego systemu plików.
-
 ---
 
 ### Zadania do samodzielnego wykonania
 
 1. Wyświetl listę własnych procesów komendą `ps`. Porównaj wyniki z wynikami poleceń: `ps ­x` i `ps ­ax`.
 2. Zaloguj się do systemu kilkukrotnie poprzez wirtualne konsole lub otwierając nowe okno w środowisku graficznym. Każdorazowo sprawdź poleceniem `tty` nazwę terminala, na którym pracujesz.
-3. Wyświetl hierarchię procesów poleceniem `pstree`. 
+3. Wyświetl hierarchię procesów poleceniem `pstree`.
 4. Obejrzyj listę procesów poleceniem `top` sortując ją wg stopnia zajętości procesora i ilości zajętej pamięci (sprawdź przełącznik `-o`)
 5. Wykonaj kolejno następujące kroki:
-* Zmień priorytet powłoki `bash`, w której aktualnie się znajdujesz na 10.
 * Uruchom polecenie `sleep` na 30 sekund. Od razu wstrzymaj je kombinacją **Ctrl-Z**.
 * Uruchom *w tle* kolejne polecenie `sleep`, tym razem na 3600 sekund.
 * Wyświetl aktywne zadania w bieżącej sesji komendą `jobs`.
-* Sprawdź odpowiednim poleceniem `ps` priorytet i status (uruchomiony/wstrzymany) uruchomionych w bieżącej sesji programów.
+* Sprawdź odpowiednim poleceniem `ps` status (uruchomiony/wstrzymany) uruchomionych w bieżącej sesji programów.
 * Przywróć w tle działanie wstrzymanego sleep.
 * Sprawdzaj aktywne zadania poleceniem `jobs` aż do zakończenia `sleep 30`
-* Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**. 
+* Zakończ `sleep 3600` przywracając go na pierwszy plan i zamykając kombinacją **Ctrl-C**.
 6. Uruchom w tle sekwencję  `sleep 1000 ; touch sleep_finished`. Sprawdź czy istnieje plik *sleep_finished*. Zakończ proces *sleep* sygnałem *TERM*. Sprawdź ponownie istnienie pliku *sleep_finished*.
 7. Uruchom aplikację z GUI, np. edytor tekstu *Mousepad*. Sprawdź jego PID. Wyślij do jego procesu sygnał *STOP*, sprawdź czy aplikacja reaguje. Wyślij sygnał *CONT*.
 8. Utwórz w swoim katalogu domowym folder o nazwie `readonly`. Usuń prawa do zapisu w nim. Następnie wykonaj komendę, która spróbuje utworzyć w nim plik, a w przypadku niepowodzenia wyświetli komunikat **ERROR** (polecenie `echo ERROR`).
-9. Przejdź do katalogu `/proc` i odczytaj jego zawartość poleceniem `ls -l /proc`.
-10. Porównaj wartości `PID` procesów wskazywanych po wywołaniu programu `ps` z nazwami katalogów w folderze `/proc`. Następnie spróbuj przejść do katalogu o nazwie odpowiadającej `PID` procesu `ps` - czy podany katalog nadal istnieje?
-11. Przejdź do podkatalogu w `/proc` o nazwie odpowiadającej `PID` procesu `bash` (uzyskasz go po wpisaniu `ps`). Przejrzyj jego zawartość i wyświetl zawartość pliku `status`. Zwróc uwagę na przechowywane informacje (np. `Name`, `State`,`PID`).
-12. Sprawdź informacje o tym na jakim procesorze obecnie pracujesz. W tym celu odczytaj zawartość pliku `cpuinfo` poleceniem `cat /proc/cpuinfo`.
-13. Sprawdź informacje o wykorzystaniu pamięci RAM. W tym celu odczytaj zawartość pliku `meminfo` poleceniem `cat /proc/meminfo`.
+9. Sprawdź informacje o tym na jakim procesorze obecnie pracujesz. W tym celu odczytaj zawartość pliku `cpuinfo` poleceniem `cat /proc/cpuinfo`.
+10. Sprawdź informacje o wykorzystaniu pamięci RAM. W tym celu odczytaj zawartość pliku `meminfo` poleceniem `cat /proc/meminfo`.
 
 ---
 ## Zdalne zarządzanie przez sieć
@@ -195,7 +166,7 @@ SSH (*secure shell*) to popularny standard protokołu komunikacyjnego pozwalają
 
 Użytkownik, przy pomocy *klienta SSH*, łączy się z akceptującym połączenia zdalne *serwerem SSH*, dzięki czemu może wykonywać z poziomu maszyny *klienta* polecenia i uruchamiać programy konsolowe na *serwerze*.
 
-Większość dystrybucji ma domyślnie zainstalowanego klienta SSH, serwer należy często doinstalować z repozytoriów. 
+Większość dystrybucji ma domyślnie zainstalowanego klienta SSH, serwer należy często doinstalować z repozytoriów.
 
 W aktualnym systemie Windows 10/11, klient SSH również jest domyślnie zainstalowany. W starszych wersjach systemu Windows można doinstalować klient i serwer w postaci *OpenSSH for Windows*, bądź wykorzystać popularny graficzny klient SSH *Putty*.
 Otwórz terminal w systemie Windows/Linux i połącz się z gościem poleceniem `ssh [user@]host`, na przykład:
@@ -244,13 +215,13 @@ scp student@192.168.56.3:/etc/resolv.conf resolv.conf
 
 Korzystając z połączenia SSH (*serwer* oznacza w tym przypadku maszynę zdalną):
 
-1. Wyświetl procesy o największym użyciu procesora.
-2. Sprawdź zawartość katalogu domowego
+11. Wyświetl procesy o największym użyciu procesora.
+12. Sprawdź zawartość katalogu domowego
 
 Korzystając z SCP pod Windowsem:
 
-3. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli (po SSH).
-4. Skopiuj z serwera wszystkie pliki z rozszerzeniem `.conf` znajdujące się w katalogu `/etc`.
+13. Utwórz na hoście (w Notatniku) plik tekstowy zawierający kilka linijek tekstu i prześlij go do serwera. Wyświetl go w zdalnej konsoli (po SSH).
+14. Skopiuj z serwera wszystkie pliki z rozszerzeniem `.conf` znajdujące się w katalogu `/etc`.
 
 ---
 
@@ -298,9 +269,9 @@ Komendy (zatwierdzane enterem):
 
 ### Zadania do samodzielnego wykonania
 
-14. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym na serwerze)
-15. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
-16. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
+15. Korzystając z *Nano* zwiększ rozmiar przechowywanej historii *bash* (wartość `HISTSIZE` w pliku `.bashrc` w katalogu domowym na serwerze)
+16. Korzystając z *Vim*-a wyedytuj dowolny plik tekstowy.
+17. Uruchom w pojedynczej konsoli, **w tle** trzy edytory nano, dla trzech różnych plików. Sprawdź procesy działające w tle w bieżącym terminalu komendą `jobs`. Naucz się przywracać wybrany proces na pierwszy plan.
 
 ***
 Autorzy: *Adam Bondyra, Jakub Tomczyński*
