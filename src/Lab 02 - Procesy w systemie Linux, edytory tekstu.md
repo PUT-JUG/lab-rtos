@@ -74,7 +74,7 @@ Domyślnie, jeśli nie podano numeru sygnału, wysłany zostanie sygnał `TERM`,
 kill -KILL identyfikator_procesu
 ```
 
-Sygnały mają przypisane numeryczne identyfikatory. Identyfikator sygnału `TERM` wynosi 2, natomiast sygnału `KILL` jest równy 9. W poleceniu `kill` można korzystać także z wartości numerycznych synałów:
+Sygnały mają przypisane numeryczne identyfikatory. Identyfikator sygnału `TERM` wynosi 15, natomiast sygnału `KILL` jest równy 9. W poleceniu `kill` można korzystać także z wartości numerycznych synałów:
 
 ```bash
 kill -9 identyfikator_procesu
