@@ -226,7 +226,7 @@ done
 Obie zaprezentowane pętle mogą zostać przerwane poleceniem `break` - oto przykład zastosowania przerywania pętli:
 
 ```bash
-#!/bin/bash
+#!/bin/bashzad6.sh
 for FILE in *.tmp
 do
    if [ ! -f $FILE ]
@@ -315,6 +315,21 @@ Umieszczenie tekstu w *grawisie* (`` ` ``) powoduje **uruchomienie** zawartego w
 ```bash
 CURRENT_DIR=`pwd`
 ```
+## Parsowanie linii tekstu
+Często istniej konieczność przetworzenia zawartości pojedynczej linii tekstu (np. parsowanie plików, wartości które zostały wygenerowane przez pipe filtrów). Rozdzielone wartości przypisywane są do odrębnych zmiennych, które następnie skrypt przetwarza. Przykład przedstawia sposób wczytania pliku csv (gdzie elementy oddzielone są przecinkami złożonego z 3 kolumn). Ponieważ w pliku znajduje się nagłówek jest on pominięty (komenda `tail`):
+```bash
+#! /bin/bash
+while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4
+do
+  echo "Displaying Record-$rec_column1"
+  echo "Quantity: $rec_column2"
+  echo "Price: $rec_column3"
+  echo "Value: $rec_column4"
+  echo ""
+done < <(tail -n +2 input.csv)
+```
+Atrybut `IFS` (input field separator) modyfikuje działanie read (domyślnie wczytywana jest pojedynczy wyraz oddzielony spacją lub znakiem nowej linii)
+Do wstępnego przetworzenia danych wejściowych wykorzystano komendę `tail`, i przekazano go jako wejście pętli za pomocą [process substitution](https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html)
 
 ## Funkcje
 W skryptach bash możemy również definiować funkcje, które pozwalają na uproszczenie kodu. Przykład prostej funkcji oraz jej wywołania pokazano poniżej:
@@ -375,7 +390,7 @@ Często ma miejsce sytuacja, kiedy niepowodzenie jakiegokolwiek z poleceń (np. 
 ## Zadania do samodzielnego wykonania
 4. Napisz skrypt, który dla każdego elementu (pliku, folderu) w bieżącym katalogu wyświetli jego nazwę wraz z informacją czy jest to plik czy katalog.
 5. Napisz skrypt, który dla każdego z plików podanych jako argumenty wywołania wyświetli nazwę pliku, a następnie jego zawartość posortowaną alfabetycznie.
-6. Napisz skrypt, który będzie kopiował plik podany jako pierwszy argument do wszystkich katalogów podanych jako kolejne argumenty wywołania.
+6. Napisz skrypt, który będzie kopiował plik podany jako pierwszy argument do wszystkich katalogów podanych jako kolejne argumenty wywołania. Zweryfikuj co stanie się gdy w nazwie pliku będzie spacja. Spróbuj rozwiązać ew. problem.
 7. Napisz skrypt, który wykona kopię zapasową plików podanych jako argumenty, do katalogu `backup` i dopisze do ich nazwy bieżącą datę:
 
 Przykładowo:
@@ -397,6 +412,13 @@ Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
 8. Napisz skrypt, który będzie oczekiwał na pojawienie się pliku o nazwie wskazanej w argumencie. Skrypt powinien cyklicznie (co 5 sekund) sprawdzać istnienie pliku. Jeśli plik istnieje, skrypt powinien wyświetlić jego zawartość i zakończyć się. Uruchom skrypt, a z poziomu drugiego terminala utwórz monitorowany plik.
 
 9. Utwórz skrypt i umieść w nim funkcję realizującą sumę dwóch argumentów (liczb) podawanych do skryptu.
+    
+10. W pliku [trees.txt](_resources/trees.txt) zapisane są w formacie csv informacje o kilku drzewach rosnących w ogrodzie (wraz z nagłówkiem w pierwszej linii, informującym o zawartości kolumn pliku). Napisz skrypt, który zapisze do pliku output.txt 3 wysokości dwóch najwyższych brzóz o statusie “chronione”.
+Weryfikacja: \
+`./skrypt.sh trees.txt` \
+Oczekiwana zawartość pliku output.txt po uruchomieniu skryptu: \
+11.0 \
+10.8
 
 ***
 Autorzy: \
