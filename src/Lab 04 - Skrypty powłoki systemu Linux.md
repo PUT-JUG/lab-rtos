@@ -329,7 +329,7 @@ do
 done < <(tail -n +2 input.csv)
 ```
 Atrybut `IFS` (input field separator) modyfikuje działanie read (domyślnie wczytywana jest pojedynczy wyraz oddzielony spacją lub znakiem nowej linii)
-Do wstępnego przetworzenia danych wejściowych wykorzystano komendę `tail`, i przekazano go jako wejście pętli za pomocą [process substitution](https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html)
+Do wstępnego przetworzenia danych wejściowych wykorzystano komendę `tail`, i przekazano go jako wejście pętli za pomocą [process substitution](https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html). Analogicznie można przekierować wyjście (np. wynik działania pętli przekierować do strumienia) np. `... done < <(tail -n +2 input.csv)  > >(sort | tail -n 10 > output.txt)` posortuje wynik działania pętli i zapisze do pliku 10 ostatnich wierszy.
 
 ## Funkcje
 W skryptach bash możemy również definiować funkcje, które pozwalają na uproszczenie kodu. Przykład prostej funkcji oraz jej wywołania pokazano poniżej:
@@ -413,7 +413,7 @@ Podpowiedź: bieżącą datę możesz uzyskać poleceniem `date '+%Y-%m-%d'`
 
 9. Utwórz skrypt i umieść w nim funkcję realizującą sumę dwóch argumentów (liczb) podawanych do skryptu.
     
-10. W pliku [trees.txt](_resources/trees.txt) zapisane są w formacie csv informacje o kilku drzewach rosnących w ogrodzie (wraz z nagłówkiem w pierwszej linii, informującym o zawartości kolumn pliku). Napisz skrypt, który zapisze do pliku output.txt 3 wysokości dwóch najwyższych brzóz o statusie “chronione”.
+10. W pliku [trees.txt](_resources/trees.txt) zapisane są w formacie csv informacje o kilku drzewach rosnących w ogrodzie (wraz z nagłówkiem w pierwszej linii, informującym o zawartości kolumn pliku). Napisz skrypt, który zapisze do pliku output.txt wysokości dwóch najwyższych brzóz o statusie “chronione”.
 Weryfikacja: \
 `./skrypt.sh trees.txt` \
 Oczekiwana zawartość pliku output.txt po uruchomieniu skryptu: \

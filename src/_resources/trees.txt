@@ -1,5 +1,5 @@
 "Index","status", "wysokosc (ft)", "objetosc(ft^3)", "gatunek"
- 1,chronione,70,10.3,dab
+ 1,chronione,8.1,70,10.3,dab
  2,chronione,8.6,65,10.3,brzoza
  3,pospolite,8.8,63,10.2,klon
  4,pospolite,10.5,72,16.4,dab
