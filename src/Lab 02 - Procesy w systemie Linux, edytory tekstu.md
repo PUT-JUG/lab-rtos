@@ -158,6 +158,7 @@ Taką sekwencję można również wprowadzić w tło:
 10. Sprawdź informacje o wykorzystaniu pamięci RAM. W tym celu odczytaj zawartość pliku `meminfo` poleceniem `cat /proc/meminfo`.
 
 ---
+
 ## Zdalne zarządzanie przez sieć
 
 ### SSH
