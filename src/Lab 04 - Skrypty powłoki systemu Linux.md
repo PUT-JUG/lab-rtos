@@ -318,6 +318,7 @@ CURRENT_DIR=`pwd`
 ```
 ## Parsowanie linii tekstu
 Często istniej konieczność przetworzenia zawartości pojedynczej linii tekstu (np. parsowanie plików, wartości które zostały wygenerowane przez pipe filtrów). Rozdzielone wartości przypisywane są do odrębnych zmiennych, które następnie skrypt przetwarza. Przykład przedstawia sposób wczytania pliku csv (gdzie elementy oddzielone są przecinkami złożonego z 3 kolumn). Ponieważ w pliku znajduje się nagłówek jest on pominięty (komenda `tail`):
+
 ```bash
 #! /bin/bash
 while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4
@@ -329,8 +330,22 @@ do
   echo ""
 done < <(tail -n +2 input.csv)
 ```
+
 Atrybut `IFS` (input field separator) modyfikuje działanie read (domyślnie wczytywana jest pojedynczy wyraz oddzielony spacją lub znakiem nowej linii)
 Do wstępnego przetworzenia danych wejściowych wykorzystano komendę `tail`, i przekazano go jako wejście pętli za pomocą [process substitution](https://www.gnu.org/software/bash/manual/html_node/Process-Substitution.html). Analogicznie można przekierować wyjście (np. wynik działania pętli przekierować do strumienia) np. `... done < <(tail -n +2 input.csv)  > >(sort | tail -n 10 > output.txt)` posortuje wynik działania pętli i zapisze do pliku 10 ostatnich wierszy.
+
+W cześci starszych interpreterów process substitution może nie być dostępne, wtedy można zastosować pipe:
+```bash
+tail -n +2 input.csv | while IFS="," read -r rec_column1 rec_column2 rec_column3 rec_column4
+do
+  echo "Displaying Record-$rec_column1"
+  echo "Quantity: $rec_column2"
+  echo "Price: $rec_column3"
+  echo "Value: $rec_column4"
+  echo ""
+done
+```
+
 
 ## Funkcje
 W skryptach bash możemy również definiować funkcje, które pozwalają na uproszczenie kodu. Przykład prostej funkcji oraz jej wywołania pokazano poniżej:
