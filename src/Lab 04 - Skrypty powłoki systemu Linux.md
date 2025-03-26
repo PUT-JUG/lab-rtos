@@ -61,7 +61,8 @@ Każdy użytkownik może łatwo (np. poleceniem `set`) zweryfikować, że w syst
  
  Zmienne systemowe nie mają typu - wszystkie przechowywane są jako napis (ciąg znaków), niezależnie od zawartości.
  
- ## Zadania do samodzielnego wykonania
+## Zadania do samodzielnego wykonania
+
 1. Zdefiniuj zmienną `IMIE` i przypisz jej swoje imię. Wyświetl zawartość tej zmiennej. Wyeksportuj tą zmienną i sprawdź, czy jest dostępna w nowym (potomnym) interpreterze.
 2. Wyświetl listę zmiennych eksportowanych.
 3. Zmień własny znak zachęty, modyfikując zmienną `PS1`.
@@ -422,7 +423,7 @@ Oczekiwana zawartość pliku output.txt po uruchomieniu skryptu: \
 
 ***
 Autorzy: \
-*Adam Bondyra*, *Jakub Tomczyński*, *Bartłomiej Kulecki*
+*Adam Bondyra*, *Jakub Tomczyński*, *Bartłomiej Kulecki*, *Piotr Kaczmarek*
 
 
 Opracowano na podstawie materiałów projektu *Otwartych Studiów Informatycznych (http://wazniak.mimuw.edu.pl/)*.
