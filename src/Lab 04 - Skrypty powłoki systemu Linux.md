@@ -348,6 +348,7 @@ total_files $katalog
 ```
 Wewnątrz definicji funkcji, którą podajemy w nawiasach klamrowych po nazwie funkcji, można wykorzystać argumenty przekazywane do funkcji analogicznie jak argumenty przekazywane do skryptu, tzn. za pomocą `$1`, `$2`, `$3` itd.
 Funkcja total_files sprawdza liczbę plików w podanym katalogu. Aby użyć zdefiniowanej funkcji w dalszej części skryptu, wystarczy podać jej nazwę oraz po kolei argumenty przekazywane do funkcji. Jeśli chcemy przypisać wynik funkcji do zmiennej należy wykorzystać operator $:
+
 ```bash
 files=$(total_files $katalog)
 ```
